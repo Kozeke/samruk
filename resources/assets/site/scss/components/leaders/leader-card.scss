@@ -1,0 +1,63 @@
+.leader-card {
+    margin-bottom: rem(40);
+
+    &__link {
+        height: 100%;
+        display: block;
+        border-radius: $borderRadius;
+        box-shadow: inset 0 0 0 4px $color-gray;
+        transition: .3s;
+        overflow: hidden;
+    }
+
+    &__image-wrap {
+        padding-top: aspect-ratio(363, 400);
+    }
+
+    &__info {
+        padding: rem(30);
+        line-height: 1.25;
+    }
+
+    &__title {
+        font-size: rem(24);
+    }
+
+    &__desc {
+        color: $textcolor;
+        font-size: rem(20);
+        margin-top: rem(15);
+
+        p {
+            margin: 0;
+        }
+
+        > p:not(:first-child) {
+            display: none;
+        }
+    }
+
+    @include breakpoint-max(3xl) {
+        &__title {
+            font-size: rem(20);
+        }
+
+        &__desc {
+            font-size: rem(18);
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__info {
+            padding: rem(20);
+        }
+
+        &__title {
+            font-size: rem(18);
+        }
+
+        &__desc {
+            font-size: rem(16);
+        }
+    }
+}

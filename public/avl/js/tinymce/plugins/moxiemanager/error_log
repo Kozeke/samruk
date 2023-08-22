@@ -1,0 +1,361 @@
+[17-Apr-2017 10:56:16 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:56:16 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:56:16 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:56:25 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:56:25 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:56:25 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:57:15 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:57:15 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:57:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:58:35 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:58:35 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:58:35 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:59:20 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:59:20 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 10:59:20 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:02:23 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:02:23 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:02:23 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:12:09 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:12:09 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:12:09 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:18:29 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:18:29 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 11:18:29 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Favorites_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:07:02 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:07:02 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:07:02 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:08:01 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:08:01 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:08:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:08:42 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:08:42 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:08:42 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:11:07 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:11:07 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:11:07 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:13:48 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:13:48 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:13:48 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:41 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:41 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:41 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:42 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:42 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:42 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:55 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:55 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:14:55 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:15:38 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:15:38 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:15:38 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:26:55 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:26:55 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:26:55 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:31:16 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:31:16 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:31:16 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:31:42 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:31:42 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:31:42 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:01 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:01 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:06 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:06 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:06 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:59 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:59 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:35:59 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:37:15 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:37:15 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:37:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:38:26 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:38:26 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:38:26 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:42:11 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:42:11 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:42:11 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:45:05 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:45:05 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 14:45:05 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 16:56:48 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 16:56:48 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 16:56:48 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 17:14:17 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 17:14:17 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[17-Apr-2017 17:14:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[18-Apr-2017 00:37:10 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[18-Apr-2017 00:37:10 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[18-Apr-2017 00:37:10 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Vfs_Local_File), Array)
+#3 /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object in /home/kimve170/test.zhasproject.kz/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[18-Apr-2017 18:50:55 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[18-Apr-2017 18:50:55 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[18-Apr-2017 18:50:55 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Uploaded_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[19-Apr-2017 13:13:43 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[19-Apr-2017 13:13:43 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[19-Apr-2017 13:13:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_History_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html/ in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:49:27 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:49:27 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:49:27 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_History_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html/ in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:49:30 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:49:30 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:49:30 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Favorites_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_htm in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:14 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:14 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Favorites_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_htm in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:17 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:17 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_History_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html/ in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:19 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:19 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:50:19 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Uploaded_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:51:38 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:51:38 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 22:51:38 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Uploaded_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 23:02:14 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 23:02:14 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 23:02:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Uploaded_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 23:02:16 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 23:02:16 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[22-Apr-2017 23:02:16 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_History_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html/ in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:28 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:28 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:28 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Favorites_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_htm in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:31 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:31 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:31 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_History_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html/ in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:33 Europe/Paris] PHP Notice:  Array to string conversion in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:33 Europe/Paris] PHP Notice:  Undefined property: MOXMAN_Core_Plugin::$Array in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[24-Apr-2017 15:02:33 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php:118
+Stack trace:
+#0 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php(123): MOXMAN_Util_EventDispatcher->dispatch(Object(MOXMAN_Core_Plugin), 'fileaction', Object(MOXMAN_Core_FileActionEventArgs))
+#1 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/BaseCommand.php(26): MOXMAN_Core_Plugin->fire('FileAction', Object(MOXMAN_Core_FileActionEventArgs))
+#2 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/ListFilesCommand.php(105): MOXMAN_Core_BaseCommand->fireFilesAction('list_files', Object(MOXMAN_Uploaded_File), Array)
+#3 /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/CommandCollection.php(39): MOXMAN_Core_ListFilesCommand->execute(Object(stdClass))
+#4 /home/kimve170/public_html in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Util/EventDispatcher.php on line 118
+[25-Oct-2017 11:29:54 Europe/Paris] PHP Warning:  strtolower() expects parameter 1 to be string, array given in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php on line 85
+[25-Oct-2017 11:29:54 Europe/Paris] PHP Warning:  strtolower() expects parameter 1 to be string, array given in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php on line 85
+[28-Oct-2017 10:13:27 Europe/Paris] PHP Warning:  strtolower() expects parameter 1 to be string, array given in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php on line 85
+[28-Oct-2017 10:13:30 Europe/Paris] PHP Warning:  strtolower() expects parameter 1 to be string, array given in /home/kimve170/public_html/public/assets/admin/js/tinymce/plugins/moxiemanager/classes/Core/Plugin.php on line 85

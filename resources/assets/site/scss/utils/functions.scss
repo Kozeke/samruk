@@ -1,0 +1,18 @@
+@use "sass:math";
+
+@import 'vars';
+
+/* px to rem */
+@function rem($value) {
+	@return ($value * 0.1) + rem;
+}
+
+/* px to em */
+@function em($value, $fontsize: $fontsize) {
+	@return math.div($value, $fontsize) + em;
+}
+
+/* aspect-ratio */
+@function aspect-ratio($width, $height) {
+	@return math.div($height, $width) * 100%;
+}

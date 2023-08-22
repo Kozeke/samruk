@@ -1,0 +1,38 @@
+.socials {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: rem(-10);
+    margin-right: rem(-10);
+
+    &__link {
+        color: $color-gray-2;
+        width: 40px;
+        height: 40px;
+        margin: 0 rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .3s;
+
+        &:hover,
+        &:focus {
+            color: $color-secondary;
+        }
+
+        .icon--facebook {
+            width: 8px;
+            height: 16px;
+        }
+
+        .icon--instagram {
+            width: 18px;
+            height: 18px;
+        }
+
+        .icon--youtube {
+            width: 20px;
+            height: 14px;
+        }
+    }
+}

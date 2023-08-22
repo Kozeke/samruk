@@ -1,0 +1,65 @@
+@import "project-card";
+
+.projects {
+    &__list {
+        row-gap: rem(40);
+
+        @include breakpoint-max(xl) {
+            row-gap: rem(30);
+        }
+    }
+}
+
+.projects-filter {
+    margin-bottom: rem(60);
+
+    &__type-wrap {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    &__type {
+        width: rem(26);
+        height: rem(26);
+        border-radius: 50%;
+        margin-left: rem(10);
+
+        &--1 {
+            background-color: $color-secondary;
+        }
+
+        &--2 {
+            background-color: $color-primary;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: right;
+
+        .btn {
+            margin-left: rem(30);
+        }
+    }
+
+    @include breakpoint-max(2xl) {
+        &__type {
+            width: rem(18);
+            height: rem(18);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        margin-bottom: rem(50);
+
+        &__actions .btn {
+            width: 100%;
+            margin-left: 0;
+
+            &:not(:last-child) {
+                margin-bottom: rem(20);
+            }
+        }
+    }
+}

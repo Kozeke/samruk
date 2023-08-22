@@ -1,0 +1,42 @@
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        margin: rem(5) 0;
+        display: flex;
+        align-items: center;
+
+        &:not(:last-child) {
+            margin-right: rem(10);
+        }
+
+        &:last-child .icon {
+            display: none;
+        }
+    }
+
+    a {
+        color: $color-white;
+
+        @include breakpoint-min(xl) {
+            font-size: rem(16);
+        }
+
+        @include breakpoint-min(3xl) {
+            font-size: rem(18);
+        }
+
+        &:hover,
+        &:focus {
+            color: $color-secondary;
+        }
+    }
+
+    .icon {
+        width: rem(6);
+        height: rem(12);
+        color: rgba($color-white, .5);
+        margin-left: rem(10);
+    }
+}

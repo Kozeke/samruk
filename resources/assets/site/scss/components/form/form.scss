@@ -1,0 +1,175 @@
+@import "select";
+@import "form-auth";
+
+.input,
+.textarea {
+	width: 100%;
+	max-width: 100%;
+	display: block;
+	padding: 0 rem(15);
+    font-size: rem(16);
+	border: 1px solid $color-gray-3;
+	background-color: $color-white;
+    border-radius: rem(10);
+	transition: .3s;
+	outline: none;
+
+    &[disabled] {
+        opacity: .6;
+        pointer-events: none;
+    }
+
+    @include breakpoint-min(xl) {
+        font-size: rem(18);
+        padding: 0 rem(20);
+    }
+
+    @include breakpoint-min(2xl) {
+        font-size: rem(22);
+    }
+
+    @include placeholder {
+        color: $textcolor;
+    }
+}
+
+.input {
+    height: 40px;
+
+    @include breakpoint-min(xl) {
+        height: 42px;
+    }
+
+    @include breakpoint-min(2xl) {
+        height: 50px;
+    }
+}
+
+.textarea {
+	height: 150px;
+	padding-top: rem(20);
+	padding-bottom: rem(20);
+	resize: none;
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: rem(30);
+
+	&__label {
+        color: $color-primary;
+        display: block;
+        font-size: rem(16);
+        font-weight: 700;
+		margin-bottom: rem(10);
+
+        @include breakpoint-min(lg) {
+            font-size: rem(18);
+            margin-bottom: rem(20);
+        }
+
+        @include breakpoint-min(2xl) {
+            font-size: rem(22);
+        }
+	}
+
+	&__error {
+		color: $color-danger;
+		margin-top: rem(5);
+	}
+
+	&__input {
+		position: relative;
+	}
+
+	&.has-error {
+		.input,
+		.textarea,
+		select {
+			border-color: $color-danger;
+		}
+	}
+
+    @include breakpoint-max(md) {
+        margin-bottom: rem(20);
+    }
+}
+
+.form-panel {
+    padding: rem(30);
+    margin-bottom: rem(30);
+    border-radius: $borderRadius;
+    background-color: $color-gray;
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: right;
+
+        .btn {
+            margin-left: rem(30);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        padding: rem(20);
+
+        &__actions .btn {
+            width: 100%;
+            margin-left: 0;
+
+            &:not(:last-child) {
+                margin-bottom: rem(20);
+            }
+        }
+    }
+}
+
+.form-check {
+    font-size: rem(22);
+    line-height: 1.25;
+
+    &:not(:last-child) {
+        margin-bottom: rem(20);
+    }
+
+	&__label {
+        display: inline-flex;
+        align-items: flex-start;
+        cursor: pointer;
+
+		input {
+            position: relative;
+            width: rem(26);
+            height: rem(26);
+            margin-right: rem(10);
+            flex-shrink: 0;
+        }
+	}
+
+    @include breakpoint-max(2xl) {
+        font-size: rem(18);
+
+        &__label input {
+            width: rem(18);
+            height: rem(18);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        font-size: rem(16);
+
+        &:not(:last-child) {
+            margin-bottom: rem(15);
+        }
+    }
+
+	&--inline {
+		display: inline-block;
+        margin-bottom: rem(20);
+
+        @include breakpoint-max(xl) {
+            margin-bottom: rem(15);
+        }
+	}
+}

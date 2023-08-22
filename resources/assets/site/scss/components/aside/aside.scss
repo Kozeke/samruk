@@ -1,0 +1,21 @@
+@import "second-nav";
+
+.aside {
+    &__item {
+        &:not(:last-child) {
+            margin-bottom: rem(30);
+        }
+
+        @include breakpoint-max(2xl) {
+            &:first-child {
+                margin-top: rem(50);
+            }
+        }
+    }
+
+    &__item--nav {
+        @include breakpoint-max(2xl) {
+            display: none;
+        }
+    }
+}

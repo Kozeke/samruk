@@ -1,0 +1,98 @@
+.about-history {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: rem(40);
+    margin-top: rem(90);
+    margin-bottom: rem(90);
+
+    &__item {
+        display: flex;
+        align-items: flex-start;
+        padding: rem(30);
+        border-radius: $borderRadius;
+
+        &:nth-child(odd) {
+            background-color: $color-gray;
+
+            .about-history__item-title {
+                color: $color-primary;
+            }
+        }
+
+        &:nth-child(even) {
+            background-color: #F7F3EE;
+
+            .about-history__item-title {
+                color: $color-secondary;
+            }
+        }
+
+        @include breakpoint-min(md) {
+            &:nth-child(4n+1),
+            &:nth-child(4n+4) {
+                background-color: $color-gray;
+
+                .about-history__item-title {
+                    color: $color-primary;
+                }
+            }
+
+            &:nth-child(4n+2),
+            &:nth-child(4n+3) {
+                background-color: #F7F3EE;
+
+                .about-history__item-title {
+                    color: $color-secondary;
+                }
+            }
+        }
+    }
+
+    &__item-title {
+        width: rem(100);
+        font-size: rem(32);
+        font-weight: 700;
+        margin-right: rem(20);
+        flex-shrink: 0;
+    }
+
+    &__item-description {
+        width: calc(100% - 12rem);
+        font-size: rem(18);
+
+        p {
+            margin-bottom: rem(20);
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @include breakpoint-max(2xl) {
+        margin-top: rem(70);
+        margin-bottom: rem(70);
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include breakpoint-max(md) {
+        margin-top: rem(60);
+        margin-bottom: rem(60);
+
+        &__item {
+            flex-wrap: wrap;
+        }
+
+        &__item-title {
+            width: 100%;
+            font-size: rem(25);
+            margin-right: 0;
+            margin-bottom: rem(20);
+        }
+
+        &__item-description {
+            width: 100%;
+            font-size: rem(16);
+        }
+    }
+}

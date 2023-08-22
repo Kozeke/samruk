@@ -1,0 +1,185 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    position: relative;
+    padding: rem(10) rem(20);
+    font-family: inherit;
+    font-size: rem(16);
+    font-weight: 400;
+    line-height: 1.25;
+    border-radius: rem(10);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    transition: .3s;
+    user-select: none;
+    border: none;
+
+    @include breakpoint-min(xl) {
+        font-size: rem(18);
+        padding: rem(9.75) rem(20);
+    }
+
+    @include breakpoint-min(2xl) {
+        font-size: rem(22);
+        padding: rem(11.25) rem(25);
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    &[disabled] {
+        opacity: .6;
+        pointer-events: none;
+        //cursor:not-allowed;
+    }
+
+    &__loader {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: rem(22);
+        height: rem(22);
+        margin-top: rem(-11);
+        margin-left: rem(-11);
+        animation: btnSpinner 1s linear infinite;
+
+        &-in,
+        &-in::before {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &-in {
+            left: 50%;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                left: -50%;
+                border-radius: 100%;
+                box-shadow: inset 0 0 0 2px currentColor;
+            }
+        }
+    }
+
+    &.is-loading {
+        pointer-events: none;
+
+        > *:not(.btn__loader) {
+            opacity: 0;
+        }
+
+        .btn__loader {
+            display: block;
+        }
+    }
+}
+
+.btn--primary {
+    color: $color-white;
+    background-color: $color-primary;
+
+    &:hover,
+    &:focus {
+        color: $color-white;
+        background-color: darken($color-primary, 5%);
+    }
+}
+
+.btn--secondary {
+    color: $color-white;
+    background-color: $color-secondary;
+
+    &:hover,
+    &:focus {
+        color: $color-white;
+        background-color: darken($color-secondary, 5%);
+    }
+}
+
+.btn--outline-primary {
+    color: $color-primary;
+    box-shadow: inset 0 0 0 1px $color-primary;
+
+    &:hover,
+    &:focus {
+        color: $color-white;
+        background-color: $color-primary;
+    }
+}
+
+.btn--outline-secondary {
+    color: $color-secondary;
+    box-shadow: inset 0 0 0 1px $color-secondary;
+
+    &:hover,
+    &:focus {
+        color: $color-white;
+        background-color: $color-secondary;
+    }
+}
+
+.btn--size {
+    &-sm {
+        @include breakpoint-min(xl) {
+            font-size: rem(18);
+            padding: rem(9.75) rem(20);
+        }
+    }
+}
+
+.btn-docs {
+    .icon {
+        margin-right: rem(10);
+    }
+}
+
+.btn-side-group {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    display: flex;
+    transform: rotate(-90deg) translateX(50%) translateY(1px);
+    transform-origin: 100% 100%;
+    z-index: $z-index-sticky;
+
+    > *:not(:last-child) {
+        margin-right: rem(30);
+
+        @include breakpoint-max(sm) {
+            margin-right: rem(15);
+        }
+    }
+}
+
+.btn-side {
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    white-space: nowrap;
+
+    @include breakpoint-max(sm) {
+        font-size: rem(14);
+    }
+}
+
+@keyframes btnSpinner {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(1turn)
+    }
+}

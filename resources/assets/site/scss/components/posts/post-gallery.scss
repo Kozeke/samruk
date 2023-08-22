@@ -1,0 +1,40 @@
+.post-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: rem(40);
+    margin-bottom: rem(40);
+
+    &__link {
+        height: 100%;
+        display: block;
+        border-radius: $borderRadius;
+        transition: .3s;
+        overflow: hidden;
+
+        &:hover,
+        &:focus {
+            opacity: .85;
+        }
+    }
+
+    &__image-wrap {
+        padding-top: aspect-ratio(400, 270);
+    }
+
+    @include breakpoint-max(xl) {
+        grid-gap: rem(30);
+    }
+
+    @include breakpoint-max(lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include breakpoint-max(sm) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: rem(20);
+
+        &__link {
+            border-radius: rem(10);
+        }
+    }
+}

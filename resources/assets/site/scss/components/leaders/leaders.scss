@@ -1,0 +1,136 @@
+@import "leader-card";
+
+//.leaders {}
+
+
+.leader {
+    &__main {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: rem(30);
+        border-radius: $borderRadius;
+        background-color: #F7F3EE;
+        margin-bottom: rem(60);
+        overflow: hidden;
+    }
+
+    &__main-left {
+        width: 34.2345%;
+    }
+
+    &__main-right {
+        width: calc(100% - 34.2345%);
+        padding-left: rem(60);
+    }
+
+    &__image-wrap {
+        padding-top: aspect-ratio(380, 410);
+        border-radius: $borderRadius;
+        overflow: hidden;
+    }
+
+    &__title {
+        margin: 0;
+        color: $color-primary;
+        font-size: rem(32);
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    &__subtitle {
+        display: inline-block;
+        margin-top: rem(20);
+        padding: rem(6) rem(12);
+        color: $color-white;
+        font-size: rem(24);
+        font-weight: 700;
+        line-height: 1.25;
+        border-radius: rem(10);
+        background-color: $color-secondary;
+
+        p {
+            margin: 0;
+        }
+
+        > p:not(:first-child) {
+            display: none;
+        }
+    }
+
+    &__description {
+        margin-top: rem(30);
+
+        p {
+            margin: 0;
+        }
+
+        > p:first-child {
+            display: none;
+        }
+    }
+
+    @include breakpoint-max(3xl) {
+        &__main-right {
+            padding-left: rem(30);
+        }
+
+        &__title {
+            font-size: rem(28);
+        }
+
+        &__subtitle {
+            font-size: rem(20);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__title {
+            font-size: rem(25);
+        }
+
+        &__subtitle {
+            font-size: rem(18);
+        }
+
+        &__description {
+            margin-top: rem(20);
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__main {
+            margin-bottom: rem(40);
+            justify-content: center;
+        }
+
+        &__main-left {
+            width: 280px;
+            max-width: 100%;
+            margin-bottom: rem(30);
+        }
+
+        &__main-right {
+            width: 100%;
+            padding-left: 0;
+        }
+
+        &__title {
+            font-size: rem(22);
+        }
+
+        &__subtitle {
+            font-size: rem(16);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__main {
+            padding: rem(20);
+        }
+
+        &__title {
+            font-size: rem(20);
+        }
+    }
+}

@@ -1,0 +1,56 @@
+@use "sass:math";
+
+$columns: 12;
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: rem(-20);
+    margin-right: rem(-20);
+}
+
+[class*='col'] {
+    position: relative;
+    padding-left: rem(20);
+    padding-right: rem(20);
+}
+
+@include breakpoint-max(xl) {
+    .row {
+        margin-left: rem(-15);
+        margin-right: rem(-15);
+    }
+
+    [class*='col'] {
+        padding-left: rem(15);
+        padding-right: rem(15);
+    }
+}
+
+.row--sm {
+    margin-left: rem(-15);
+    margin-right: rem(-15);
+
+    [class*='col'] {
+        padding-left: rem(15);
+        padding-right: rem(15);
+    }
+}
+
+@for $i from 1 through $columns {
+   .col-#{$i} {
+       flex: 0 0 percentage(math.div($i, $columns));
+       max-width: percentage(math.div($i, $columns));
+    }
+}
+
+@each $size in map-keys($breakpoints) {
+    @media (min-width: map_get($breakpoints, $size)) {
+        @for $i from 1 through $columns {
+            .col-#{$size}-#{$i} {
+                flex: 0 0 percentage(math.div($i, $columns));
+                max-width: percentage(math.div($i, $columns));
+            }
+        }
+    }
+}

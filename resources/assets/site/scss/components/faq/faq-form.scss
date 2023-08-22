@@ -1,0 +1,15 @@
+.faq-form {
+    padding: rem(30);
+    border-radius: $borderRadius;
+    background-color: $color-gray;
+    margin-bottom: rem(60);
+
+    @include breakpoint-max(md) {
+        padding: rem(20);
+        margin-bottom: rem(40);
+
+        &__submit {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,67 @@
+.title-section {
+    color: $color-primary;
+    font-size: rem(40);
+    font-weight: 700;
+    margin-bottom: rem(90);
+
+    @include breakpoint-max(2xl) {
+        font-size: rem(35);
+        margin-bottom: rem(70);
+    }
+
+    @include breakpoint-max(xl) {
+        font-size: rem(30);
+    }
+
+    @include breakpoint-max(md) {
+        font-size: rem(28);
+        margin-bottom: rem(50);
+    }
+}
+
+.title-page-wrap {
+    margin-bottom: rem(50);
+
+    .title-page {
+        margin-bottom: rem(20);
+    }
+
+    .btn-docs {
+        width: 100%;
+    }
+
+    @include breakpoint-min(md) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: rem(60);
+
+        .title-page {
+            margin-bottom: 0;
+        }
+
+        .btn-docs {
+            width: auto;
+        }
+    }
+}
+
+.title-page {
+    color: $color-secondary;
+    font-size: rem(40);
+    font-weight: 700;
+    margin-bottom: rem(60);
+
+    @include breakpoint-max(2xl) {
+        font-size: rem(35);
+    }
+
+    @include breakpoint-max(xl) {
+        font-size: rem(30);
+    }
+
+    @include breakpoint-max(md) {
+        font-size: rem(28);
+        margin-bottom: rem(50);
+    }
+}

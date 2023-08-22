@@ -1,0 +1,30 @@
+@import "faq-form";
+@import "faq-item";
+
+.faq {
+    &__header {
+        margin-bottom: rem(40);
+
+        @include breakpoint-min(md) {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: rem(60);
+        }
+    }
+
+    &__header-title {
+        margin-bottom: rem(20);
+
+        @include breakpoint-min(md) {
+            margin-bottom: 0;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__header-toggle {
+            width: 100%;
+        }
+    }
+}

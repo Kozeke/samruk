@@ -1,0 +1,217 @@
+.post {
+    &__main {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-bottom: rem(60);
+        padding-bottom: rem(60);
+        border-bottom: 4px solid $color-gray;
+    }
+
+    &__info {
+        width: calc(100% - 43.604651162790695%);
+        padding-right: rem(100);
+    }
+
+    &__meta {
+        margin-bottom: rem(20);
+    }
+
+    &__date {
+        display: inline-flex;
+        align-items: center;
+        color: $color-secondary;
+        font-size: rem(24);
+        font-weight: 700;
+
+        .icon {
+            width: rem(24);
+            height: rem(24);
+            margin-right: rem(10);
+        }
+    }
+
+    &__title {
+        margin: 0;
+        color: $color-primary;
+        font-size: rem(40);
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    &__subtitle {
+        margin-top: rem(30);
+
+        b {
+            color: $color-secondary;
+        }
+
+        p:not(:last-child) {
+            margin-bottom: rem(10);
+        }
+    }
+
+    &__images {
+        width: 43.604651162790695%;
+        padding: 0 rem(30);
+        overflow: visible;
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            width: rem(60);
+            height: rem(60);
+            transition: .3s;
+            color: $color-primary;
+            border-radius: $borderRadius;
+            transform: translateY(-50%);
+            background-color: $color-gray;
+            cursor: pointer;
+            z-index: 2;
+
+            .icon {
+                width: rem(8);
+                height: rem(16);
+                stroke-width: 1px;
+            }
+
+            &.swiper-button-disabled {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            &:hover {
+                color: $color-white;
+                background-color: $color-secondary;
+            }
+        }
+
+        .swiper-button-prev {
+            left: 0;
+        }
+
+        .swiper-button-next {
+            right: 0;
+        }
+    }
+
+    &__images-slide {
+        padding-top: aspect-ratio(690, 450);
+        border-radius: $borderRadius;
+        background-color: darken($color-gray, 5%);
+        overflow: hidden;
+
+        .swiper-lazy {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 50% / cover no-repeat;
+        }
+
+        .swiper-lazy-preloader {
+            border-color: $color-secondary;
+            border-top-color: transparent;
+        }
+    }
+
+    &__content {
+        max-width: 1480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__content--wide {
+        max-width: 100%;
+    }
+
+    &__description {
+        margin-bottom: rem(40);
+    }
+
+    @include breakpoint-max(3xl) {
+        &__info {
+            padding-right: rem(50);
+        }
+
+        &__date {
+            font-size: rem(20);
+        }
+
+        &__title {
+            font-size: rem(30);
+        }
+    }
+
+    @include breakpoint-max(2xl) {
+        &__title {
+            font-size: rem(28);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__main {
+            margin-bottom: rem(40);
+            padding-bottom: rem(40);
+            border-bottom-width: 2px;
+        }
+
+        &__info {
+            width: 100%;
+            padding-right: 0;
+            order: 1;
+        }
+
+        &__images {
+            width: 100%;
+            max-width: 750px;
+            margin-bottom: rem(40);
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__meta {
+            margin-bottom: rem(15);
+        }
+
+        &__date {
+            font-size: rem(16);
+
+            .icon {
+                width: rem(18);
+                height: rem(18);
+                margin-right: rem(10);
+            }
+        }
+
+        &__title {
+            font-size: rem(25);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__images {
+            padding: 0;
+
+            .swiper-button-prev,
+            .swiper-button-next {
+                display: none;
+            }
+        }
+
+        &__subtitle {
+            margin-top: rem(20);
+        }
+    }
+}
+
+.post--object {
+    .post__main {
+        align-items: center;
+    }
+}

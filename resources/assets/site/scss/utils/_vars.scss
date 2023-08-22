@@ -1,0 +1,42 @@
+/* Paths */
+$path-images: '/site/img';
+$path-fonts: '/site/fonts';
+
+/* Fonts */
+$font: 'Inter', sans-serif;
+$fontsize: 14;
+$textcolor: #6E6E6E;
+
+$z-index-dropdown: 1000;
+$z-index-sticky:   1020;
+$z-index-modal:    1055;
+$z-index-fixed:    1030;
+
+$breakpoints: (
+    sm:  576px,
+    md:  768px,
+    lg:  992px,
+    xl:  1200px,
+    2xl: 1440px,
+    3xl: 1840px
+);
+
+$borderRadius: 2rem;
+
+$containerWidth: 1840px;
+$containerSmWidth: 1600px;
+
+/* Colors */
+$color-primary: #00305D;
+$color-secondary: #AE9675;
+
+$color-success: #77d86c;
+$color-danger: #E22A15;
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-gray: #EEF2F6;
+$color-gray-2: #6E6E6E;
+$color-gray-3: #E0E0E0;
+$color-gray-4: #C8C0C9;

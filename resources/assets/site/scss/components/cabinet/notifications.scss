@@ -1,0 +1,90 @@
+.notifications {
+    margin-bottom: rem(40);
+
+    &__title {
+        color: $color-primary;
+        font-size: rem(24);
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: rem(30);
+    }
+
+	&__item {
+        display: flex;
+        align-items: flex-start;
+
+        &:not(:last-child) {
+            margin-bottom: rem(20);
+            padding-bottom: rem(20);
+            border-bottom: 1px solid $color-gray-3;
+        }
+	}
+
+    &__item-icon {
+        width: rem(40);
+        height: rem(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: rem(20);
+        color: $color-white;
+        background-color: $color-danger;
+        border-radius: rem(10);
+
+        .icon--income {
+            width: rem(20);
+            height: rem(16);
+        }
+    }
+
+    &__item-info {
+        width: calc(100% - 6rem);
+        line-height: 1.25;
+    }
+
+    &__item-title {
+        color: $color-primary;
+        font-size: rem(22);
+        font-weight: 700;
+        margin-bottom: rem(15);
+    }
+
+    &__item-desc {
+        font-size: rem(18);
+    }
+
+    @include breakpoint-max(3xl) {
+        &__item-title {
+            font-size: rem(20);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__title {
+            font-size: rem(22);
+        }
+
+        &__item-title {
+            font-size: rem(18);
+        }
+
+        &__item-desc {
+            font-size: rem(16);
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        &__title {
+            font-size: rem(20);
+        }
+
+        &__item-title {
+            font-size: rem(16);
+            margin-bottom: rem(10);
+        }
+
+        &__item-desc {
+            font-size: rem(14);
+        }
+    }
+}

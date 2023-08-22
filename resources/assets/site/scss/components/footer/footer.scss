@@ -1,0 +1,108 @@
+.footer {
+    position: relative;
+    color: #6688A8;
+    font-size: rem(18);
+    margin-top: rem(-50);
+    padding-top: rem(90);
+    padding-bottom: rem(90);
+    border-radius: rem(50) rem(50) 0 0;
+    background-color: $color-primary;
+    overflow: hidden;
+
+    a:not(.btn) {
+        color: $color-white;
+        transition: .3s;
+
+        &:hover,
+        &:focus {
+            color: $color-secondary;
+        }
+    }
+
+    &__inner {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: rem(40);
+    }
+
+    &__info-title {
+        color: $color-white;
+        font-size: rem(24);
+        font-weight: 700;
+        margin-bottom: rem(25);
+    }
+
+    &__info-body {
+        p {
+            margin-bottom: rem(15);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        a[href^="tel:"] {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: rem(16);
+                height: rem(16);
+                margin-right: rem(15);
+                background: 50% / contain url('#{$path-images}/redesign/i/svg/icon-phone.svg') no-repeat;
+            }
+        }
+    }
+
+    &__info-bottom {
+        margin-top: rem(30);
+    }
+
+    @include breakpoint-max(2xl) {
+        font-size: rem(16);
+        padding-top: rem(70);
+        padding-bottom: rem(70);
+
+        &__inner {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__info-title {
+            font-size: rem(20);
+            margin-bottom: rem(20);
+        }
+
+        &__info--copyright {
+            order: 1;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        border-radius: rem(30) rem(30) 0 0;
+    }
+
+    @include breakpoint-max(md) {
+        font-size: rem(14);
+        padding-top: rem(60);
+        padding-bottom: rem(60);
+
+        &__inner {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &__info-title {
+            font-size: rem(18);
+        }
+
+        &__info-body {
+            a[href^="tel:"]::before {
+                width: rem(14);
+                height: rem(14);
+                margin-right: rem(10);
+            }
+        }
+    }
+}

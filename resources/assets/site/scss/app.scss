@@ -1,0 +1,203 @@
+/* Utils */
+@import 'utils/vars';
+@import 'utils/functions';
+@import 'utils/mixins';
+
+
+/* General styles */
+* {
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    font-style: italic;
+
+    &:not([src]):not([srcset]) {
+        visibility: hidden;
+    }
+}
+
+table img {
+    max-width: none;
+}
+
+ol, ul, dl {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    color: $color-primary;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $color-secondary;
+        text-decoration: none;
+    }
+}
+
+svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    pointer-events: none;
+}
+
+button {
+    cursor: pointer;
+    outline: 0;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+html {
+    font-size: 10px;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+
+body {
+    min-width: 320px;
+    position: relative;
+    color: $textcolor;
+    font-family: $font;
+    font-size: rem($fontsize);
+    line-height: 1.4;
+}
+
+p {
+    margin-bottom: rem(30);
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    padding-top: rem(220);
+    min-height: 100vh;
+
+    html.is-ie & {
+        display: block;
+    }
+
+    @include breakpoint-max(2xl) {
+        padding-top: rem(110);
+    }
+
+    @include breakpoint-max(lg) {
+        padding-top: rem(102) !important;
+    }
+}
+
+.container,
+.container-sm,
+.container-fluid {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 rem(20);
+    max-width: 100%;
+
+    @include breakpoint-min(xl) {
+        padding-left: rem(40);
+        padding-right: rem(40);
+    }
+
+    @include breakpoint-min(2xl) {
+        padding-left: rem(60);
+        padding-right: rem(60);
+    }
+}
+
+.container {
+    @include breakpoint-min(sm) {
+        max-width: 540px;
+    }
+
+    @include breakpoint-min(md) {
+        max-width: 720px;
+    }
+
+    @include breakpoint-min(lg) {
+        max-width: 960px;
+    }
+
+    @include breakpoint-min(xl) {
+        max-width: 1140px;
+    }
+
+    @include breakpoint-min(2xl) {
+        max-width: 1440px;
+    }
+
+    @include breakpoint-min(3xl) {
+        max-width: $containerWidth;
+    }
+}
+
+.container-sm {
+    @include breakpoint-min(sm) {
+        max-width: 540px;
+    }
+
+    @include breakpoint-min(md) {
+        max-width: 720px;
+    }
+
+    @include breakpoint-min(lg) {
+        max-width: 960px;
+    }
+
+    @include breakpoint-min(xl) {
+        max-width: 1140px;
+    }
+
+    @include breakpoint-min(2xl) {
+        max-width: 1440px;
+    }
+
+    @include breakpoint-min(3xl) {
+        max-width: $containerSmWidth;
+    }
+}
+
+.main {
+    width: 100%;
+    flex: 1;
+}
+
+.icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+
+    &--arrow {
+        stroke: currentColor;
+        stroke-width: .5px;
+    }
+
+    &--arrow-left {
+        transform: rotate(-180deg);
+    }
+}
+
+
+/* Components */
+@import 'components/components';

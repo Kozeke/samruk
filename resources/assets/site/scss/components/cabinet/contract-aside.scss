@@ -1,0 +1,53 @@
+.contract-aside {
+    padding: rem(30);
+    border-radius: $borderRadius;
+    background-color: $color-secondary;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        color: $color-white;
+        font-size: rem(24);
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: rem(20);
+
+        .icon--document {
+            width: rem(37);
+            height: rem(44);
+            flex-shrink: 0;
+            margin-right: rem(20);
+        }
+    }
+
+    &__text {
+        color: rgba($color-white, .5);
+        font-size: rem(18);
+        line-height: 1.25;
+    }
+
+    @include breakpoint-max(3xl) {
+        &__title {
+            font-size: rem(22);
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__title {
+            font-size: rem(20);
+        }
+
+        &__text {
+            font-size: rem(16);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        padding: rem(20);
+
+        &__title .icon--document {
+            width: rem(34);
+            height: rem(41);
+        }
+    }
+}

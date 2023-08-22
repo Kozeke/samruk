@@ -1,0 +1,75 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: rem(90);
+
+    &__arrow,
+    &__item {
+        margin: rem(5);
+    }
+
+    &__arrow-link,
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(55);
+        height: rem(55);
+        color: $color-primary;
+        font-size: rem(22);
+        font-weight: 700;
+        border-radius: rem(10);
+        transition: .3s;
+
+        &:not(.is-disabled):not(.is-active):hover,
+        &:not(.is-disabled):not(.is-active):focus {
+            color: $color-primary;
+            background-color: $color-gray;
+        }
+
+        &.is-disabled {
+            pointer-events: none;
+        }
+
+        &.is-active {
+            color: $color-white;
+            background-color: $color-secondary;
+        }
+    }
+
+    &__arrow-link {
+        background-color: $color-gray;
+
+        .icon {
+            width: rem(8);
+            height: rem(16);
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+
+        @include breakpoint-max(md) {
+            overflow: auto;
+            white-space: nowrap;
+            margin: 0;
+        }
+    }
+
+    @include breakpoint-max(2xl) {
+        margin-top: rem(80);
+    }
+
+    @include breakpoint-max(xl) {
+        &__arrow-link,
+        &__link {
+            font-size: rem(16);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        margin-top: rem(60);
+    }
+}

@@ -1,0 +1,76 @@
+ .second-nav {
+     padding: rem(30);
+     background-color: $color-secondary;
+     border-radius: $borderRadius;
+
+     a {
+         display: flex;
+         align-items: center;
+         color: rgba($color-white, .5);
+         font-weight: 700;
+         transition: .3s;
+
+         &:hover,
+         &:focus,
+         &.is-active {
+             color: $color-white;
+         }
+
+         .icon {
+             width: rem(8);
+             height: rem(10);
+             stroke-width: rem(1);
+             margin-right: rem(15);
+             flex-shrink: 0;
+         }
+     }
+
+     &__list {
+         font-size: rem(22);
+
+         > li:not(:last-child) {
+             margin-bottom: rem(20);
+         }
+     }
+
+     &__subnav {
+         font-size: rem(18);
+         margin-top: rem(20);
+
+         > li:not(:last-child) {
+             margin-bottom: rem(15);
+         }
+     }
+
+     @include breakpoint-max(3xl) {
+         &__list {
+             font-size: rem(20);
+         }
+
+         &__subnav {
+             font-size: rem(16);
+         }
+     }
+
+     @include breakpoint-max(lg) {
+         &__list {
+             font-size: rem(18);
+
+             > li:not(:last-child) {
+                 margin-bottom: rem(15);
+             }
+         }
+
+         &__subnav {
+             font-size: rem(14);
+         }
+     }
+
+     @include breakpoint-max(md) {
+         padding: rem(20);
+     }
+
+     &--bg-blue {
+         background-color: $color-primary;
+     }
+ }

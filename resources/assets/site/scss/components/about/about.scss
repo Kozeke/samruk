@@ -1,0 +1,92 @@
+@import "about-history";
+
+.about {
+    &__inner {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__description {
+        font-size: rem(22);
+        width: calc(100% - 570px);
+        padding-right: rem(50);
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__slider-wrap {
+        width: 570px;
+    }
+
+    &__slider {
+        width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+
+        .swiper-slide {
+            background-color: $color-white;
+        }
+
+        .swiper-pagination {
+            position: static;
+            margin-top: rem(30);
+        }
+    }
+
+    &__slider-number {
+        color: $color-secondary;
+        font-size: rem(100);
+        line-height: 1;
+        font-weight: 700;
+        margin-bottom: rem(10);
+    }
+
+    &__slider-title {
+        margin: 0;
+        color: $color-primary;
+        font-size: rem(24);
+        font-weight: 700;
+    }
+
+    @include breakpoint-max(2xl) {
+        &__description {
+            font-size: rem(20);
+            width: calc(100% - 400px);
+        }
+
+        &__slider-wrap {
+            width: 400px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__description,
+        &__slider-wrap {
+            width: 100%;
+        }
+
+        &__description {
+            padding-right: 0;
+            margin-bottom: rem(40);
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__description {
+            font-size: rem(18);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__slider-number {
+            font-size: rem(80);
+        }
+
+        &__slider-title {
+            font-size: rem(20);
+        }
+    }
+}

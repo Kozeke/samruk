@@ -1,0 +1,38 @@
+.cabinet-nav {
+	padding: 5px 0;
+	border: 1px solid $g-color-brown;
+
+	&__list {
+		li {
+			margin-top: -1px;
+
+			&:first-child a {
+				border-top: 0;
+			}
+
+			&:last-child a {
+				border-bottom: 0;
+			}
+		}
+
+		a {
+			color: $g-color-blue;
+			display: block;
+			padding: 10.5px 0;
+			margin-left: 20px;
+			margin-right: 20px;
+			border-top: .5px solid #CCC;
+			border-bottom: .5px solid #CCC;
+			transition: .3s;
+
+			&:hover {
+				color: $g-color-blue;
+				margin-left: 0;
+				margin-right: 0;
+				padding-left: 20px;
+				padding-right: 20px;
+				background-color: lighten(#CCC, 10%);
+			}
+		}
+	}
+}

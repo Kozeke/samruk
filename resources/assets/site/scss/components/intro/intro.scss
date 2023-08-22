@@ -1,0 +1,124 @@
+.intro {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 0;
+
+    &__slider {
+        .swiper-lazy {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 50% / cover no-repeat;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba($color-primary, .4);
+            }
+
+            .swiper-lazy-preloader {
+                border-color: $color-secondary;
+                border-top-color: transparent;
+            }
+        }
+
+        .swiper-pagination {
+            bottom: 110px;
+        }
+
+        .swiper-pagination-bullet {
+            transition: .3s linear;
+
+            &::before {
+                background-color: rgba($color-white, .5);
+            }
+
+            &:hover::before,
+            &:focus::before,
+            &.swiper-pagination-bullet-active::before {
+                background-color: $color-white;
+            }
+
+            &.swiper-pagination-bullet-active {
+                width: 70px;
+
+                &::before {
+                    border-radius: 12px;
+                }
+            }
+        }
+    }
+
+    &__slider-slide {
+        display: flex;
+        align-items: center;
+        min-height: 810px;
+        padding-top: rem(150);
+        padding-bottom: rem(150 + 50);
+        background-color: $color-primary;
+    }
+
+    &__slider-content {
+        color: $color-white;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__slider-title,
+    &__slider-text {
+        font-size: rem(40);
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    &__slider-title {
+        margin: 0 0 rem(10);
+    }
+
+    &__slider-text {
+        margin: 0;
+    }
+
+    &__slider-more {
+        margin-top: rem(50);
+    }
+
+    @include breakpoint-max(2xl) {
+        &__slider-title,
+        &__slider-text {
+            font-size: rem(35);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__slider-slide {
+            min-height: 600px;
+        }
+
+        &__slider-title,
+        &__slider-text {
+            font-size: rem(30);
+        }
+
+        &__slider-more {
+            margin-top: rem(40);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__slider-slide {
+            padding-top: rem(120);
+            padding-bottom: rem(130 + 50);
+        }
+
+        &__slider-title,
+        &__slider-text {
+            font-size: rem(22);
+        }
+    }
+}

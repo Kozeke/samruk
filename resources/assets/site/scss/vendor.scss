@@ -1,0 +1,12 @@
+@import 'utils/vars';
+@import 'utils/functions';
+@import 'utils/mixins';
+
+@import 'node_modules/normalize.css/normalize';
+@import 'components/preloader/preloader';
+
+@import 'node_modules/aos/dist/aos';
+
+@import 'vendor/swiper/swiper';
+@import 'vendor/jarallax/jarallax';
+@import 'vendor/glightbox/glightbox';

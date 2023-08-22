@@ -1,0 +1,82 @@
+.intro-page {
+    color: $color-white;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: $color-primary;
+    z-index: 0;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-height: 460px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: rem(50) rem(50) 0 0;
+            background-color: rgba(#021327, .5);
+            overflow: hidden;
+
+            @include breakpoint-max(lg) {
+                border-radius: rem(30) rem(30) 0 0;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        padding-top: rem(90);
+        padding-bottom: rem(90);
+        flex-grow: 1;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: rem(60);
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    &__breadcrumbs {
+        position: relative;
+        padding-top: rem(15);
+        padding-bottom: rem(65);
+        border-radius: rem(50) rem(50) 0 0;
+        background-color: rgba($color-primary, .7);
+    }
+
+    @include breakpoint-max(2xl) {
+        &__title {
+            font-size: rem(50);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__title {
+            font-size: rem(45);
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__breadcrumbs {
+            border-radius: rem(30) rem(30) 0 0;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__inner {
+            min-height: 380px;
+        }
+
+        &__title {
+            font-size: rem(30);
+        }
+    }
+}

@@ -1,0 +1,126 @@
+.documents {
+    margin-bottom: rem(40);
+}
+
+.document {
+    &:not(:last-child) {
+        margin-bottom: rem(20);
+        padding-bottom: rem(20);
+        border-bottom: 1px solid $color-gray-3;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: flex-start;
+        transition: .3s;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(40);
+        height: rem(40);
+        margin-right: rem(20);
+        background-color: $color-primary;
+        border-radius: rem(10);
+        flex-shrink: 0;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &::before {
+            content: attr(data-ext);
+            display: inline;
+            color: $color-white;
+            font-size: rem(11);
+            font-style: normal;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        &--pdf {
+            background-color: #E22A15;
+        }
+
+        &--doc,
+        &--docx {
+            background-color: #518EF8;
+        }
+
+        &--rar {
+            background-color: #9135D9;
+        }
+
+        &--xls,
+        &--xlsx {
+            background-color: #43AA2A;
+        }
+
+        &--zip {
+            background-color: #FFC107;
+        }
+
+        &--ppt,
+        &--pptx {
+            background-color: #FF6C00;
+        }
+    }
+
+    &__info {
+        width: calc(100% - 6rem);
+    }
+
+    &__title {
+        margin: 0;
+        font-size: rem(22);
+        font-weight: 400;
+    }
+
+    &__meta {
+        color: $textcolor;
+        font-size: rem(18);
+        margin-top: rem(10);
+    }
+
+    &__meta-item {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    @include breakpoint-max(2xl) {
+        &__title {
+            font-size: rem(18);
+        }
+
+        &__meta {
+            font-size: rem(16);
+            margin-top: rem(5);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__title {
+            font-size: rem(16);
+        }
+
+        &__meta {
+            font-size: rem(14);
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        &__title {
+            font-size: rem(14);
+        }
+
+        &__meta {
+            font-size: rem(12);
+        }
+    }
+
+    &--compact {
+        .document__link {
+            align-items: center;
+        }
+    }
+}

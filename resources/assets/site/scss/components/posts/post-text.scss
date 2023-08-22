@@ -1,0 +1,72 @@
+.post-text {
+    &:not(:last-child) {
+        margin-bottom: rem(20);
+        padding-bottom: rem(20);
+        border-bottom: 1px solid $color-gray-3;
+    }
+
+    &__meta,
+    &__description {
+        font-size: rem(18);
+    }
+
+    &__meta {
+        margin-bottom: rem(20);
+    }
+
+    &__date {
+        color: $color-secondary;
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    &__link {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: rem(24);
+        font-weight: 700;
+        line-height: 1.35;
+    }
+
+    &__description {
+        margin-top: rem(20);
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @include breakpoint-max(2xl) {
+        &__meta,
+        &__description {
+            font-size: rem(16);
+        }
+
+        &__title {
+            font-size: rem(20);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__meta,
+        &__description {
+            font-size: rem(14);
+        }
+
+        &__meta {
+            margin-bottom: rem(10);
+        }
+
+        &__title {
+            font-size: rem(18);
+        }
+
+        &__description {
+            margin-top: rem(10);
+        }
+    }
+}

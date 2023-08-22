@@ -1,0 +1,44 @@
+.alert {
+	margin-bottom: rem(30);
+	padding: rem(15);
+    font-size: rem(18);
+    border-radius: rem(10);
+
+    @include breakpoint-max(xl) {
+        font-size: rem(16);
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: rem(14);
+    }
+
+	&--primary {
+		color: #004085;
+		background-color: #cce5ff;
+	}
+
+	&--secondary {
+		color: #383d41;
+		background-color: #e2e3e5;
+	}
+
+	&--success {
+		color: #155724;
+		background-color: #d4edda;
+	}
+
+	&--danger {
+		color: #721c24;
+		background-color: #f8d7da;
+	}
+
+	&--dark {
+		color: $color-white;
+		background-color: $color-black;
+	}
+
+	&--warning {
+		color: #856404;
+		background-color: #fff3cd;
+	}
+}

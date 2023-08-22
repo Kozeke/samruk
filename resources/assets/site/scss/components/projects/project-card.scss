@@ -1,0 +1,50 @@
+.project-card {
+    &__link {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: $borderRadius;
+        transition: .3s;
+        overflow: hidden;
+    }
+
+    &__image-wrap {
+        padding-top: aspect-ratio(366, 252);
+    }
+
+    &__title {
+        color: $color-white;
+        font-size: rem(22);
+        font-weight: 700;
+        line-height: 1.35;
+        padding: rem(30);
+        background-color: $color-secondary;
+        flex-grow: 1;
+
+        .project-card--type-1 & {
+            background-color: $color-secondary;
+        }
+
+        .project-card--type-2 & {
+            background-color: $color-primary;
+        }
+    }
+
+    @include breakpoint-max(3xl) {
+        &__title {
+            font-size: rem(20);
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__title {
+            font-size: rem(18);
+        }
+    }
+
+    @include breakpoint-max(md) {
+        &__title {
+            padding: rem(20);
+        }
+    }
+}

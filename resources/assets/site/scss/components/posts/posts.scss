@@ -1,0 +1,29 @@
+@import "post";
+@import "post-card";
+@import "post-text";
+@import "post-gallery";
+
+//.posts {}
+
+.posts-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: rem(40);
+
+    @include breakpoint-max(xl) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint-max(md) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.posts-more {
+    margin-top: rem(50);
+    text-align: right;
+}
+
+.post-videos {
+    margin-bottom: rem(40);
+}

@@ -1,0 +1,25 @@
+.page-404 {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 rem(20);
+
+    h1 {
+        color: $color-primary;
+        font-size: 28.8rem;
+        font-weight: 900;
+        line-height: 1.2;
+        margin: rem(30) 0;
+
+        @include breakpoint-max(md) {
+            font-size: 15rem;
+        }
+    }
+
+    p {
+        margin-bottom: 6rem;
+        font-size: rem(16);
+    }
+}

@@ -1,0 +1,11 @@
+@import 'node_modules/glightbox/dist/css/glightbox';
+
+.goverlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.gprev.disabled,
+.gnext.disabled,
+.gclose.disabled {
+    opacity: 0;
+}

@@ -1,0 +1,42 @@
+.select {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        right: 1px;
+        width: 45px;
+        height: calc(100% - 4px);
+        border-radius: rem(10);
+        background: $color-white url('#{$path-images}/redesign/i/svg/icon-arrow-select.svg') no-repeat 50%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    select {
+        width: 100%;
+        height: 40px;
+        max-width: 100%;
+        display: block;
+        padding: 0 rem(45) 0 rem(15);
+        font-size: rem(16);
+        border: 1px solid $color-gray-3;
+        background-color: $color-white;
+        border-radius: rem(10);
+        appearance: none;
+        transition: .2s;
+        outline: none;
+
+        @include breakpoint-min(xl) {
+            height: 42px;
+            font-size: rem(18);
+            padding: 0 rem(45) 0 rem(20);
+        }
+
+        @include breakpoint-min(2xl) {
+            height: 50px;
+            font-size: rem(22);
+        }
+    }
+}
