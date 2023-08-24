@@ -1,4 +1,6 @@
-<?php namespace App\Http;
+<?php
+
+namespace App\Http;
 
 use SoapClient;
 
@@ -13,7 +15,7 @@ class ApiRequest
      * @var Url to fnsk soap server
      */
     protected $url = 'https://suap.fnsk.kz/SUAP/ws/BankExchange.1cws?wsdl';
-
+    //protected $url = 'http://example.com/webservices?wsdl';
     /**
      * @var result
      */
@@ -25,6 +27,7 @@ class ApiRequest
      */
     public function __construct()
     {
+        ini_set('default_socket_timeout', 10000);
         $this->client = new SoapClient($this->url, [
             "soap_version" => SOAP_1_1,
             "stream_context" => stream_context_create([
@@ -34,6 +37,32 @@ class ApiRequest
                 ]
             ])
         ]);
+        //$this->getSoap();
+    }
+
+    private function getSoap()
+    {
+        $opts = array(
+            'http' => array(
+                'user_agent' => 'PHPSoapClient'
+            )
+        );
+        $context = stream_context_create($opts);
+
+        //$wsdlUrl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
+        $soapClientOptions = array(
+            'stream_context' => $context,
+            'cache_wsdl' => WSDL_CACHE_NONE
+        );
+
+        $client = new SoapClient($this->url, $soapClientOptions);
+        /**$checkVatParameters = array(
+         * 'countryCode' => 'DK',
+         * 'vatNumber' => '47458714'
+         * );
+         *
+         * $result = $client->checkVat($checkVatParameters);
+         * print_r($result);*/
     }
 
     public function CheckByInfoByClient($data = [])
