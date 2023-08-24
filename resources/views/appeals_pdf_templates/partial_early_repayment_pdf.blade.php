@@ -11,7 +11,7 @@
         <p style="font-size: 14px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
             размере {{$values['partial_early_repayment_of_the_amount']??""}} тенге
             по Договору аренды с выкупом жилого помещения от {{$data['date_d']??""}} года &nbsp;№{{$id??""}},
-            на {{$values['date_to_finish']??""}}
+            на {{$values['date_to_finish']??""}}</p>
         <p><br></p>
         <p><br></p>
         <p><br></p>

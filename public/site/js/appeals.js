@@ -17,10 +17,7 @@ $(document).ready(function () {
                     console.log(this.partial_early_repayment_of_the_amount)
                 },
                 printPdf() {
-                    axios({})
-                    console.log($('meta[name="_token"]').attr('content'));
                     var self = this;
-
                     axios({
                         url: '/print-pdf',
                         method: 'POST',
@@ -29,6 +26,7 @@ $(document).ready(function () {
                             _token: $('meta[name="_token"]').attr('content'),
                             date_to_finish: self.date_to_finish,
                             partial_early_repayment_of_the_amount: self.partial_early_repayment_of_the_amount,
+                            selected_code_id: self.selected_code_id,
                         }
                     }).then((response) => {
                         console.log(response)

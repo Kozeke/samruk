@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\App;
 use View;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use DB;
 
 class CabinetController extends BaseController
 {
@@ -1293,9 +1294,10 @@ class CabinetController extends BaseController
 
         $pathToTempFolder = "public/temp_pdf_files/";
         $fullPathToTempPDF = $pathToTempFolder . $this->getNameCreatedTempFile();
-
+        $appeal_view = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
+        )->view_template_name;
         $pdf = Pdf::loadView(
-            'appeals_pdf_templates.partial_early_repayment_pdf',
+            'appeals_pdf_templates.' . $appeal_view,
             [
                 'editing' => Appeal::STATUS['PRINT'],
                 'values' => $request->all(),
@@ -1315,7 +1317,8 @@ class CabinetController extends BaseController
         return $pdf->download('invoice.pdf', 'D');
     }
 
-    private function addToAppealHistory($id, $fullPathToTempPDF){
+    private function addToAppealHistory($id, $fullPathToTempPDF)
+    {
         AppealHistory::create([
             'user_id' => $id,
             'link' => $fullPathToTempPDF,
@@ -1323,13 +1326,15 @@ class CabinetController extends BaseController
         ]);
     }
 
-    public function replyToAppeal($appeal_history_id, $reply){
+    public function replyToAppeal($appeal_history_id, $reply)
+    {
         $appeal_history = AppealHistory::find($appeal_history_id);
         $appeal_history->reply = $reply;
         $appeal_history->save();
     }
 
-    public function changeStatusOfAppeal($appeal_history_id, $status){
+    public function changeStatusOfAppeal($appeal_history_id, $status)
+    {
         $appeal_history = AppealHistory::find($appeal_history_id);
         $appeal_history->status = $status;
         $appeal_history->save();

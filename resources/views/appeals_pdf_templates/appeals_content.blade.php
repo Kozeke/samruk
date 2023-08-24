@@ -46,7 +46,7 @@
             <span v-if="lock_inputs">
                 @{{values['date_to_finish']}}
             </span> года.
-            <span v-if="lock_inputs">
+            <span v-if="!lock_inputs">
                 <input type="date" v-model="date_to_finish"/>
             </span>
             &nbsp;
@@ -57,23 +57,24 @@
 
         </div>
         <p><br></p>
-        <div style="position: absolute; top: 19.5%;left: 95px">
+    </div>
+    <div style="position: absolute; top: 19%;left: 95px">
 
-            <div v-if="!lock_inputs" style="position: absolute">
-                <button type="button" href="#" class="btn btn--secondary" v-on:click="lockInputs">Посмотреть
-                </button>
-            </div>
-            <div v-else style="position: absolute">
-                <button type="button" href="#" class="btn btn--secondary" v-on:click="lockInputs">
-                    Отредактировать
-                </button>
-            </div>
-        </div>
-        <div style="position: absolute; left: 400px; top: 19.5%;">
-            <button type="button" href="#" class="btn btn--secondary" v-on:click="printPdf">Печать
+        <div v-if="!lock_inputs" style="position: absolute">
+            <button type="button" href="#" class="btn btn--secondary" v-on:click="lockInputs">Посмотреть
             </button>
-
+        </div>
+        <div v-else style="position: absolute">
+            <button type="button" href="#" class="btn btn--secondary" v-on:click="lockInputs">
+                Отредактировать
+            </button>
         </div>
     </div>
+    <div style="position: absolute; left: 400px; top: 19%;">
+        <button type="button" href="#" class="btn btn--secondary" v-on:click="printPdf">Печать
+        </button>
+
+    </div>
+</div>
 @include('appeals_pdf_templates.appeal_footer')
 

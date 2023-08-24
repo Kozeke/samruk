@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Validator;
-
+use DB;
 /**
  * Class AppealController
  * @package App\Http\Controllers\Site\Cabinet\Appeal
@@ -38,7 +38,9 @@ class AppealController extends Controller
             )->format('d/m/Y');
         }
         unset($request['_token']);
-
+        $appeal_view = DB::table('appeal_templates')->where('id', 1)->first(
+        )->view_template_name;
+        dd($appeal_view);
         $pdf = PDF::loadView(
             'appeals_pdf_templates.partial_early_repayment_pdf',
             ['editing' => Appeal::STATUS['PRINT'], 'data' => $request->all()]
