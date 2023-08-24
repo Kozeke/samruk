@@ -72,7 +72,7 @@
                     @endif
                 @endif
             </div>
-            @include('appeals_pdf_templates.partial_early_repayment')
+            @include('appeals_pdf_templates.appeals_content')
         </form>
     </div>
 @endsection
