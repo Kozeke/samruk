@@ -28,7 +28,7 @@ class AppealController extends Controller
      */
     public function downloadPdf(Request $request): Response
     {
-        $validator = Validator::make($request->input(), ['date_from' => 'date','date_to' => 'date']);
+        $validator = Validator::make($request->input(), ['date_from' => 'date', 'date_to' => 'date']);
         if (!$validator->fails()) {
             $request['date_from'] = Carbon::createFromDate(
                 $request['date_from']
@@ -38,10 +38,12 @@ class AppealController extends Controller
             )->format('d/m/Y');
         }
         unset($request['_token']);
-        $pdf = Pdf::loadView(
-            'appeals_pdf_templates.' . $request['appeal_chosen_view'],
+
+        $pdf = PDF::loadView(
+            'appeals_pdf_templates.partial_early_repayment_pdf',
             ['editing' => Appeal::STATUS['PRINT'], 'data' => $request->all()]
-        );
+        )->setOptions(['fontDir' => '/public/site/fonts', 'defaultFont' => 'times_new_roman']);
+//        $this->saveAppeal(1, "path", $request['appeal_chosen_view']);
         return $pdf->download('invoice.pdf');
     }
 
@@ -71,6 +73,23 @@ class AppealController extends Controller
                 'editing' => Appeal::STATUS['VIEW']
             ]
         );
+    }
+
+    public function getAppealHistory()
+    {
+        $values = AppealHistory::all();
+        return view('appeals_pdf_templates.appeals-history', ['values' => $values]);
+    }
+
+    private function saveAppeal($id, $fullPathToTempPDF, $title)
+    {
+        AppealHistory::create([
+            'user_id' => $id,
+            'link' => $fullPathToTempPDF,
+            'status' => AppealHistory::STATUS_SENT,
+            'title' => $title,
+//        'reply' =>
+        ]);
     }
 
     /**

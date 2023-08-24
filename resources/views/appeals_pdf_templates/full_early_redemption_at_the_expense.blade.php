@@ -29,7 +29,8 @@
                 style="font-size:13.999999999999998pt;;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(далее &ndash; Договор), по состоянию на</span>
 
             @if($editing)
-                <span style="font-size:13.999999999999998pt;;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">{{$data['date_from']}}</span>
+                <span
+                    style="font-size:13.999999999999998pt;;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">{{$data['date_from']}}</span>
             @endif
             <input type="{{$editing?"hidden":"date"}}" name="date_from"
                    value="{{$data['date_from']??""}}"/>
@@ -38,7 +39,8 @@
             <span
                 style="font-size:13.999999999999998pt;;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, за счет денежных средств ЕПВ (доступная сумма</span>
             @if($editing)
-                <span style="font-size:13.999999999999998pt;;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">{{$data['price']}}</span>
+                <span
+                    style="font-size:13.999999999999998pt;;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">{{$data['price']}}</span>
             @endif
             <input
                 type="{{$editing?"hidden":"number"}}" name="price"
@@ -74,7 +76,7 @@
                    value="{{$data['price']??""}}"/>
 
             {{ Form::submit(trans('translations.gb.print')) }}
-
+            <a href="{{route('appeal.history')}}" class="btn btn--secondary">Appeals History</a>
         </form>
         @endif
     </div>

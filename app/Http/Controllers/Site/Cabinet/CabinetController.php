@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site\Cabinet;
 
 use App\Http\ApiRequest;
 use App\Models\Appeal;
+use App\Models\AppealHistory;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -1303,14 +1304,35 @@ class CabinetController extends BaseController
                 'today_date' => Carbon::now()->format('d/m/Y'),
                 'id' => $data['number'],
             ]
-        );
+        )->setOptions(['fontDir' => '/public/site/fonts', 'defaultFont' => 'times_new_roman']);;
         Storage::disk('local')->put($fullPathToTempPDF, $pdf->output());
         $path = Storage::path($fullPathToTempPDF);
 //        return response()->download(Storage::path($fullPathToTempPDF));
 
 //        $pdf->Output(Storage::path(''), 'F');
-        $this->feedbackSendEmail($path);
+//        $this->addToAppealHistory($this->user->id, $fullPathToTempPDF);
+//        $this->feedbackSendEmail($path);
         return $pdf->download('invoice.pdf', 'D');
+    }
+
+    private function addToAppealHistory($id, $fullPathToTempPDF){
+        AppealHistory::create([
+            'user_id' => $id,
+            'link' => $fullPathToTempPDF,
+            'status' => AppealHistory::STATUS_SENT,
+        ]);
+    }
+
+    public function replyToAppeal($appeal_history_id, $reply){
+        $appeal_history = AppealHistory::find($appeal_history_id);
+        $appeal_history->reply = $reply;
+        $appeal_history->save();
+    }
+
+    public function changeStatusOfAppeal($appeal_history_id, $status){
+        $appeal_history = AppealHistory::find($appeal_history_id);
+        $appeal_history->status = $status;
+        $appeal_history->save();
     }
 
     private function feedbackSendEmail($file)
