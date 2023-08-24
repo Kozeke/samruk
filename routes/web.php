@@ -13,6 +13,7 @@
 Route::get('appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@index']);
 Route::post('/get/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppeal']);
 Route::post('/view/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@viewAppeal']);
+Route::get('/view/appeal-history',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppealHistory'])->name('appeal.history');
 Route::post('/edit/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@editAppeal']);
 Route::post('/print/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@downloadPdf']);
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localizationRedirect']], function () {
