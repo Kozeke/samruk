@@ -1309,7 +1309,7 @@ class CabinetController extends BaseController
 //        return response()->download(Storage::path($fullPathToTempPDF));
 
 //        $pdf->Output(Storage::path(''), 'F');
-        $this->feedbackSendEmail($path);
+//        $this->feedbackSendEmail($path);
         return $pdf->download('invoice.pdf', 'D');
     }
 
