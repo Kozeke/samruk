@@ -1,5 +1,5 @@
 <div v-if="selected_code_id"
-     style="{{$editing!==2?"border: 1px solid black; margin:3%; padding: 2%; border-radius: 2px; background-color: whitesmoke":""}}">
+     style="border: 1px solid black; margin:3%; padding: 2%; border-radius: 2px; background-color: whitesmoke">
     @include('appeals_pdf_templates.appeal_header')
     <div style="font-size: 14px;" v-if="selected_code_id==1">
         <p><br></p>
@@ -75,6 +75,6 @@
         </button>
 
     </div>
-</div>
-@include('appeals_pdf_templates.appeal_footer')
 
+@include('appeals_pdf_templates.appeal_footer')
+</div>
