@@ -1251,7 +1251,6 @@ class CabinetController extends BaseController
     public function feedback($num_d)
     {
         $vid = $this->api->CheckVid()->_toArray();
-        dd($vid);
         $data = $this->data;
         if (isset($data)) {
             $dogovor = $data['Num_d'];
@@ -1277,6 +1276,7 @@ class CabinetController extends BaseController
     public function feedback_template($num_d, Request $request)
     {
         $vid = $this->api->CheckVid()->_toArray();
+        dd($vid);
 
         $data = $this->data;
         if (isset($data)) {
