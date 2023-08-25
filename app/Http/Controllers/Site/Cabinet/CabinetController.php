@@ -75,7 +75,7 @@ class CabinetController extends BaseController
                 "num_phone" => $this->user->mobile,
                 "date_zp" => Carbon::now()->format('YmdHis')
             ])->_toArray();
-
+            dd($this->info);
             if ($this->info['code'] == 200) {
                 $this->data = $this->info['data'];
                 if ($this->data['result'] == 1) {
