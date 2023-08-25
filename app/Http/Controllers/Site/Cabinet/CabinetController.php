@@ -75,7 +75,32 @@ class CabinetController extends BaseController
                 "num_phone" => $this->user->mobile,
                 "date_zp" => Carbon::now()->format('YmdHis')
             ])->_toArray();
-            dd($this->info);
+//            $this->info = [
+//                "code" => 200,
+//                "data" => [
+//                    "result" => "0",
+//                    "comment" => "Ok!",
+//                    "FIO" => "Садубаев Адилбек",
+//                    "mail" => [],
+//                    "Num_d" => [
+//                        "number" => "301200241",
+//                        "date_d" => "15.06.2023 0:00:00",
+//                        "JK" => "ЖК по улице Улы Дала, дом 17",
+//                        "AdressJK" => "Проспект Улы Дала 17",
+//                        "Korpus" => [],
+//                        "Dom" => "_",
+//                        "Number_room" => "Квартира №32, дом №17/1, этаж 7, 66,7 кв.м.",
+//                        "gar_plat_by_dog" => [],
+//                        "sum_d" => "1 166 667",
+//                        "plat_d" => "0",
+//                        "plat_date" => [],
+//                        "zad_plat" => "0",
+//                        "penya" => "0",
+//                        "gar_plat" => "0",
+//                        "im_nalog" => "0",
+//                    ]
+//                ]
+//            ];
             if ($this->info['code'] == 200) {
                 $this->data = $this->info['data'];
                 if ($this->data['result'] == 1) {
@@ -1226,7 +1251,7 @@ class CabinetController extends BaseController
     public function feedback($num_d)
     {
         $vid = $this->api->CheckVid()->_toArray();
-
+        dd($vid);
         $data = $this->data;
         if (isset($data)) {
             $dogovor = $data['Num_d'];
