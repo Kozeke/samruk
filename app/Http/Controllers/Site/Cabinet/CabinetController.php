@@ -1426,7 +1426,7 @@ body{
 <body>
  <div style="font-size: 14px; margin-bottom:130px">
         <p><br></p>
-        <p style=";text-align: center;margin-bottom: 16px"><strong><i>Частично досрочное погашение</i></strong></p>
+        <p style=";text-align: center;margin-bottom: 16px">Частично досрочное погашение</strong></p>
         <p style="text-align: center;"><strong>&nbsp;</strong></p>
         <p style="text-align: center;font-size: 16px"><strong>Заявление</strong></p>
         <p style="text-align: center;"><strong>&nbsp;</strong></p>
@@ -1447,8 +1447,8 @@ HTML;
         return <<<HTML
 <div style="margin-bottom: 50px; font-size: 14px"
         <p><br></p>
-         <p style="text-align: center; font-size: 16px"><strong><i>Полный досрочный выкуп со
-                        списанием пени в размере 90%</i></strong></p>
+         <p style="text-align: center; font-size: 16px"><strong>Полный досрочный выкуп со
+                        списанием пени в размере 90%</strong></p>
             <p>&nbsp;</p>
             <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
             <p style="text-indent: 45px">Прошу Вас разрешить произвести полный досрочный выкуп с возможностью списания 90% начисленной пени
@@ -1464,7 +1464,7 @@ HTML;
     {
         return <<<HTML
         <div style="font-size: 14px; margin-bottom: 100px">
-        <p style="font-size: 16px; text-align: center"><strong><i>Полный досрочный выкуп</i></strong></p>
+        <p style="font-size: 16px; text-align: center"><strong>Полный досрочный выкуп</strong></p>
         <p>&nbsp;</p>
         <p style="font-size: 16px;text-align: center;">
             <strong>ЗАЯВЛЕНИЕ</strong></p>
