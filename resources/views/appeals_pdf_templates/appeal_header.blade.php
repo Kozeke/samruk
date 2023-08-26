@@ -1,4 +1,4 @@
-<div style="font-size: 14px">
+<div style="color:black;font-size: 16px;font-weight:500;">
     <p style="text-align: right;margin-bottom: 5px;">Председателю Правления</p>
     <p style="text-align: right;margin-bottom: 5px;">АО &laquo;Samruk-Kazyna Construction&raquo;</p>
     <p style="text-align: right;margin-bottom: 5px;">г-ну Айманбетову М.З.</p>
