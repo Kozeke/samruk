@@ -72,37 +72,37 @@ class CabinetController extends BaseController
             $section->configuration->sidebar = $this->sidebar;
 
             $this->api = $api;
-            $this->info = $this->api->CheckByInfoByClient([
-                "iin" => $this->user->iin,
-                "num_phone" => $this->user->mobile,
-                "date_zp" => Carbon::now()->format('YmdHis')
-            ])->_toArray();
-//            $this->info = [
-//                "code" => 200,
-//                "data" => [
-//                    "result" => "0",
-//                    "comment" => "Ok!",
-//                    "FIO" => "Садубаев Адилбек",
-//                    "mail" => [],
-//                    "Num_d" => [
-//                        "number" => "301200241",
-//                        "date_d" => "15.06.2023 0:00:00",
-//                        "JK" => "ЖК по улице Улы Дала, дом 17",
-//                        "AdressJK" => "Проспект Улы Дала 17",
-//                        "Korpus" => [],
-//                        "Dom" => "_",
-//                        "Number_room" => "Квартира №32, дом №17/1, этаж 7, 66,7 кв.м.",
-//                        "gar_plat_by_dog" => [],
-//                        "sum_d" => "1 166 667",
-//                        "plat_d" => "0",
-//                        "plat_date" => [],
-//                        "zad_plat" => "0",
-//                        "penya" => "0",
-//                        "gar_plat" => "0",
-//                        "im_nalog" => "0",
-//                    ]
-//                ]
-//            ];
+//            $this->info = $this->api->CheckByInfoByClient([
+//                "iin" => $this->user->iin,
+//                "num_phone" => $this->user->mobile,
+//                "date_zp" => Carbon::now()->format('YmdHis')
+//            ])->_toArray();
+            $this->info = [
+                "code" => 200,
+                "data" => [
+                    "result" => "0",
+                    "comment" => "Ok!",
+                    "FIO" => "Садубаев Адилбек",
+                    "mail" => [],
+                    "Num_d" => [
+                        "number" => "301200241",
+                        "date_d" => "15.06.2023 0:00:00",
+                        "JK" => "ЖК по улице Улы Дала, дом 17",
+                        "AdressJK" => "Проспект Улы Дала 17",
+                        "Korpus" => [],
+                        "Dom" => "_",
+                        "Number_room" => "Квартира №32, дом №17/1, этаж 7, 66,7 кв.м.",
+                        "gar_plat_by_dog" => [],
+                        "sum_d" => "1 166 667",
+                        "plat_d" => "0",
+                        "plat_date" => [],
+                        "zad_plat" => "0",
+                        "penya" => "0",
+                        "gar_plat" => "0",
+                        "im_nalog" => "0",
+                    ]
+                ]
+            ];
             if ($this->info['code'] == 200) {
                 $this->data = $this->info['data'];
                 if ($this->data['result'] == 1) {
@@ -1372,6 +1372,8 @@ class CabinetController extends BaseController
             $html .= $this->getContentHtmlForFullEarlyRedemption($data, $values);
         } elseif ($request['selected_code_id'] == 3) {
             $html .= $this->getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values);
+        } elseif ($request['selected_code_id'] == 4) {
+            $html .= $this->getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values);
         }
         $html .= $this->getFooterHtml();
 
@@ -1414,7 +1416,6 @@ HTML;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <style type="text/css">
-@page{margin: 9mm 9mm 9mm 9mm;}
 body{
 	font-family: times_new_roman_cyr;
 	font-size: 13px;
@@ -1425,14 +1426,12 @@ body{
 <body>
  <div style="font-size: 14px; margin-bottom:130px">
         <p><br></p>
-        <p style=";text-align: center;margin-bottom: 16px"><strong>Частично досрочное погашение</strong></p>
+        <p style=";text-align: center;margin-bottom: 16px"><strong><i>Частично досрочное погашение</i></strong></p>
         <p style="text-align: center;"><strong>&nbsp;</strong></p>
         <p style="text-align: center;font-size: 16px"><strong>Заявление</strong></p>
         <p style="text-align: center;"><strong>&nbsp;</strong></p>
-        <p style="font-size: 14px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
-            размере {$values['price']} тенге
-            по Договору</p>
-            <p>аренды с выкупом жилого помещения от {$data['date_d']} года &nbsp;№{$data['number']},
+        <p style="text-indent: 45px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
+            размере {$values['price']} тенге по Договору аренды с выкупом жилого помещения от {$data['date_d']} года &nbsp;№{$data['number']},
             на {$values['date_to_finish']}</p>
         <p><br></p>
         <p><br></p>
@@ -1448,20 +1447,15 @@ HTML;
         return <<<HTML
 <div style="margin-bottom: 50px; font-size: 14px"
         <p><br></p>
-         <p style="text-align: center"><strong>Полный досрочный выкуп со
-                        списанием пени в размере 90%</strong></p>
+         <p style="text-align: center; font-size: 16px"><strong><i>Полный досрочный выкуп со
+                        списанием пени в размере 90%</i></strong></p>
             <p>&nbsp;</p>
             <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
-            <p>&nbsp;</p>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Прошу Вас разрешить произвести полный досрочный выкуп с возможностью списания 90% начисленной пени
-                арендуемого
-                мною помещения, расположенного по адресу: {$data['JK']} согласно условий Договора
-                аренды с выкупом от {$data['date_d']} года № {$data['number']}, до периода
-                {$values['date_to_finish']}
-            <p>В случае неосуществления мной оплаты остатка стоимости помещения до
-                    периода
-                    {$values['date_to']}
-                года, прошу аннулировать данное заявление (оставить без рассмотрения).</p>
+            <p style="text-indent: 45px">Прошу Вас разрешить произвести полный досрочный выкуп с возможностью списания 90% начисленной пени
+                арендуемого мною помещения, расположенного по адресу: {$data['JK']} согласно условий Договора
+                аренды с выкупом от {$data['date_d']} года № {$data['number']}, до периода {$values['date_to_finish']}
+            В случае неосуществления мной оплаты остатка стоимости помещения до
+                    периода {$values['date_to']} года, прошу аннулировать данное заявление (оставить без рассмотрения).</p>
 </div>
 HTML;
     }
@@ -1470,16 +1464,15 @@ HTML;
     {
         return <<<HTML
         <div style="font-size: 14px; margin-bottom: 100px">
-        <p style="font-size: 16px; text-align: center"><strong>Полный досрочный выкуп</strong></p>
+        <p style="font-size: 16px; text-align: center"><strong><i>Полный досрочный выкуп</i></strong></p>
         <p>&nbsp;</p>
         <p style="font-size: 16px;text-align: center;">
             <strong>ЗАЯВЛЕНИЕ</strong></p>
-        <p>&nbsp;</p>
+        <p style="text-indent: 45px">
         Прошу Вас разрешить произвести полный досрочный выкуп арендуемого мною жилого помещения, расположенного по
-        адресу: {$data['JK']}
-        согласно условий Договора аренды с выкупом жилого помещения от
-        {$data['date_d']} года № {$data['number']} (далее &ndash; Договор), по
-        состоянию на {$values['date_from']} года.
+        адресу: {$data['JK']} согласно условий Договора аренды с выкупом жилого помещения от {$data['date_d']}
+        года № {$data['number']} (далее &ndash; Договор), по состоянию на {$values['date_from']} года.
+        </p>
     </div>
 HTML;
     }
