@@ -7,6 +7,8 @@ use App\Models\Appeal;
 use App\Models\AppealHistory;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Site\BaseController;
 use Auth;
@@ -1276,8 +1278,45 @@ class CabinetController extends BaseController
     public function feedback_template($num_d, Request $request)
     {
         $vid = $this->api->CheckVid()->_toArray();
-        dd($vid);
-
+//        $vid = [
+//            "code" => 200,
+//            "data" => [
+//                "result" => "0",
+//                "comment" => "ОК",
+//                "vid_docs" => [
+//                    "vid" => [
+//                        0 => [
+//                            "name" => "Согласие на прописку\n",
+//                            "kod" => "1",
+//                        ],
+//                        1 => [
+//                            "name" => "Согласие на перепланировку",
+//                            "kod" => "2",
+//                        ],
+//                        2 => [
+//                            "name" => "Согласие на субаренду",
+//                            "kod" => "3",
+//                        ],
+//                        3 => [
+//                            "name" => "Исключение из состава созаявителя",
+//                            "kod" => "4",
+//                        ],
+//                        4 => [
+//                            "name" => "Заявление на частично-досрочное погашение",
+//                            "kod" => "5",
+//                        ],
+//                        5 => [
+//                            "name" => "Заявление на полное досрочное погашение",
+//                            "kod" => "6",
+//                        ],
+//                        6 => [
+//                            "name" => "иное",
+//                            "kod" => "8",
+//                        ]
+//                    ]
+//                ]
+//            ]
+//        ];
         $data = $this->data;
         if (isset($data)) {
             $dogovor = $data['Num_d'];
@@ -1318,28 +1357,149 @@ class CabinetController extends BaseController
         unset($request['_token']);
 
         $pathToTempFolder = "public/temp_pdf_files/";
-        $fullPathToTempPDF = $pathToTempFolder . $this->getNameCreatedTempFile();
-        $appeal_view = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
-        )->view_template_name;
-        $pdf = Pdf::loadView(
-            'appeals_pdf_templates.' . $appeal_view,
-            [
-                'editing' => Appeal::STATUS['PRINT'],
-                'values' => $request->all(),
-                'data' => $data,
-                'user' => $this->user,
-                'today_date' => Carbon::now()->format('d/m/Y'),
-                'id' => $data['number'],
-            ]
-        )->setOptions(['fontDir' => '/public/site/fonts', 'defaultFont' => 'times_new_roman']);;
-        Storage::disk('local')->put($fullPathToTempPDF, $pdf->output());
-        $path = Storage::path($fullPathToTempPDF);
+//        $fullPathToTempPDF = $pathToTempFolder . $this->getNameCreatedTempFile();
+//        $appealController = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
+//        )->view_contoller_name;
+
+        $values = $request->all();
+        $options = new Options();
+        $options->set('defaultFont', 'times_new_roman_cyr');
+        $pdf = new Dompdf($options);
+        $html = $this->getHeaderHtml($data);
+        if ($request['selected_code_id'] == 1) {
+            $html .= $this->getContentHtmlForPartialEarlyRepayment($data, $values);
+        } elseif ($request['selected_code_id'] == 2) {
+            $html .= $this->getContentHtmlForFullEarlyRedemption($data, $values);
+        } elseif ($request['selected_code_id'] == 3) {
+            $html .= $this->getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values);
+        }
+        $html .= $this->getFooterHtml();
+
+        $pdf->load_html($html, 'UTF-8');
+        $pdf->render();
+        return $pdf->stream('invoice.pdf');
+
+//        Storage::disk('local')->put($fullPathToTempPDF, $pdf->output());
+//        $path = Storage::path($fullPathToTempPDF);
 //        return response()->download(Storage::path($fullPathToTempPDF));
 
 //        $pdf->Output(Storage::path(''), 'F');
 //        $this->addToAppealHistory($this->user->id, $fullPathToTempPDF);
 //        $this->feedbackSendEmail($path);
-        return $pdf->download('invoice.pdf', 'D');
+    }
+
+    private function getHeaderHtml($data): string
+    {
+        return <<<HTML
+<div style="font-size: 14px">
+    <p style="text-align: right;margin-bottom: 5px;">Председателю Правления</p>
+    <p style="text-align: right;margin-bottom: 5px;">АО &laquo;Samruk-Kazyna Construction&raquo;</p>
+    <p style="text-align: right;margin-bottom: 5px;">г-ну Айманбетову М.З.</p>
+    <p style="text-align: right;margin-bottom: 5px;">От Арендатора ЖК &nbsp;<u>{$data['AdressJK']}</u></p>
+    <p style="text-align: right;margin-bottom: 5px;"><u>{$data['Number_room']}</u></p>
+    <p style="text-align: right;margin-bottom: 5px;">ФИО&nbsp;<u>{$this->user->name}</u></p>
+    <p style="text-align: right;margin-bottom: 5px;">ИИН&nbsp;<u>{$this->user->iin}</u></p>
+    <p style="text-align: right;margin-bottom: 5px;">Сот.&nbsp;<u>{$this->user->mobile}</u></p>
+    <p style="text-align: right;margin-bottom: 5px;">E-mail &nbsp;<u>{$this->user->email}</u></p>
+    <p style="margin-bottom: 50px"><br></p>
+</div>
+
+HTML;
+    }
+
+    private function getContentHtmlForPartialEarlyRepayment($data, $values): string
+    {
+        return <<<HTML
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+@page{margin: 9mm 9mm 9mm 9mm;}
+body{
+	font-family: times_new_roman_cyr;
+	font-size: 13px;
+	line-height: 100%;
+}
+</style>
+</head>
+<body>
+ <div style="font-size: 14px; margin-bottom:130px">
+        <p><br></p>
+        <p style=";text-align: center;margin-bottom: 16px"><strong>Частично досрочное погашение</strong></p>
+        <p style="text-align: center;"><strong>&nbsp;</strong></p>
+        <p style="text-align: center;font-size: 16px"><strong>Заявление</strong></p>
+        <p style="text-align: center;"><strong>&nbsp;</strong></p>
+        <p style="font-size: 14px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
+            размере {$values['price']} тенге
+            по Договору</p>
+            <p>аренды с выкупом жилого помещения от {$data['date_d']} года &nbsp;№{$data['number']},
+            на {$values['date_to_finish']}</p>
+        <p><br></p>
+        <p><br></p>
+        <p><br></p>
+    </div>
+    </body>
+</html>
+HTML;
+    }
+
+    private function getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values): string
+    {
+        return <<<HTML
+<div style="margin-bottom: 50px; font-size: 14px"
+        <p><br></p>
+         <p style="text-align: center"><strong>Полный досрочный выкуп со
+                        списанием пени в размере 90%</strong></p>
+            <p>&nbsp;</p>
+            <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+            <p>&nbsp;</p>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Прошу Вас разрешить произвести полный досрочный выкуп с возможностью списания 90% начисленной пени
+                арендуемого
+                мною помещения, расположенного по адресу: {$data['JK']} согласно условий Договора
+                аренды с выкупом от {$data['date_d']} года № {$data['number']}, до периода
+                {$values['date_to_finish']}
+            <p>В случае неосуществления мной оплаты остатка стоимости помещения до
+                    периода
+                    {$values['date_to']}
+                года, прошу аннулировать данное заявление (оставить без рассмотрения).</p>
+</div>
+HTML;
+    }
+
+    private function getContentHtmlForFullEarlyRedemption($data, $values): string
+    {
+        return <<<HTML
+        <div style="font-size: 14px; margin-bottom: 100px">
+        <p style="font-size: 16px; text-align: center"><strong>Полный досрочный выкуп</strong></p>
+        <p>&nbsp;</p>
+        <p style="font-size: 16px;text-align: center;">
+            <strong>ЗАЯВЛЕНИЕ</strong></p>
+        <p>&nbsp;</p>
+        Прошу Вас разрешить произвести полный досрочный выкуп арендуемого мною жилого помещения, расположенного по
+        адресу: {$data['JK']}
+        согласно условий Договора аренды с выкупом жилого помещения от
+        {$data['date_d']} года № {$data['number']} (далее &ndash; Договор), по
+        состоянию на {$values['date_from']} года.
+    </div>
+HTML;
+    }
+
+    private function getFooterHtml(): string
+    {
+        $today_date = Carbon::now()->format('d/m/Y');
+        return <<<HTML
+
+<div style="font-size: 14px;">
+<p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
+<p><br></p>
+<p><br></p>
+<p style="text-align: right;">{$today_date}</p>
+<p style="text-align: right;">Подпись:</p>
+<p style="text-align: right;">Код подпись от ЭЦП</p>
+</div>
+
+
+HTML;
     }
 
     private function addToAppealHistory($id, $fullPathToTempPDF)
