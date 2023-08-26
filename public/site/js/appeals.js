@@ -8,13 +8,17 @@ $(document).ready(function () {
             data: {
                 selected_code_id: "",
                 lock_inputs: false,
-                partial_early_repayment_of_the_amount: "",
+                price: "",
                 date_to_finish: "",
+                date_to: "",
+                reason: "",
+                attachment_one: "",
+                attachment_two: ""
             },
             methods: {
                 lockInputs() {
                     this.lock_inputs = !this.lock_inputs
-                    console.log(this.partial_early_repayment_of_the_amount)
+                    console.log(this.price)
                 },
                 printPdf() {
                     var self = this;
@@ -25,8 +29,12 @@ $(document).ready(function () {
                         data: {
                             _token: $('meta[name="_token"]').attr('content'),
                             date_to_finish: self.date_to_finish,
-                            partial_early_repayment_of_the_amount: self.partial_early_repayment_of_the_amount,
+                            price: self.price,
                             selected_code_id: self.selected_code_id,
+                            date_to: self.date_to,
+                            reason: self.reason,
+                            attachment_one: self.attachment_one,
+                            attachment_two: self.attachment_two,
                         }
                     }).then((response) => {
                         console.log(response)
@@ -41,6 +49,10 @@ $(document).ready(function () {
             },
             watch: {
                 selected_code_id() {
+                    this.lock_inputs = false;
+                    this.price = "";
+                    this.date_to_finish = "";
+                    this.reason = "";
                     console.log("changed", this.selected_code_id)
                 }
             }
