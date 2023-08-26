@@ -42,7 +42,7 @@
     </div>
     <div v-if="selected_code_id==1" class="content">
         <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong><i>Частично досрочное погашение</i></strong></p>
+        <p style="font-size: 18px; text-align: center"><strong>Частично досрочное погашение</strong></p>
         <p><strong>&nbsp;</strong></p>
         <p style="font-size: 18px; text-align: center"><strong>ЗАЯВЛЕНИЕ</strong></p>
         <p>&nbsp;</p>
@@ -64,7 +64,7 @@
     </div>
     <div v-if="selected_code_id==2" class="content">
         <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong><i>Полный досрочный выкуп</i></strong></p>
+        <p style="font-size: 18px; text-align: center"><strong>Полный досрочный выкуп</strong></p>
         <p>&nbsp;</p>
         <p style="font-size: 18px; text-align: center">
             <strong>ЗАЯВЛЕНИЕ</strong></p>
@@ -87,7 +87,7 @@
         <div>
             <p><br></p>
             <p style="font-size: 18px; text-align: center">
-                <strong><i>Полный досрочный выкуп со списанием пени в размере 90%</i></strong></p>
+                <strong>Полный досрочный выкуп со списанием пени в размере 90%</strong></p>
             <p>&nbsp;</p>
             <p style="font-size: 18px; text-align: center"><strong>ЗАЯВЛЕНИЕ</strong></p>
             <p class="appeal-text">&nbsp;
@@ -113,7 +113,7 @@
     <div v-if="selected_code_id==4" class="content">
         <p><br></p>
         <p style="font-size: 18px; text-align: center">
-            <strong><i>Полный досрочный выкуп за счет ЕПВ</i></strong>
+            <strong>Полный досрочный выкуп за счет ЕПВ</strong>
         </p>
         <p><span>&nbsp;</span></p>
         <p style="font-size: 18px; text-align: center"><strong>ЗАЯВЛЕНИЕ</strong></p>
@@ -131,7 +131,7 @@
     </div>
     <div v-if="selected_code_id==5" class="content">
         <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong><i>Частично досрочное погашение за счет ЕПВ&nbsp;</i></strong></p>
+        <p style="font-size: 18px; text-align: center"><strong>Частично досрочное погашение за счет ЕПВ&nbsp;</strong></p>
         <p>&nbsp;</p>
         <p style="font-size: 18px; text-align: center"><strong>ЗАЯВЛЕНИЕ</strong></p>
         <p style="text-indent: 45px">Прошу Вас предоставить справку о задолженности в целях частично досрочного погашения остатка стоимости
@@ -163,7 +163,7 @@
     </div>
     <div v-if="selected_code_id==7" class="content">
         <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong><i>Согласие на передачу в субаренду</i></strong>
+        <p style="font-size: 18px; text-align: center"><strong>Согласие на передачу в субаренду</strong>
         </p>
         <p><span>&nbsp;</span>
         </p>
@@ -194,7 +194,7 @@
     </div>
     <div v-if="selected_code_id==7" class="content">
         <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong><i>Согласие на передачу в субаренду</i></strong>
+        <p style="font-size: 18px; text-align: center"><strong>Согласие на передачу в субаренду</strong>
         </p>
         <p><span>&nbsp;</span>
         </p>
@@ -254,7 +254,7 @@
     </div>
     <div v-if="selected_code_id==9" class="content">
         <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong><i>Расторжение договора</i></strong></p>
+        <p style="font-size: 18px; text-align: center"><strong>Расторжение договора</strong></p>
         <p>&nbsp;</p>
         <p style="font-size: 18px; text-align: center"><strong>ЗАЯВЛЕНИЕ</strong></p>
         <p>&nbsp;</p>
