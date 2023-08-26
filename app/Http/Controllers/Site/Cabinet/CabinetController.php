@@ -1373,8 +1373,17 @@ class CabinetController extends BaseController
         } elseif ($request['selected_code_id'] == 3) {
             $html .= $this->getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values);
         } elseif ($request['selected_code_id'] == 4) {
-            $html .= $this->getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values);
+            $html .= $this->getContentHtmlForFullEarlyRedemptionAtTheExpense($data, $values);
+        } elseif ($request['selected_code_id'] == 5) {
+            $html .= $this->getContentHtmlForPartialEarlyRedemptionAtTheExpense($data, $values);
+        } elseif ($request['selected_code_id'] == 6) {
+            $html .= $this->getContentHtmlForPartialInformationAboutAllReceivedPayments($data);
+        } elseif ($request['selected_code_id'] == 7) {
+            $html .= $this->getContentHtmlForConsentToSublease($data);
+        } elseif ($request['selected_code_id'] == 8) {
+            $html .= $this->getContentHtmlForConsentForTerminationOfAgreement($data, $values);
         }
+
         $html .= $this->getFooterHtml();
 
         $pdf->load_html($html, 'UTF-8');
@@ -1393,18 +1402,18 @@ class CabinetController extends BaseController
     private function getHeaderHtml($data): string
     {
         return <<<HTML
-<div style="font-size: 14px">
-    <p style="text-align: right;margin-bottom: 5px;">Председателю Правления</p>
-    <p style="text-align: right;margin-bottom: 5px;">АО &laquo;Samruk-Kazyna Construction&raquo;</p>
-    <p style="text-align: right;margin-bottom: 5px;">г-ну Айманбетову М.З.</p>
-    <p style="text-align: right;margin-bottom: 5px;">От Арендатора ЖК &nbsp;<u>{$data['AdressJK']}</u></p>
-    <p style="text-align: right;margin-bottom: 5px;"><u>{$data['Number_room']}</u></p>
-    <p style="text-align: right;margin-bottom: 5px;">ФИО&nbsp;<u>{$this->user->name}</u></p>
-    <p style="text-align: right;margin-bottom: 5px;">ИИН&nbsp;<u>{$this->user->iin}</u></p>
-    <p style="text-align: right;margin-bottom: 5px;">Сот.&nbsp;<u>{$this->user->mobile}</u></p>
-    <p style="text-align: right;margin-bottom: 5px;">E-mail &nbsp;<u>{$this->user->email}</u></p>
-    <p style="margin-bottom: 50px"><br></p>
-</div>
+        <div style="font-size: 14px">
+            <p style="text-align: right;margin-bottom: 5px;">Председателю Правления</p>
+            <p style="text-align: right;margin-bottom: 5px;">АО &laquo;Samruk-Kazyna Construction&raquo;</p>
+            <p style="text-align: right;margin-bottom: 5px;">г-ну Айманбетову М.З.</p>
+            <p style="text-align: right;margin-bottom: 5px;">От Арендатора ЖК &nbsp;<u>{$data['AdressJK']}</u></p>
+            <p style="text-align: right;margin-bottom: 5px;"><u>{$data['Number_room']}</u></p>
+            <p style="text-align: right;margin-bottom: 5px;">ФИО&nbsp;<u>{$this->user->name}</u></p>
+            <p style="text-align: right;margin-bottom: 5px;">ИИН&nbsp;<u>{$this->user->iin}</u></p>
+            <p style="text-align: right;margin-bottom: 5px;">Сот.&nbsp;<u>{$this->user->mobile}</u></p>
+            <p style="text-align: right;margin-bottom: 5px;">E-mail &nbsp;<u>{$this->user->email}</u></p>
+            <p style="margin-bottom: 50px"><br></p>
+        </div>
 
 HTML;
     }
@@ -1412,51 +1421,36 @@ HTML;
     private function getContentHtmlForPartialEarlyRepayment($data, $values): string
     {
         return <<<HTML
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<style type="text/css">
-body{
-	font-family: times_new_roman_cyr;
-	font-size: 13px;
-	line-height: 100%;
-}
-</style>
-</head>
-<body>
- <div style="font-size: 14px; margin-bottom:130px">
-        <p><br></p>
-        <p style=";text-align: center;margin-bottom: 16px">Частично досрочное погашение</strong></p>
-        <p style="text-align: center;"><strong>&nbsp;</strong></p>
-        <p style="text-align: center;font-size: 16px"><strong>Заявление</strong></p>
-        <p style="text-align: center;"><strong>&nbsp;</strong></p>
-        <p style="text-indent: 45px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
-            размере {$values['price']} тенге по Договору аренды с выкупом жилого помещения от {$data['date_d']} года &nbsp;№{$data['number']},
-            на {$values['date_to_finish']}</p>
-        <p><br></p>
-        <p><br></p>
-        <p><br></p>
-    </div>
-    </body>
-</html>
+        <div style="font-size: 14px; margin-bottom:30px">
+            <p style=";text-align: center;font-size: 16px"><strong>Частично досрочное погашение</strong></p>
+            <p>&nbsp;</p>
+            <p style="text-align: center;font-size: 16px"><strong>ЗАЯВЛЕНИЕ</strong></p>
+            <p>&nbsp;</p>
+            <p style="text-indent: 45px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
+                размере {$values['price']} тенге по Договору аренды с выкупом жилого помещения от {$data['date_d']} года &nbsp;№{$data['number']},
+                на {$values['date_to_finish']}</p>
+            <p><br></p>
+            <p><br></p>
+            <p><br></p>
+        </div>
 HTML;
     }
 
     private function getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values): string
     {
         return <<<HTML
-<div style="margin-bottom: 50px; font-size: 14px"
-        <p><br></p>
+        <div style="margin-bottom: 50px; font-size: 14px">
          <p style="text-align: center; font-size: 16px"><strong>Полный досрочный выкуп со
                         списанием пени в размере 90%</strong></p>
             <p>&nbsp;</p>
             <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+            <p>&nbsp;</p>
             <p style="text-indent: 45px">Прошу Вас разрешить произвести полный досрочный выкуп с возможностью списания 90% начисленной пени
                 арендуемого мною помещения, расположенного по адресу: {$data['JK']} согласно условий Договора
                 аренды с выкупом от {$data['date_d']} года № {$data['number']}, до периода {$values['date_to_finish']}
             В случае неосуществления мной оплаты остатка стоимости помещения до
                     периода {$values['date_to']} года, прошу аннулировать данное заявление (оставить без рассмотрения).</p>
-</div>
+        </div>
 HTML;
     }
 
@@ -1466,8 +1460,8 @@ HTML;
         <div style="font-size: 14px; margin-bottom: 100px">
         <p style="font-size: 16px; text-align: center"><strong>Полный досрочный выкуп</strong></p>
         <p>&nbsp;</p>
-        <p style="font-size: 16px;text-align: center;">
-            <strong>ЗАЯВЛЕНИЕ</strong></p>
+        <p style="font-size: 16px;text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+        <p>&nbsp;</p>
         <p style="text-indent: 45px">
         Прошу Вас разрешить произвести полный досрочный выкуп арендуемого мною жилого помещения, расположенного по
         адресу: {$data['JK']} согласно условий Договора аренды с выкупом жилого помещения от {$data['date_d']}
@@ -1477,19 +1471,130 @@ HTML;
 HTML;
     }
 
+    private function getContentHtmlForFullEarlyRedemptionAtTheExpense($data, $values): string
+    {
+        return <<<HTML
+           <div style="font-size: 14px; margin-bottom: 60px">
+                <p style="text-align: center;"><strong>Полный досрочный выкуп за счет ЕПВ</strong></p>
+                <p>&nbsp;</p>
+                <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+                <p>&nbsp;</p>
+                <span style="text-indent: 45px">Прошу Вас предоставить справку о задолженности в целях полного погашения остатка стоимости арендуемого мною жилого помещения,
+                    расположенного по адресу:&nbsp;{$data['JK']}&nbsp;</span>
+                    согласно условий Договора аренды с выкупом жилого помещения от {$data['date_d']} года № {$data['number']} (далее &ndash; Договор), по состоянию на
+                    {$values['date_to_finish']} года , за счет денежных средств ЕПВ (доступная сумма {$values['price']} тенге).
+                </span>
+            </div>
+HTML;
+    }
+
+    private function getContentHtmlForPartialEarlyRedemptionAtTheExpense($data, $values): string
+    {
+        return <<<HTML
+          <div style="font-size: 14px; margin-bottom: 60px">
+            <p style="text-align: center;"><strong>Частично досрочное погашение за счет ЕПВ&nbsp;</strong></p>
+            <p>&nbsp;</p>
+            <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+            <p>&nbsp;</p>
+            <span style="text-indent: 45px">Прошу Вас предоставить справку о задолженности в целях частично досрочного погашения остатка стоимости
+                арендуемого мною жилого помещения, расположенного по адресу: {$data['JK']}
+                согласно условий Договора аренды с выкупом жилого помещения от {$values['date_to_finish']} года № {$data['number']}
+                авто (далее &ndash; Договор), по состоянию на {$data['date_d']}
+                <input type="date" name="date_from"/> года, за счет
+                денежных средств ЕПВ (доступная сумма
+                <input type="number" name="price"/>
+                {$values['price']} тенге).
+            </span>
+            <p><br></p>
+            </div>
+HTML;
+    }
+
+    private function getContentHtmlForPartialInformationAboutAllReceivedPayments($data): string
+    {
+        return <<<HTML
+          <div style="font-size: 14px; margin-bottom: 150px">
+           <p style="text-align: center; font-size: 16px"><strong>Справка о всех поступивших платежах</strong></p>
+            <p>&nbsp;</p>
+            <span style="text-indent: 45px">Настоящим прошу Вас предоставить справку о всех поступивших платежах по Договору
+            аренды с выкупом от {$data['date_d']} г. &nbsp;№ {$data['number']}.&nbsp;</span>
+            <p><br></p>
+            </div>
+HTML;
+    }
+
+    private function getContentHtmlForConsentToSublease($data): string
+    {
+        return <<<HTML
+          <div style="font-size: 14px; margin-bottom: 60px">
+           <p><br></p>
+            <p style="font-size: 18px; text-align: center"><strong>Согласие на передачу в субаренду</strong>
+            </p>
+            <p><span>&nbsp;</span>
+            </p>
+            <p style="font-size: 18px; text-align: center"><strong> ЗАЯВЛЕНИЕ</strong>
+            </p>
+            <p style="text-indent: 45px">Прошу Вас разрешить сдать в субаренду арендуемое мною жилое помещение, расположенное по адресу
+                {$data['JK']}, согласно условий Договора аренды с выкупом жилого помещения от {$data['date_d']}
+                №{$data['number']} в связи с
+            </p>
+            </div>
+HTML;
+    }
+
+    private function getContentHtmlForConsentForPermanentResidence($data, $values): string
+    {
+        return <<<HTML
+          <div style="font-size: 14px; margin-bottom: 60px">
+            <p style="font-size: 18px; text-align: center"><strong
+            >Согласие на постоянную прописку</strong>
+            </p>
+            <p style="font-size: 18px; text-align: center"><strong
+                >Заявление</strong>
+            </p>
+            <p>
+                <span>Прошу Вас дать согласие на регистрацию меня в Департаменте &quot;Центр обслуживания населения -
+                филиала НАО &quot;Государственная корпорация &quot;Правительство для граждан&quot; по адресу: {$data['JK']}</span>
+            </p>
+            <p><span>{$data['FIO']}</span>
+            </p>
+            <p><strong>и членов моей семьи</strong></p>
+            <span>1) {$values['attachment_one']}</span>
+            <span>2) {$values['attachment_two']}</span>
+            <p><span>на постоянное место жительство по адресу: </span><span>{$data['JK']}&nbsp;</span>
+         </div>
+HTML;
+    }
+
+    private function getContentHtmlForConsentForTerminationOfAgreement($data, $values): string
+    {
+        return <<<HTML
+        <div style="font-size: 14px; margin-bottom: 100px">
+         <p style="font-size: 18px; text-align: center"><strong>Расторжение договора</strong></p>
+            <p>&nbsp;</p>
+            <p style="font-size: 18px; text-align: center"><strong>ЗАЯВЛЕНИЕ</strong></p>
+            <p>&nbsp;</p>
+            <span style="text-indent: 45px">
+            В связи с {$values['reason']} прошу Вас расторгнуть Договор аренды с выкупом жилого помещения от {$data['date_d']} года
+                №{$data['number']} авто (далее &ndash; Договор) согласно утвержденной процедуре.
+            </span>
+         </div>
+HTML;
+    }
+
     private function getFooterHtml(): string
     {
         $today_date = Carbon::now()->format('d/m/Y');
         return <<<HTML
 
-<div style="font-size: 14px;">
-<p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
-<p><br></p>
-<p><br></p>
-<p style="text-align: right;">{$today_date}</p>
-<p style="text-align: right;">Подпись:</p>
-<p style="text-align: right;">Код подпись от ЭЦП</p>
-</div>
+        <div style="font-size: 14px;">
+        <p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
+        <p><br></p>
+        <p><br></p>
+        <p style="text-align: right;">{$today_date}</p>
+        <p style="text-align: right;">Подпись:</p>
+        <p style="text-align: right;">Код подпись от ЭЦП</p>
+        </div>
 
 
 HTML;
