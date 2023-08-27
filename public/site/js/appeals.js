@@ -20,9 +20,9 @@ $(document).ready(function () {
                     this.lock_inputs = !this.lock_inputs
                     console.log(this.price)
                 },
-                printPdf() {
+                async printPdf() {
                     var self = this;
-                    axios({
+                    await axios({
                         url: '/print-pdf',
                         method: 'POST',
                         responseType: 'blob',
@@ -37,11 +37,17 @@ $(document).ready(function () {
                             attachment_two: self.attachment_two,
                         }
                     }).then((response) => {
-                        console.log(response)
+                        const contentDisposition = response.headers['content-disposition'];
+                        let fileName = 'unknown';
+                        if (contentDisposition) {
+                            const fileNameMatch = contentDisposition.match(/utf-8''(.+)/);
+                            if (fileNameMatch.length === 2)
+                                fileName = fileNameMatch[1];
+                        }
                         const url = window.URL.createObjectURL(new Blob([response.data]));
                         const link = document.createElement('a');
                         link.href = url;
-                        link.setAttribute('download', 'file.pdf');
+                        link.setAttribute('download', decodeURI(fileName)+'.pdf');
                         document.body.appendChild(link);
                         link.click();
                     })

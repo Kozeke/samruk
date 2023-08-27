@@ -1277,46 +1277,58 @@ class CabinetController extends BaseController
 
     public function feedback_template($num_d, Request $request)
     {
-        $vid = $this->api->CheckVid()->_toArray();
-//        $vid = [
-//            "code" => 200,
-//            "data" => [
-//                "result" => "0",
-//                "comment" => "ОК",
-//                "vid_docs" => [
-//                    "vid" => [
-//                        0 => [
-//                            "name" => "Согласие на прописку\n",
-//                            "kod" => "1",
-//                        ],
-//                        1 => [
-//                            "name" => "Согласие на перепланировку",
-//                            "kod" => "2",
-//                        ],
-//                        2 => [
-//                            "name" => "Согласие на субаренду",
-//                            "kod" => "3",
-//                        ],
-//                        3 => [
-//                            "name" => "Исключение из состава созаявителя",
-//                            "kod" => "4",
-//                        ],
-//                        4 => [
-//                            "name" => "Заявление на частично-досрочное погашение",
-//                            "kod" => "5",
-//                        ],
-//                        5 => [
-//                            "name" => "Заявление на полное досрочное погашение",
-//                            "kod" => "6",
-//                        ],
-//                        6 => [
-//                            "name" => "иное",
-//                            "kod" => "8",
-//                        ]
-//                    ]
-//                ]
-//            ]
-//        ];
+//        $vid = $this->api->CheckVid()->_toArray();
+        $vid = [
+            "code" => 200,
+            "data" => [
+                "result" => "0",
+                "comment" => "ОК",
+                "vid_docs" => [
+                    "vid" => [
+                        0 => [
+                            "name" => "Частично досрочное погашение\n",
+                            "kod" => "1",
+                        ],
+                        1 => [
+                            "name" => "Полный досрочный выкуп",
+                            "kod" => "2",
+                        ],
+                        2 => [
+                            "name" => "Полный досрочный выкуп со списанием пени в размере 90%",
+                            "kod" => "3",
+                        ],
+                        3 => [
+                            "name" => "Частично досрочное погашение за счет ЕПВ",
+                            "kod" => "4",
+                        ],
+                        4 => [
+                            "name" => "Полный досрочный выкуп за счет ЕПВ",
+                            "kod" => "5",
+                        ],
+                        5 => [
+                            "name" => "Справка о всех поступивших платежах",
+                            "kod" => "6",
+                        ],
+                        6 => [
+                            "name" => "Согласие на передачу в субаренду",
+                            "kod" => "7",
+                        ],
+                        7 => [
+                            "name" => "Согласие на постоянную прописку",
+                            "kod" => "8",
+                        ],
+                        8 => [
+                            "name" => "Расторжение договора",
+                            "kod" => "9",
+                        ],
+                        9 => [
+                            "name" => "иное",
+                            "kod" => "10",
+                        ]
+                    ]
+                ]
+            ]
+        ];
         $data = $this->data;
         if (isset($data)) {
             $dogovor = $data['Num_d'];
@@ -1344,22 +1356,21 @@ class CabinetController extends BaseController
         ]);
     }
 
-    public function downloadPdf(Request $request)
+    public function downloadPdf(Request $request): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
-        $validator = Validator::make($request->input(), ['date_from' => 'date']);
+        $validator = Validator::make($request->input(), ['date_to_finish' => 'date', 'date_to' => 'date']);
         if (!$validator->fails()) {
-            $request['date_from'] = Carbon::createFromDate(
-                $request['date_from']
+            $request['date_to_finish'] = Carbon::createFromDate(
+                $request['date_to_finish']
+            )->format('d/m/Y');
+            $request['date_to'] = Carbon::createFromDate(
+                $request['date_to']
             )->format('d/m/Y');
         }
         $data = $this->data['Num_d'];
         $data['date_d'] = Carbon::createFromDate($data['date_d'])->format('d/m/Y');
         unset($request['_token']);
 
-        $pathToTempFolder = "public/temp_pdf_files/";
-//        $fullPathToTempPDF = $pathToTempFolder . $this->getNameCreatedTempFile();
-//        $appealController = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
-//        )->view_contoller_name;
 
         $values = $request->all();
         $options = new Options();
@@ -1373,26 +1384,29 @@ class CabinetController extends BaseController
         } elseif ($request['selected_code_id'] == 3) {
             $html .= $this->getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values);
         } elseif ($request['selected_code_id'] == 4) {
-            $html .= $this->getContentHtmlForFullEarlyRedemptionAtTheExpense($data, $values);
-        } elseif ($request['selected_code_id'] == 5) {
             $html .= $this->getContentHtmlForPartialEarlyRedemptionAtTheExpense($data, $values);
+        } elseif ($request['selected_code_id'] == 5) {
+            $html .= $this->getContentHtmlForFullEarlyRedemptionAtTheExpense($data, $values);
         } elseif ($request['selected_code_id'] == 6) {
             $html .= $this->getContentHtmlForPartialInformationAboutAllReceivedPayments($data);
         } elseif ($request['selected_code_id'] == 7) {
             $html .= $this->getContentHtmlForConsentToSublease($data);
         } elseif ($request['selected_code_id'] == 8) {
+            $html .= $this->getContentHtmlForConsentForPermanentResidence($data, $values);
+        } elseif ($request['selected_code_id'] == 9) {
             $html .= $this->getContentHtmlForConsentForTerminationOfAgreement($data, $values);
         }
-
         $html .= $this->getFooterHtml();
 
         $pdf->load_html($html, 'UTF-8');
         $pdf->render();
-        return $pdf->stream('invoice.pdf');
-
-//        Storage::disk('local')->put($fullPathToTempPDF, $pdf->output());
+        $pathToTempFolder = "public/temp_pdf_files/";
+        $fullPathToTempPDF = $pathToTempFolder . $this->getNameCreatedTempFile();
+        Storage::disk('local')->put($fullPathToTempPDF, $pdf->output());
 //        $path = Storage::path($fullPathToTempPDF);
-//        return response()->download(Storage::path($fullPathToTempPDF));
+        $appealTemplateTitle = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first()->title;
+
+        return response()->download(Storage::path($fullPathToTempPDF), $appealTemplateTitle)->deleteFileAfterSend(true);
 
 //        $pdf->Output(Storage::path(''), 'F');
 //        $this->addToAppealHistory($this->user->id, $fullPathToTempPDF);
@@ -1402,16 +1416,16 @@ class CabinetController extends BaseController
     private function getHeaderHtml($data): string
     {
         return <<<HTML
-        <div style="font-size: 14px">
-            <p style="text-align: right;margin-bottom: 5px;">Председателю Правления</p>
-            <p style="text-align: right;margin-bottom: 5px;">АО &laquo;Samruk-Kazyna Construction&raquo;</p>
-            <p style="text-align: right;margin-bottom: 5px;">г-ну Айманбетову М.З.</p>
-            <p style="text-align: right;margin-bottom: 5px;">От Арендатора ЖК &nbsp;<u>{$data['AdressJK']}</u></p>
-            <p style="text-align: right;margin-bottom: 5px;"><u>{$data['Number_room']}</u></p>
-            <p style="text-align: right;margin-bottom: 5px;">ФИО&nbsp;<u>{$this->user->name}</u></p>
-            <p style="text-align: right;margin-bottom: 5px;">ИИН&nbsp;<u>{$this->user->iin}</u></p>
-            <p style="text-align: right;margin-bottom: 5px;">Сот.&nbsp;<u>{$this->user->mobile}</u></p>
-            <p style="text-align: right;margin-bottom: 5px;">E-mail &nbsp;<u>{$this->user->email}</u></p>
+        <div style="font-size: 14px;margin-top: -15px">
+            <p style="text-align: right;">Председателю Правления</p>
+            <p style="text-align: right;">АО &laquo;Samruk-Kazyna Construction&raquo;</p>
+            <p style="text-align: right;">г-ну Айманбетову М.З.</p>
+            <p style="text-align: right;">От Арендатора ЖК &nbsp;<u>{$data['AdressJK']}</u></p>
+            <p style="text-align: right;"><u>{$data['Number_room']}</u></p>
+            <p style="text-align: right;">ФИО&nbsp;<u>{$this->user->name}</u></p>
+            <p style="text-align: right;">ИИН&nbsp;<u>{$this->user->iin}</u></p>
+            <p style="text-align: right;">Сот.&nbsp;<u>{$this->user->mobile}</u></p>
+            <p style="text-align: right;">E-mail &nbsp;<u>{$this->user->email}</u></p>
             <p style="margin-bottom: 50px"><br></p>
         </div>
 
@@ -1428,7 +1442,7 @@ HTML;
             <p>&nbsp;</p>
             <p style="text-indent: 45px">Настоящим прошу Вас разрешить внести на частично досрочное погашение сумму в
                 размере {$values['price']} тенге по Договору аренды с выкупом жилого помещения от {$data['date_d']} года &nbsp;№{$data['number']},
-                на {$values['date_to_finish']}</p>
+                на {$values['date_to_finish']} года.</p>
             <p><br></p>
             <p><br></p>
             <p><br></p>
@@ -1439,7 +1453,7 @@ HTML;
     private function getContentHtmlForFullEarlyRedemptionWithPenalty($data, $values): string
     {
         return <<<HTML
-        <div style="margin-bottom: 50px; font-size: 14px">
+        <div style="margin-bottom: 80px; font-size: 14px">
          <p style="text-align: center; font-size: 16px"><strong>Полный досрочный выкуп со
                         списанием пени в размере 90%</strong></p>
             <p>&nbsp;</p>
@@ -1465,7 +1479,7 @@ HTML;
         <p style="text-indent: 45px">
         Прошу Вас разрешить произвести полный досрочный выкуп арендуемого мною жилого помещения, расположенного по
         адресу: {$data['JK']} согласно условий Договора аренды с выкупом жилого помещения от {$data['date_d']}
-        года № {$data['number']} (далее &ndash; Договор), по состоянию на {$values['date_from']} года.
+        года № {$data['number']} (далее &ndash; Договор), по состоянию на {$values['date_to_finish']} года.
         </p>
     </div>
 HTML;
@@ -1474,10 +1488,10 @@ HTML;
     private function getContentHtmlForFullEarlyRedemptionAtTheExpense($data, $values): string
     {
         return <<<HTML
-           <div style="font-size: 14px; margin-bottom: 60px">
-                <p style="text-align: center;"><strong>Полный досрочный выкуп за счет ЕПВ</strong></p>
+           <div style="font-size: 14px; margin-bottom: 80px">
+                <p style="text-align: center;font-size: 16px"><strong>Полный досрочный выкуп за счет ЕПВ</strong></p>
                 <p>&nbsp;</p>
-                <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+                <p style="text-align: center;font-size: 16px"><strong>ЗАЯВЛЕНИЕ</strong></p>
                 <p>&nbsp;</p>
                 <span style="text-indent: 45px">Прошу Вас предоставить справку о задолженности в целях полного погашения остатка стоимости арендуемого мною жилого помещения,
                     расположенного по адресу:&nbsp;{$data['JK']}&nbsp;</span>
@@ -1492,11 +1506,11 @@ HTML;
     {
         return <<<HTML
           <div style="font-size: 14px; margin-bottom: 60px">
-            <p style="text-align: center;"><strong>Частично досрочное погашение за счет ЕПВ&nbsp;</strong></p>
+            <p style="text-align: center;font-size: 16px"><strong>Частично досрочное погашение за счет ЕПВ&nbsp;</strong></p>
             <p>&nbsp;</p>
-            <p style="text-align: center;"><strong>ЗАЯВЛЕНИЕ</strong></p>
+            <p style="text-align: center;font-size: 16px"><strong>ЗАЯВЛЕНИЕ</strong></p>
             <p>&nbsp;</p>
-            <span style="text-indent: 45px">Прошу Вас предоставить справку о задолженности в целях частично досрочного погашения остатка стоимости
+            <p style="text-indent: 45px">Прошу Вас предоставить справку о задолженности в целях частично досрочного погашения остатка стоимости
                 арендуемого мною жилого помещения, расположенного по адресу: {$data['JK']}
                 согласно условий Договора аренды с выкупом жилого помещения от {$values['date_to_finish']} года № {$data['number']}
                 авто (далее &ndash; Договор), по состоянию на {$data['date_d']}
@@ -1504,7 +1518,7 @@ HTML;
                 денежных средств ЕПВ (доступная сумма
                 <input type="number" name="price"/>
                 {$values['price']} тенге).
-            </span>
+            </p>
             <p><br></p>
             </div>
 HTML;
@@ -1516,8 +1530,8 @@ HTML;
           <div style="font-size: 14px; margin-bottom: 150px">
            <p style="text-align: center; font-size: 16px"><strong>Справка о всех поступивших платежах</strong></p>
             <p>&nbsp;</p>
-            <span style="text-indent: 45px">Настоящим прошу Вас предоставить справку о всех поступивших платежах по Договору
-            аренды с выкупом от {$data['date_d']} г. &nbsp;№ {$data['number']}.&nbsp;</span>
+            <p style="text-indent: 45px">Настоящим прошу Вас предоставить справку о всех поступивших платежах по Договору
+            аренды с выкупом от {$data['date_d']} г. &nbsp;№ {$data['number']}.&nbsp;</p>
             <p><br></p>
             </div>
 HTML;
@@ -1528,12 +1542,13 @@ HTML;
         return <<<HTML
           <div style="font-size: 14px; margin-bottom: 60px">
            <p><br></p>
-            <p style="font-size: 18px; text-align: center"><strong>Согласие на передачу в субаренду</strong>
+            <p style="font-size: 16px; text-align: center"><strong>Согласие на передачу в субаренду</strong>
             </p>
             <p><span>&nbsp;</span>
             </p>
-            <p style="font-size: 18px; text-align: center"><strong> ЗАЯВЛЕНИЕ</strong>
+            <p style="font-size: 16px; text-align: center"><strong> ЗАЯВЛЕНИЕ</strong>
             </p>
+            <p>&nbsp;</p>
             <p style="text-indent: 45px">Прошу Вас разрешить сдать в субаренду арендуемое мною жилое помещение, расположенное по адресу
                 {$data['JK']}, согласно условий Договора аренды с выкупом жилого помещения от {$data['date_d']}
                 №{$data['number']} в связи с
@@ -1545,22 +1560,24 @@ HTML;
     private function getContentHtmlForConsentForPermanentResidence($data, $values): string
     {
         return <<<HTML
-          <div style="font-size: 14px; margin-bottom: 60px">
-            <p style="font-size: 18px; text-align: center"><strong
+          <div style="font-size: 14px;">
+            <p style="font-size: 16px; text-align: center"><strong
             >Согласие на постоянную прописку</strong>
             </p>
-            <p style="font-size: 18px; text-align: center"><strong
+            <p>&nbsp;</p>
+            <p style="font-size: 16px; text-align: center"><strong
                 >Заявление</strong>
             </p>
+            <p>&nbsp;</p>
             <p>
                 <span>Прошу Вас дать согласие на регистрацию меня в Департаменте &quot;Центр обслуживания населения -
-                филиала НАО &quot;Государственная корпорация &quot;Правительство для граждан&quot; по адресу: {$data['JK']}</span>
+                филиала НАО&quot; Государственная корпорация &quot;Правительство для граждан&quot; по адресу: {$data['JK']}</span>
             </p>
-            <p><span>{$data['FIO']}</span>
+            <p><span>{$this->user['name']}</span>
             </p>
             <p><strong>и членов моей семьи</strong></p>
-            <span>1) {$values['attachment_one']}</span>
-            <span>2) {$values['attachment_two']}</span>
+            <p>1) {$values['attachment_one']}</p>
+            <p>2) {$values['attachment_two']}</p>
             <p><span>на постоянное место жительство по адресу: </span><span>{$data['JK']}&nbsp;</span>
          </div>
 HTML;
@@ -1588,7 +1605,7 @@ HTML;
         return <<<HTML
 
         <div style="font-size: 14px;">
-        <p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
+<!--        <p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>-->
         <p><br></p>
         <p><br></p>
         <p style="text-align: right;">{$today_date}</p>
@@ -1638,7 +1655,7 @@ HTML;
      */
     private function getNameCreatedTempFile(): string
     {
-        return uniqid(rand(), true) . self::FILE_EXTENSION;
+        return uniqid(rand(), true);
     }
 
 

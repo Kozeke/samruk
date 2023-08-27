@@ -93,7 +93,7 @@
             <p class="appeal-text">&nbsp;
                 Прошу Вас разрешить произвести полный досрочный выкуп с возможностью списания
                 90% начисленной пени арендуемого мною помещения, расположенного по адресу: {{$data['JK']??""}} согласно
-                условий Договора аренды с выкупом от {{$data['data_d']??""}} года № {{$id??""}}, до периода
+                условий Договора аренды с выкупом от {{$data['date_d']??""}} года № {{$id??""}}, до периода
                 <span v-if="lock_inputs">
                 @{{date_to_finish}}
             </span>
@@ -110,7 +110,7 @@
                 года, прошу аннулировать данное заявление (оставить без рассмотрения).</p>
         </div>
     </div>
-    <div v-if="selected_code_id==4" class="content">
+    <div v-if="selected_code_id==5" class="content">
         <p><br></p>
         <p style="font-size: 18px; text-align: center">
             <strong>Полный досрочный выкуп за счет ЕПВ</strong>
@@ -129,7 +129,7 @@
             <input type="number" v-model="price">
         </span> тенге).</p>
     </div>
-    <div v-if="selected_code_id==5" class="content">
+    <div v-if="selected_code_id==4" class="content">
         <p><br></p>
         <p style="font-size: 18px; text-align: center"><strong>Частично досрочное погашение за счет ЕПВ&nbsp;</strong></p>
         <p>&nbsp;</p>
@@ -157,7 +157,7 @@
         <p style="font-size: 18px; text-align: center"><strong>Справка о всех поступивших платежах</strong></p>
         <p>&nbsp;</p>
         <p class="appeal-text">Настоящим прошу Вас предоставить справку о всех поступивших платежах по Договору аренды с выкупом
-            от {{$data['data_d']??""}} г. &nbsp;№{{$id??""}}.&nbsp;</p>
+            от {{$data['date_d']??""}} г. &nbsp;№{{$id??""}}.&nbsp;</p>
         <p><br></p>
         <p><br></p>
     </div>
@@ -177,37 +177,6 @@
         <span v-else>
             <input type="text" v-model="reason"/>
         </span>
-        <p></p>
-        <span>Прилагается:</span>
-        <p></p>
-        <span>1)</span>
-        <span v-if="lock_inputs">@{{attachment_one}}</span>
-        <span v-else>
-        <input type="text" v-model="attachment_one"/>
-        </span>
-        <p></p>
-        <span>2)</span>
-        <span v-if="lock_inputs">@{{attachment_two}}</span>
-        <span v-else>
-        <input type="text" v-model="attachment_two"/>
-        </span>
-    </div>
-    <div v-if="selected_code_id==7" class="content">
-        <p><br></p>
-        <p style="font-size: 18px; text-align: center"><strong>Согласие на передачу в субаренду</strong>
-        </p>
-        <p><span>&nbsp;</span>
-        </p>
-        <p style="font-size: 18px; text-align: center"><strong> ЗАЯВЛЕНИЕ</strong>
-        </p>
-        <p class="appeal-text">Прошу Вас разрешить сдать в субаренду арендуемое мною жилое помещение, расположенное по адресу
-                {{$data['JK']??""}}, согласно условий Договора аренды с выкупом жилого помещения от
-                {{$data['date_d']??""}} № {{$id??""}} в связи с
-        <span v-if="lock_inputs">@{{reason}}</span>
-        <span v-else>
-            <input type="text" v-model="reason"/>
-        </span>
-        </p>
         <p></p>
         <span>Прилагается:</span>
         <p></p>
@@ -264,13 +233,19 @@
         <span v-else>
             <input placeholder="причина" type="text" v-model="reason"/>
         </span>
-        <span>прошу Вас расторгнуть Договор аренды с выкупом жилого помещения от {{$data['data_d']??""}} года
+        <span>прошу Вас расторгнуть Договор аренды с выкупом жилого помещения от {{$data['date_d']??""}} года
             №{{$id??""}} авто (далее &ndash; Договор) согласно утвержденной процедуре.</span>
         </p>
         <p><br></p>
         <p><br>
         </p>
         <p>&nbsp;</p>
+    </div>
+    <div v-if="selected_code_id==10" class="content">
+        <div style="margin-bottom: 25px; text-align: center">
+        <input placeholder="Тема" v-model="appeal_title">
+        </div>
+        <textarea style="width: 100%" v-model="appeal_text"></textarea>
     </div>
     @include('appeals_pdf_templates.appeal_footer')
 </div>
