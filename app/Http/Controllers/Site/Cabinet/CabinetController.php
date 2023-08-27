@@ -179,7 +179,8 @@ class CabinetController extends BaseController
             'data' => $this->data,
             'dogovor' => $dogovor,
             'notifications' => $notifications,
-            'indexPage' => false
+            'indexPage' => false,
+            'showNotification' => true
         ]);
     }
 
@@ -1100,7 +1101,7 @@ class CabinetController extends BaseController
         File::delete(public_path("excel/akt_cabinet" . $num_d . ".xlsx"));
     }
 
-    public function settings($num_d)
+    public function settings()
     {
         $data = $this->data;
         if (isset($data)) {
@@ -1112,16 +1113,17 @@ class CabinetController extends BaseController
             }
         }
 
-        $collect = collect($dogovor);
-        $data = $collect->where('number', $num_d)->toArray();
-        $data = array_values($data);
+//        $collect = collect($dogovor);
+//        $data = $collect->where('number', $num_d)->toArray();
+//        $data = array_values($data);
 
         return view('site.cabinet.settings', [
             'indexPage' => false,
             'user' => $this->user,
-            'data' => $data[0],
-            'id' => $num_d,
-            'success' => false
+//            'data' => $data[0],
+//            'id' => $num_d,
+            'success' => false,
+            'settingsPage' => true,
         ]);
     }
 
@@ -1134,8 +1136,8 @@ class CabinetController extends BaseController
 
         $user = $this->user;
 
-        $collect = collect($this->data['Num_d']);
-        $data = $collect->where('number', $num_d)->toArray();
+//        $collect = collect($this->data['Num_d']);
+//        $data = $collect->where('number', $num_d)->toArray();
 
         if ($user) {
             $user->password = $post['password'];
@@ -1144,8 +1146,8 @@ class CabinetController extends BaseController
                 return view('site.cabinet.settings', [
                     'success' => true,
                     'user' => $this->user,
-                    'data' => $data[1],
-                    'id' => $num_d
+//                    'data' => $data[1],
+//                    'id' => $num_d
                 ]);
             }
         }

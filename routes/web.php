@@ -94,11 +94,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('calculator/{alias}/', 'CalculatorController@index')->name('site.calculator.index');
         });
 
+
+
         Route::group(['namespace' => 'Cabinet'], function () {
             Route::get('cabinet/', 'CabinetController@index')->name('cabinet.index');
+            Route::get('cabinet/settings', 'CabinetController@settings')->name('cabinet.settings');
+            Route::post('cabinet/settings', 'CabinetController@save_pass')->name('cabinet.save_pass');
             Route::get('cabinet/{id}', 'CabinetController@show')->name('cabinet.show');
-            Route::get('cabinet/{id}/settings', 'CabinetController@settings')->name('cabinet.settings');
-            Route::post('cabinet/{id}/settings', 'CabinetController@save_pass')->name('cabinet.save_pass');
+
             Route::get('cabinet/{id}/check_grafic', 'CabinetController@CheckGrafic')->name('cabinet.checkgrafic');
             Route::get('cabinet/{id}/check_grafic/pdf', 'CabinetController@GraficPDF')->name('cabinet.checkgrafic.pdf');
             Route::get('cabinet/{id}/check_dolg', 'CabinetController@CheckDolg')->name('cabinet.checkdolg');

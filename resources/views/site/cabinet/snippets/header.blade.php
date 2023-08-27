@@ -24,8 +24,7 @@
         <li style="margin-left: 10%" class="profile__item">
             <strong><a
                     class="profile__label {{ Route::is('cabinet.settings') ? 'is-active' : ''}}"
-                    href="#"
-{{--                    href="{{ route('cabinet.settings', ['id' => $id]) }}"--}}
+                    href="{{ route('cabinet.settings') }}"
                 >Настройки</a></strong>
         </li>
 
@@ -43,7 +42,7 @@
             </a>
         </li>
     </ul>
-
+    @if(isset($showNotification)&&$showNotification)
     <div class="formatted">
         <ul>
             <li>Личный кабинет работает в тестовом режиме</li>
@@ -51,4 +50,5 @@
             @include('site.cabinet.snippets.questionnaire')
         </ul>
     </div>
+    @endif
 </div>

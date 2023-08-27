@@ -4,7 +4,12 @@
     <div class="intro-page__inner">
         <div class="intro-page__content container-sm">
             <h1 class="intro-page__title" data-aos="fade-right" data-aos-delay="200">
+                @if(isset($settingsPage)&&$settingsPage)
+                    Сменить пароль
+                @else
                 {{ __('translations.personal_cabinet') }}
+                @endif
+
             </h1>
         </div>
 

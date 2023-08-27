@@ -16,6 +16,7 @@ return [
     'back'              => 'Вернуться',
     'poll_btn'          => 'Голосовать',
     'personal_cabinet'  => 'Личный кабинет',
+    'settings'          => 'Настройки',
     'visit_section'     => 'Посетить раздел',
     'visit_blog'        => 'Посетить блог',
     'last_news'         => 'Последние новости',

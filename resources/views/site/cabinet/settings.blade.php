@@ -1,51 +1,64 @@
-@extends('site.cabinet.base_show')
+@extends('site.templates.pages')
 
-@section('show_cabinet')
+@section('intro-page')
+    @include('site.blocks.sections.intro-page-cabinet')
+@endsection
 
-    <h2 class="title-page">Сменить пароль</h2>
+@section('content')
+<section class="section cabinet">
+    <div class="cabinet__inner container" data-aos="fade-up" data-aos-delay="200">
+        @include('site.cabinet.snippets.header')
 
-    @if ($success === true)
-        <div class="alert alert--success">Пароль успешно сменен</div>
-    @endif
+        <div class="cabinet__main">
+            <h2 class="title-page">Сменить пароль</h2>
 
-    <form class="form-panel" action="{{ route('cabinet.save_pass', ['id' => $id]) }}" method="post">
-        {!! csrf_field(); !!}
+            @if ($success === true)
+                <div class="alert alert--success">Пароль успешно сменен</div>
+            @endif
 
-        <div class="row row--sm">
-            <div class="col-12 col-lg-6">
-                <div class="form-group">
-                    <div class="form-group__input">
-                        <input
-                            class="input"
-                            type="password"
-                            name="password"
-                            value=""
-                            placeholder="Введите новый пароль"
-                        >
+            <form class="form-panel" action="{{ route('cabinet.save_pass') }}" method="post">
+                {!! csrf_field(); !!}
+
+                <div class="row row--sm">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <div class="form-group__input">
+                                <input
+                                    class="input"
+                                    type="password"
+                                    name="password"
+                                    value=""
+                                    placeholder="Введите новый пароль"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <div class="form-group__input">
+                                <input
+                                    class="input"
+                                    type="password"
+                                    name="confirm"
+                                    value=""
+                                    placeholder="Подтвердите новый пароль"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-12">
+                        <div class="form-panel__actions">
+                            <button class="btn btn--secondary" type="submit">Сменить</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-12 col-lg-6">
-                <div class="form-group">
-                    <div class="form-group__input">
-                        <input
-                            class="input"
-                            type="password"
-                            name="confirm"
-                            value=""
-                            placeholder="Подтвердите новый пароль"
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-12">
-                <div class="form-panel__actions">
-                    <button class="btn btn--secondary" type="submit">Сменить</button>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
 
+        <aside class="cabinet__aside">
+        </aside>
+    </div>
+</section>
 @endsection

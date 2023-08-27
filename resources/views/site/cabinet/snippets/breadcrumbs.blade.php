@@ -21,6 +21,20 @@
                 href="/{{ app()->getLocale() }}/cabinet/{{ $id }}"
             >Договор №{{ $id }}</a>
         </li>
+        @elseif(isset($settingsPage))
+        <li>
+            <a
+                class="link"
+                href="/{{ app()->getLocale() }}/cabinet/"
+            >{{ __('translations.personal_cabinet') }}</a>
+            {!! icon('icon--arrow', 'icon--arrow-right') !!}
+        </li>
+        <li>
+            <a
+                class="link"
+                href="/{{ app()->getLocale() }}/cabinet/settings"
+            >{{ __('translations.settings') }}</a>
+        </li>
     @else
         <li>
             <a
