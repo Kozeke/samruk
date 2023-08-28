@@ -199,7 +199,25 @@ class CabinetController extends BaseController
             "date_zp" => Carbon::now()->format('YmdHis'),
             "num_d" => $id
         ])->_toArray();
-        dd($mainInfo);
+        $mainInfo = [
+            "code" => 200,
+            "data" => [
+                "result" => "0",
+                "comment" => [],
+                "FIO" => "Садубаев Адилбек",
+                "num_d" => "301200241",
+                "gar_plat_perep" => "0",
+                "gar_plat_dolg" => "0",
+                "plat_perep" => "0",
+                "plat_dolg" => "0",
+                "im_nalog_perep" => "0",
+                "im_nalog_dolg" => "0",
+                "penya_gp_perep" => "0",
+                "penya_gp_dolg" => "0",
+                "penya_ap_perep" => "0",
+                "penya_ap_dolg" => "0",
+            ]
+        ];
         $spisanie_s_gp = null;
         if (isset($notifications['data']['spisanie_s_gp']['gp'])) {
             $spisanie_s_gp = $notifications['data']['spisanie_s_gp']['gp'];
