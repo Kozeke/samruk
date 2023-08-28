@@ -38,7 +38,7 @@
             </button>
         </div>
         <div style="position: relative; left: 75%">
-            <button type="button" href="" class="btn btn--secondary" v-on:click="sendAppealTemplate">Отправить
+            <button type="submit" href="" class="btn btn--secondary" v-on:click="sendAppealTemplate">Отправить
             </button>
         </div>
     </div>
