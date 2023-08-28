@@ -1647,7 +1647,6 @@ HTML;
     public function sendAppealTemplate(Request $request)
     {
         $template_title = DB::table('appeal_templates')->where('code', $request['selected_code_id'])->first()->title;
-        dd($template_title);
         $fileName = $this->createPdf($request);
         $fullPathToTempPDF = config('filesystems.disks.temp_pdf.url').'/'.$fileName;
         $this->addToAppealHistory($request['user_id'], $fullPathToTempPDF, $template_title);
