@@ -218,7 +218,6 @@ class CabinetController extends BaseController
                 "penya_ap_dolg" => "0",
             ]
         ];
-        dd($notifications);
         $spisanie_s_gp = null;
         if (isset($notifications['data']['spisanie_s_gp']['gp'])) {
             $spisanie_s_gp = $notifications['data']['spisanie_s_gp']['gp'];
