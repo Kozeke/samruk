@@ -1127,7 +1127,7 @@ class CabinetController extends BaseController
         ]);
     }
 
-    public function save_pass($num_d, Request $request)
+    public function save_pass(Request $request)
     {
         $post = $this->validate(request(), [
             'password' => 'required|min:5|max:200',
