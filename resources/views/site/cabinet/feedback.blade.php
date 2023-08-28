@@ -37,6 +37,11 @@
                                 </div>
                             </div>
                         @else
+                            <div v-if="successMessage" class="col-12">
+                                <div class="alert alert--success mb-0">
+                                    Ваше обращение зарегистрировано под номером <b>{{ session('success') }}</b>
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <div class="form-group {{ $errors->has('theme') ? 'has-error' : '' }}">
                                     <div class="form-group__label">Тема обращения</div>
