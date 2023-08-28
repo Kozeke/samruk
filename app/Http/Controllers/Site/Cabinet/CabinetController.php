@@ -199,7 +199,7 @@ class CabinetController extends BaseController
             "date_zp" => Carbon::now()->format('YmdHis'),
             "num_d" => $id
         ])->_toArray();
-
+        dd($mainInfo);
         $spisanie_s_gp = null;
         if (isset($notifications['data']['spisanie_s_gp']['gp'])) {
             $spisanie_s_gp = $notifications['data']['spisanie_s_gp']['gp'];
@@ -1138,7 +1138,6 @@ class CabinetController extends BaseController
 
 //        $collect = collect($this->data['Num_d']);
 //        $data = $collect->where('number', $num_d)->toArray();
-
         if ($user) {
             $user->password = $post['password'];
             $user->verify = null;
