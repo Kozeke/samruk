@@ -63,6 +63,13 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'temp_pdf' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/temp_pdf_files'),
+            'url' => env('APP_URL').'/storage/temp_pdf_files',
+            'visibility' => 'public',
+        ],
+
     ],
 
 ];

@@ -52,6 +52,25 @@ $(document).ready(function () {
                         link.click();
                     })
                 },
+                async sendAppealTemplate(){
+                    var self = this;
+                    await axios({
+                        url: '/send-appeal-template',
+                        method: 'POST',
+                        data: {
+                            _token: $('meta[name="_token"]').attr('content'),
+                            date_to_finish: self.date_to_finish,
+                            price: self.price,
+                            selected_code_id: self.selected_code_id,
+                            date_to: self.date_to,
+                            reason: self.reason,
+                            attachment_one: self.attachment_one,
+                            attachment_two: self.attachment_two,
+                        }
+                    }).then((response) => {
+                        console.log("success", response)
+                    })
+                }
             },
             watch: {
                 selected_code_id() {

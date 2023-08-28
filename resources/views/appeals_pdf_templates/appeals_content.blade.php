@@ -19,27 +19,34 @@
         }
     </style>
 </head>
-<div v-if="selected_code_id" class="page">
-    @include('appeals_pdf_templates.appeal_header')
-    <div style="position: fixed; top: 550px;">
-        <div style="position: absolute;left: 0px">
+<div v-if="selected_code_id">
+    <div style="display: inline-flex">
+        <div>
 
-            <div v-if="!lock_inputs" style="position: absolute">
+            <div v-if="!lock_inputs">
                 <button type="button" href="#" class="btn btn--secondary" v-on:click="lockInputs">Посмотреть
                 </button>
             </div>
-            <div v-else style="position: absolute">
+            <div v-else style="">
                 <button type="button" href="#" class="btn btn--secondary" v-on:click="lockInputs">
                     Отредактировать
                 </button>
             </div>
         </div>
-        <div style="position: absolute; left: 300px;">
+        <div style="position: relative; left: 15%">
             <button type="button" href="#" class="btn btn--secondary" v-on:click="printPdf">Печать
             </button>
-
+        </div>
+        <div style="position: relative; left: 75%">
+            <button type="submit" class="btn btn--secondary" v-on:click="sendAppealTemplate">Отправить
+            </button>
         </div>
     </div>
+
+<div class="page">
+
+    @include('appeals_pdf_templates.appeal_header')
+
     <div v-if="selected_code_id==1" class="content">
         <p><br></p>
         <p style="font-size: 18px; text-align: center"><strong>Частично досрочное погашение</strong></p>
@@ -248,4 +255,5 @@
         <textarea style="width: 100%" v-model="appeal_text"></textarea>
     </div>
     @include('appeals_pdf_templates.appeal_footer')
+</div>
 </div>

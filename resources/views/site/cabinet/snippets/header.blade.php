@@ -42,7 +42,7 @@
             </a>
         </li>
     </ul>
-    @if(isset($showNotification)&&$showNotification)
+    @if(!isset($dontShowNotification))
     <div class="formatted">
         <ul>
             <li>Личный кабинет работает в тестовом режиме</li>

@@ -180,7 +180,7 @@ class CabinetController extends BaseController
             'dogovor' => $dogovor,
             'notifications' => $notifications,
             'indexPage' => false,
-            'showNotification' => true
+            'dontShowNotification' => true
         ]);
     }
 
@@ -1285,12 +1285,12 @@ class CabinetController extends BaseController
         $data = $collect->where('number', $num_d)->toArray();
         $data = array_values($data);
 
-
         return view('site.cabinet.feedback', [
             'user' => $this->user,
             'id' => $num_d,
             'data' => $data[0],
-            'vid' => $vid
+            'vid' => $vid,
+            'dontShowNotification' => true
         ]);
     }
 
@@ -1341,7 +1341,7 @@ class CabinetController extends BaseController
                             "kod" => "9",
                         ],
                         9 => [
-                            "name" => "иное",
+                            "name" => "Свободное обращение",
                             "kod" => "10",
                         ]
                     ]
@@ -1361,6 +1361,7 @@ class CabinetController extends BaseController
         $data = $collect->where('number', $num_d)->toArray();
         $data = array_values($data);
         $data[0]['date_d'] = Carbon::createFromDate($data[0]['date_d'])->format('d/m/Y');
+
         return view('site.cabinet.feedback', [
             'user' => $this->user,
             'id' => $num_d,
@@ -1371,11 +1372,26 @@ class CabinetController extends BaseController
                     $request['editing']
                 ) || $request['editing'] == 1) ? Appeal::STATUS['VIEW'] : Appeal::STATUS['EDIT'],
             'values' => $request->all(),
-            'today_date' => Carbon::now()->format('d/m/Y')
+            'today_date' => Carbon::now()->format('d/m/Y'),
+            'dontShowNotification' => true,
+            'appealsHistory' => AppealHistory::all(),
         ]);
     }
 
     public function downloadPdf(Request $request): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        $fileName = $this->createPdf($request);
+
+        $appealTemplateTitle = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first()->title;
+        $fullPathToTempPDF = Storage::disk('temp_pdf')->path($fileName);
+//        return response()->download(Storage::path($fullPathToTempPDF), $appealTemplateTitle)->deleteFileAfterSend(true);
+        return response()->download($fullPathToTempPDF, $appealTemplateTitle)->deleteFileAfterSend(true);
+
+//        $pdf->Output(Storage::path(''), 'F');
+//        $this->feedbackSendEmail($path);
+    }
+
+    private function createPdf(Request $request): string
     {
         $validator = Validator::make($request->input(), ['date_to_finish' => 'date', 'date_to' => 'date']);
         if (!$validator->fails()) {
@@ -1419,17 +1435,12 @@ class CabinetController extends BaseController
 
         $pdf->load_html($html, 'UTF-8');
         $pdf->render();
-        $pathToTempFolder = "public/temp_pdf_files/";
-        $fullPathToTempPDF = $pathToTempFolder . $this->getNameCreatedTempFile();
-        Storage::disk('local')->put($fullPathToTempPDF, $pdf->output());
-//        $path = Storage::path($fullPathToTempPDF);
-        $appealTemplateTitle = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first()->title;
-
-        return response()->download(Storage::path($fullPathToTempPDF), $appealTemplateTitle)->deleteFileAfterSend(true);
-
-//        $pdf->Output(Storage::path(''), 'F');
-//        $this->addToAppealHistory($this->user->id, $fullPathToTempPDF);
-//        $this->feedbackSendEmail($path);
+//        $pathToTempFolder = "/temp_pdf_files/";
+        $fileName = $this->getNameCreatedTempFile() . self::FILE_EXTENSION;
+//        $fullPathToTempPDF = config('filesystems.temp_pdf.url') . $this->getNameCreatedTempFile() . self::FILE_EXTENSION;
+        Storage::disk('temp_pdf')->put($fileName, $pdf->output());
+//        dd(Storage::disk('temp_pdf')->path($fileName));
+        return $fileName;
     }
 
     private function getHeaderHtml($data): string
@@ -1636,12 +1647,21 @@ HTML;
 HTML;
     }
 
-    private function addToAppealHistory($id, $fullPathToTempPDF)
+    public function sendAppealTemplate(Request $request)
+    {
+        $template_title = DB::table('appeal_templates')->where('code', $request['selected_code_id'])->first()->title;
+        $fileName = $this->createPdf($request);
+        $fullPathToTempPDF = config('filesystems.disks.temp_pdf.url').'/'.$fileName;
+        $this->addToAppealHistory($request['user_id'], $fullPathToTempPDF, $template_title);
+    }
+
+    private function addToAppealHistory($id, $fullPathToTempPDF, $template_title)
     {
         AppealHistory::create([
             'user_id' => $id,
             'link' => $fullPathToTempPDF,
             'status' => AppealHistory::STATUS_SENT,
+            'title' => $template_title,
         ]);
     }
 

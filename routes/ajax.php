@@ -11,6 +11,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     //печать пдф обращении
     Route::post('print-pdf', 'Site\Cabinet\CabinetController@downloadPdf');
 
+    Route::post('send-appeal-template', 'Site\Cabinet\CabinetController@sendAppealTemplate');
+
     Route::group(['namespace' => 'Site\Ajax', 'prefix' => 'ajax'], function () {
 
         Route::post('reception/{id?}', 'ReceptionController@reception')->name('site.ajax.reception');

@@ -8,8 +8,10 @@
 @endpush
 @section('show_cabinet')
     <div id="feedback">
-        <h2 class="title-page">Оставить обращение</h2>
-
+        @include('appeals_pdf_templates.appeals-history')
+        <div style="margin-top: 5%; text-align: left">
+            <h2 class="title-page">Оставить обращение</h2>
+        </div>
         <form class="form-panel" action="{{ url('/cabinet/'.$id.'/feedback_template') }}" method="get">
             {!! csrf_field(); !!}
 
@@ -38,7 +40,6 @@
                             <div class="col-12">
                                 <div class="form-group {{ $errors->has('theme') ? 'has-error' : '' }}">
                                     <div class="form-group__label">Тема обращения</div>
-
                                     <div class="form-group__input">
                                         <div class="select">
                                             <select v-model="selected_code_id" name="chosen_code_id">
@@ -65,7 +66,7 @@
 
                             <div class="col-12">
                                 <div class="form-panel__actions">
-                                    {{ Form::submit(trans('translations.gb.send'), ['class' => 'btn btn--secondary']) }}
+{{--                                    {{ Form::submit(trans('translations.gb.send'), ['class' => 'btn btn--secondary']) }}--}}
                                 </div>
                             </div>
                         @endif
