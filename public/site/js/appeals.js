@@ -13,7 +13,10 @@ $(document).ready(function () {
                 date_to: "",
                 reason: "",
                 attachment_one: "",
-                attachment_two: ""
+                attachment_two: "",
+                successMessage: false,
+                appeal_title:"",
+                appeal_text:""
             },
             methods: {
                 lockInputs() {
@@ -35,6 +38,8 @@ $(document).ready(function () {
                             reason: self.reason,
                             attachment_one: self.attachment_one,
                             attachment_two: self.attachment_two,
+                            appeal_title: self.appeal_title,
+                            appeal_text: self.appeal_text,
                         }
                     }).then((response) => {
                         const contentDisposition = response.headers['content-disposition'];
@@ -69,6 +74,7 @@ $(document).ready(function () {
                         }
                     }).then((response) => {
                         console.log("success", response)
+                        self.successMessage = true;
                     })
                 }
             },

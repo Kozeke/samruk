@@ -22,6 +22,7 @@ class AppealTemplateSeeder extends Seeder
             ['code' => 7,'title' =>'Согласие на передачу в субаренду', 'view_template_name' => 'consent_to_sublease'],
             ['code' => 8,'title' =>'Согласие на постоянную прописку', 'view_template_name' => 'consent_to_permanent_residence'],
             ['code' => 9,'title' =>'Расторжение договора', 'view_template_name' => 'termination_of_an_agreement'],
+            ['code' => 10,'title' =>'Свободное обращение', 'view_template_name' => 'termination_of_an_agreement'],
         ];
 
         foreach ($appeals as $appeal) {

@@ -49,6 +49,26 @@
                         <span class="contract-card__info-label">Всего к оплате:</span>
                         <span class="contract-card__info-text">{{ $data['zad_plat'] }}</span>
                     </div>
+                    <div class="contract-card__info-group">
+                        <span class="contract-card__info-label">Задолженность по гарантийному платежу:</span>
+                        <span class="contract-card__info-text">{{ $mainInfo['data']['gar_plat_dolg'] }}</span>
+                    </div>
+                    <div class="contract-card__info-group">
+                        <span class="contract-card__info-label">Задолженность по пени:</span>
+                        <span class="contract-card__info-text">{{ $mainInfo['data']['penya_ap_dolg'] }}</span>
+                    </div>
+                    <div class="contract-card__info-group">
+                        <span class="contract-card__info-label">Задолженность по штрафу:</span>
+                        <span class="contract-card__info-text">{{ $mainInfo['data']['penya_ap_dolg']  }}</span>
+                    </div>
+                    <div class="contract-card__info-group">
+                        <span class="contract-card__info-label">Задолженность по возмещению имущественного налога:</span>
+                        <span class="contract-card__info-text">{{ $data['zad_plat'] }}</span>
+                    </div>
+                    <div class="contract-card__info-group">
+                        <span class="contract-card__info-label">Действующий договор:</span>
+                        <span class="contract-card__info-text">отсутсвует</span>
+                    </div>
                 </li>
             </ul>
 
