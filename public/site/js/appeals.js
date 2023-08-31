@@ -16,7 +16,9 @@ $(document).ready(function () {
                 attachment_two: "",
                 successMessage: false,
                 appeal_title:"",
-                appeal_text:""
+                appeal_text:"",
+                base_pdf:"",
+                cms_pdf:"",
             },
             methods: {
                 lockInputs() {
@@ -42,6 +44,7 @@ $(document).ready(function () {
                             appeal_text: self.appeal_text,
                         }
                     }).then((response) => {
+
                         const contentDisposition = response.headers['content-disposition'];
                         let fileName = 'unknown';
                         if (contentDisposition) {
@@ -49,13 +52,33 @@ $(document).ready(function () {
                             if (fileNameMatch.length === 2)
                                 fileName = fileNameMatch[1];
                         }
-                        const url = window.URL.createObjectURL(new Blob([response.data]));
+                        console.log(response.data)
+                        var pdf_blob = new Blob([response.data]);
+                        const url = window.URL.createObjectURL(pdf_blob);
                         const link = document.createElement('a');
                         link.href = url;
                         link.setAttribute('download', decodeURI(fileName)+'.pdf');
                         document.body.appendChild(link);
+                        self.convertPdfToBase64(response.data);
+
                         link.click();
+                        console.log(url);
                     })
+                },
+                convertPdfToBase64(fileToLoad){
+                    var self = this;
+                    // FileReader function for read the file.
+                    var fileReader = new FileReader();
+                    var base64;
+                    fileReader.onload = function(fileLoadedEvent) {
+                        base64 = fileLoadedEvent.target.result;
+                        self.base_pdf = base64.replace('data:', '')
+                            .replace(/^.+,/, '');
+                        // this.pdfBase64 = base64;
+                        // console.log(this.pdfBase64);
+                    };
+                    // Convert data to base64
+                    fileReader.readAsDataURL(fileToLoad);
                 },
                 async sendAppealTemplate(){
                     var self = this;
@@ -71,6 +94,20 @@ $(document).ready(function () {
                             reason: self.reason,
                             attachment_one: self.attachment_one,
                             attachment_two: self.attachment_two,
+                        }
+                    }).then((response) => {
+                        console.log("success", response)
+                        self.successMessage = true;
+                    })
+                },
+                async signDocument(){
+                    var self = this;
+                    await axios({
+                        url: '/sign-document',
+                        method: 'POST',
+                        data: {
+                            _token: $('meta[name="_token"]').attr('content'),
+                            cms_pdf: self.cms_pdf,
                         }
                     }).then((response) => {
                         console.log("success", response)

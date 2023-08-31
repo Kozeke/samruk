@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Site\Cabinet;
 
+use App\Exports\UsersExport;
 use App\Http\ApiRequest;
 use App\Models\Appeal;
 use App\Models\AppealHistory;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
@@ -12,8 +14,10 @@ use Dompdf\Options;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Site\BaseController;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Mail;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Validator;
 use Illuminate\Support\Facades\App;
 use View;
@@ -1821,6 +1825,55 @@ HTML;
         }
 
         return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    public function saveRelevantProfileData(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users,email,' . $this->user->id,
+            'mobile' => 'required|unique:users,mobile,' . $this->user->id,
+        ]);
+        User::find($this->user->id)->update([
+            'mobile' => $request['mobile'],
+            'email' => $request['email'],
+            'address' => $request['address'],
+            'work_phone' => $request['work_phone'],
+            'homephone' => $request['home_phone'],
+            'last_profile_check_at' => Carbon::now(),
+        ]);
+        return redirect()->back();
+    }
+
+    public function exportExcelOfUsers(): BinaryFileResponse
+    {
+        return Excel::download(new UsersExport(), 'invoices.xlsx');
+    }
+
+    public function signDocument()
+    {
+        $KC_PROXY_AUTH = 0x00004000;
+        $outSign = "";
+        KalkanCrypt_Init();
+        $flag_proxy = $KC_PROXY_AUTH;
+        $inProxyAddr = "192.168.39.241";
+        $inProxyPort = "9090";
+        $inUser = "";
+        $inPass = "";
+        $err = KalkanCrypt_SetProxy($flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
+//$tsaurl = "http://test.pki.gov.kz:80//tsp/";
+        $tsaurl = "http://test.pki.gov.kz/tsp/";
+//$tsaurl = "http://tsp.pki.gov.kz:80";
+        KalkanCrypt_TSASetUrl($tsaurl);
+        //Получить сертификат из CMS
+//        $inSignID = 1;
+//        $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
+//
+//        if ($err > 0) {
+//            echo "Error: " . $err . "\n";
+//            print_r(KalkanCrypt_GetLastErrorString());
+//        } else {
+//            echo $outCert . "\n";
+//        }
     }
 
 }

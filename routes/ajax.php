@@ -12,6 +12,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::post('print-pdf', 'Site\Cabinet\CabinetController@downloadPdf');
 
     Route::post('send-appeal-template', 'Site\Cabinet\CabinetController@sendAppealTemplate');
+    Route::post('sign-document', 'Site\Cabinet\CabinetController@signDocument');
 
     Route::group(['namespace' => 'Site\Ajax', 'prefix' => 'ajax'], function () {
 
