@@ -22,7 +22,7 @@ $err = KalkanCrypt_LoadKeyStore($storage, $password,$container,$alias);
 if ($err > 0){	echo "Error:\tKalkanCrypt_LoadKeyStore".$err."\n";}
 else{echo "Ok\tKalkanCrypt_LoadKeyStore\n";}
 
-$fd = fopen("/home/d/output.txt", 'w') or die("не удалось создать файл");
+$fd = fopen("output.txt", 'w') or die("не удалось создать файл");
 $granica = "\n\n___________________________________________________________________________\n\n";
 
 $outSign = "/home/d/file/signPDF_in_base64";
