@@ -69,6 +69,6 @@ UVn+vyIhBV1M7iBcVc3cjc2iVtbBercHiUuD5+VN/Ta0D6alsxQ2XS/Ko9XjgRO6
 Ghq5v0YaXAy1T6bwUDuOCSUkO7N8+OK23vwN5CV/3ZQH9FyrHLn7XxwZZHyS7ThU
 hu28r+UHTM248i/SLqMRPf2o8ZIdlWlzfGV9wGtQ/PCWTHErdoBGoseu0+KmMeTa
 rfGUsswxMzXqAA85GGGEiVbBQb7olQ==';
-$err = KalkanCrypt_VerifyData(" ", $flag_getCertFromCMS, 0, $inData, $inSign,  $outData,  $outVerifyInfo,  $outCertCMS);
+$err = KalkanCrypt_VerifyData(" ", $flag_getCertFromCMS, $inData,0, $inSign,  $outData,  $outVerifyInfo,  $outCertCMS);
 if ($err > 0){echo "Error:\tKalkanCrypt_VerifyData ".$flags_number." = ".$err."\n"; $err_verify = 1;	fwrite($fd,KalkanCrypt_GetLastErrorString().$granica); }
 else{fwrite($fd,$outVerifyInfo."\n\n".$outData.$granica); }
