@@ -26,10 +26,10 @@ $fd = fopen("output.txt", 'w') or die("не удалось создать фай
 $granica = "\n\n___________________________________________________________________________\n\n";
 
 $outSign = "/home/d/file/signPDF_in_base64";
-$flags_verify = $KC_SIGN_CMS + $KC_IN_DER;
+//$flags_verify = $KC_SIGN_CMS + $KC_IN_DER;
 //$flags_sign = $KC_SIGN_CMS + $KC_IN_FILE + $KC_OUT_BASE64 ;
 
-$flag_getCertFromCMS = $flags_verify;
+//$flag_getCertFromCMS = $flags_verify;
 $inData = "/home/d/file/application.pdf";
 $flags_number = 8;
 $outData  = "";	$outVerifyInfo  = ""; $outCertCMS  = "";
@@ -71,10 +71,18 @@ hu28r+UHTM248i/SLqMRPf2o8ZIdlWlzfGV9wGtQ/PCWTHErdoBGoseu0+KmMeTa
 rfGUsswxMzXqAA85GGGEiVbBQb7olQ==';
 $inSign = str_replace(PHP_EOL, '', $inSign);
 
-$err = KalkanCrypt_VerifyData(" ", $flag_getCertFromCMS, $inData,0, $inSign,  $outData,  $outVerifyInfo,  $outCertCMS);
-if ($err > 0){echo "Error:\tKalkanCrypt_VerifyData ".$flags_number." = ".$err."\n"; $err_verify = 1;
-    fwrite($fd,KalkanCrypt_GetLastErrorString().$granica);
+$flags_validate = $KC_USE_OCSP;
+$validPath = "http://test.pki.gov.kz/ocsp/";
+
+$outInfo = "";
+$getResp = "";
+$err = KalkanCrypt_X509ValidateCertificate($inSign, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
+
+if ($err > 0){
+    echo "Error: ".$err."\n";
+    print_r(KalkanCrypt_GetLastErrorString());
 }
 else{
-    fwrite($fd,$outVerifyInfo."\n\n".$outData.$granica);
+    echo "\n\n\n".$outInfo."\n";
+    echo "\n".$getResp."\n";
 }
