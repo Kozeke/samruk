@@ -22,7 +22,7 @@ $err = KalkanCrypt_LoadKeyStore($storage, $password,$container,$alias);
 if ($err > 0){	echo "Error:\tKalkanCrypt_LoadKeyStore".$err."\n";}
 else{echo "Ok\tKalkanCrypt_LoadKeyStore\n";}
 
-$fd = fopen("output.txt", 'w') or die("не удалось создать файл");
+//$fd = fopen("output.txt", 'w') or die("не удалось создать файл");
 $granica = "\n\n___________________________________________________________________________\n\n";
 
 $outSign = "/home/d/file/signPDF_in_base64";
@@ -71,18 +71,28 @@ hu28r+UHTM248i/SLqMRPf2o8ZIdlWlzfGV9wGtQ/PCWTHErdoBGoseu0+KmMeTa
 rfGUsswxMzXqAA85GGGEiVbBQb7olQ==';
 $inSign = str_replace(PHP_EOL, '', $inSign);
 
-$flags_validate = $KC_USE_OCSP;
-$validPath = "http://test.pki.gov.kz/ocsp/";
-
-$outInfo = "";
-$getResp = "";
-$err = KalkanCrypt_X509ValidateCertificate($inSign, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
+//$flags_validate = $KC_USE_OCSP;
+//$validPath = "http://test.pki.gov.kz/ocsp/";
+//
+//$outInfo = "";
+//$getResp = "";
+//$err = KalkanCrypt_X509ValidateCertificate($inSign, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
+//
+//if ($err > 0){
+//    echo "Error: ".$err."\n";
+//    print_r(KalkanCrypt_GetLastErrorString());
+//}
+//else{
+//    echo "\n\n\n".$outInfo."\n";
+//    echo "\n".$getResp."\n";
+//}
+$inSignID = 1;
+$flags_sign = 518;
+$outCert="";
+$outSign = $inData;
+$err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
 
 if ($err > 0){
     echo "Error: ".$err."\n";
     print_r(KalkanCrypt_GetLastErrorString());
-}
-else{
-    echo "\n\n\n".$outInfo."\n";
-    echo "\n".$getResp."\n";
 }
