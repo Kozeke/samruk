@@ -84,9 +84,10 @@ $outSign = "MIKLlQYJKoZIhvcNAQcCoIKLhjCCi4ICAQExDzANBglghkgBZQMEAgEFADCCgrIGCSqG
 //    echo $outCert."\n";
 //}
 //
+$container_for_CRL = "/home/d/nca_gost_test.crl";
 
-$flags_validate = $KC_USE_OCSP;
-$validPath = "http://test.pki.gov.kz/ocsp/";
+$flags_validate = $KC_USE_CRL;
+$validPath = $container_for_CRL;
 
 $outInfo = "";
 $getResp = "";
