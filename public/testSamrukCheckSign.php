@@ -87,7 +87,7 @@ $inSign = str_replace(PHP_EOL, '', $inSign);
 //    echo "\n".$getResp."\n";
 //}
 $inSignID = 1;
-$flags_sign = 582;
+$flags_sign = $KC_IN_BASE64+$KC_WITH_CERT+$KC_CERT_PEM;
 $outCert="";
 $outSign = $inData;
 $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
