@@ -94,4 +94,6 @@ $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
 if ($err > 0){
     echo "Error: ".$err."\n";
     print_r(KalkanCrypt_GetLastErrorString());
+} else{
+    echo $outCert."\n";
 }
