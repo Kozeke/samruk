@@ -70,21 +70,7 @@ hu28r+UHTM248i/SLqMRPf2o8ZIdlWlzfGV9wGtQ/PCWTHErdoBGoseu0+KmMeTa
 rfGUsswxMzXqAA85GGGEiVbBQb7olQ==';
 $inSign = str_replace(PHP_EOL, '', $inSign);
 
-//$flags_validate = $KC_USE_OCSP;
-//$validPath = "http://test.pki.gov.kz/ocsp/";
-//
-//$outInfo = "";
-//$getResp = "";
-//$err = KalkanCrypt_X509ValidateCertificate($inSign, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
-//
-//if ($err > 0){
-//    echo "Error: ".$err."\n";
-//    print_r(KalkanCrypt_GetLastErrorString());
-//}
-//else{
-//    echo "\n\n\n".$outInfo."\n";
-//    echo "\n".$getResp."\n";
-//}
+
 $inSignID = 1;
 $flags_sign = $KC_IN_BASE64+ $KC_SIGN_CMS +$KC_OUT_PEM;
 $outCert="";
@@ -96,4 +82,21 @@ if ($err > 0){
     print_r(KalkanCrypt_GetLastErrorString());
 } else{
     echo $outCert."\n";
+}
+
+
+$flags_validate = $KC_USE_OCSP;
+$validPath = "http://test.pki.gov.kz/ocsp/";
+
+$outInfo = "";
+$getResp = "";
+$err = KalkanCrypt_X509ValidateCertificate($outCert, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
+
+if ($err > 0){
+    echo "Error: ".$err."\n";
+    print_r(KalkanCrypt_GetLastErrorString());
+}
+else{
+    echo "\n\n\n".$outInfo."\n";
+    echo "\n".$getResp."\n";
 }
