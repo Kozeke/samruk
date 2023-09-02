@@ -90,7 +90,7 @@ $validPath = "http://test.pki.gov.kz/ocsp/";
 
 $outInfo = "";
 $getResp = "";
-$err = KalkanCrypt_X509ValidateCertificate($outCert, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
+$err = KalkanCrypt_X509ValidateCertificate($inSign, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
 
 if ($err > 0){
     echo "Error: ".$err."\n";
