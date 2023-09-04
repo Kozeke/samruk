@@ -19,31 +19,8 @@
         }
     </style>
 </head>
-@push('js')
-    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
-    <script src="/site/js/auth_cert/jquery.js"></script>
-    <script src="/site/js/auth_cert/jquery.blockUI.js"></script>
-    <script src="/site/js/auth_cert/ncalayer.js"></script>
-    <script src="/site/js/auth_cert/process-ncalayer-calls.js"></script>
 
-@endpush
 <div v-if="selected_code_id">
-    <select id="storageSelect" class="custom-select">
-        <option value="PKCS12" selected>PKCS12</option>
-    </select>
-    <div class="container py-5">
-        <h3 class="pb-2">5. Подпись Base64 данных в формате CMS</h3>
-        <div class="form-group row">
-            <div class="col-9">
-                <textarea v-model="base_pdf" id="base64ToSign" type="text" class="form-control" rows="3"></textarea>
-            </div>
-        </div>
-        <div>
-            <input type="checkbox" id="flagForBase64" /> Включить данные в подпись
-        </div>
-        <input value="Подписать" onclick="createCAdESFromBase64Call();" type="button" style="width:50%;"  />
-        <textarea class="form-control mt-3" v-model="cms_pdf" id="createdCMSforBase64" rows="6" readonly>Подпись в формате CMS</textarea>
-    </div>
     <div style="display: inline-flex">
         <div>
 
@@ -294,5 +271,8 @@
         </span>
         </div>
         @include('appeals_pdf_templates.appeal_footer')
+        <input class="btn btn--secondary" value="Подписать" onclick="createCAdESFromBase64Call();" type="button"
+               style="width:50%;"/>
+
     </div>
 </div>

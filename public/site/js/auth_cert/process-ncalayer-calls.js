@@ -1,3 +1,4 @@
+
 function getActiveTokensCall() {
     blockScreen();
     getActiveTokens("getActiveTokensBack");
@@ -92,10 +93,12 @@ function getKeyInfoBack(result) {
 
 }
 function createCAdESFromBase64Call() {
-    var selectedStorage = $('#storageSelect').val();
-    var flag = $("#flagForBase64").is(':checked');
-    var base64ToSign = $("#base64ToSign").val();
-    console.log(base64ToSign)
+
+    calc.lockInputs();
+    var selectedStorage = "PKCS12";
+    var flag = false;
+    var base64ToSign = calc.getBasePdfValue();
+    // console.log(base64ToSign)
     if (base64ToSign !== null && base64ToSign !== "") {
         $.blockUI();
         createCAdESFromBase64(selectedStorage, "SIGNATURE", base64ToSign, flag, "createCAdESFromBase64Back");
@@ -110,6 +113,6 @@ function createCAdESFromBase64Back(result) {
         alert(result['message']);
     } else if (result['code'] === "200") {
         var res = result['responseObject'];
-        $("#createdCMSforBase64").val(res);
+        calc.setCMSPDF(res);
     }
 }

@@ -26,6 +26,8 @@ Route::post('/view/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@view
 Route::get('/view/appeal-history',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppealHistory'])->name('appeal.history');
 Route::post('/edit/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@editAppeal']);
 Route::post('/print/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@downloadPdf']);
+Route::post('/cabinet/users/excel', 'Site\Cabinet\CabinetController@exportExcelOfUsers')->name('cabinet.download-users-excel');
+
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localizationRedirect']], function () {
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Site'], function () {
@@ -101,6 +103,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('cabinet/settings', 'CabinetController@settings')->name('cabinet.settings');
             Route::post('cabinet/settings', 'CabinetController@save_pass')->name('cabinet.save_pass');
             Route::get('cabinet/{id}', 'CabinetController@show')->name('cabinet.show');
+            Route::post('cabinet', 'CabinetController@saveRelevantProfileData')->name('cabinet.check-profile-relevance');
 
             Route::get('cabinet/{id}/check_grafic', 'CabinetController@CheckGrafic')->name('cabinet.checkgrafic');
             Route::get('cabinet/{id}/check_grafic/pdf', 'CabinetController@GraficPDF')->name('cabinet.checkgrafic.pdf');
@@ -108,6 +111,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('cabinet/{id}/check_akt', 'CabinetController@CheckAkt')->name('cabinet.checkakt');
             Route::get('cabinet/{id}/check_pv', 'CabinetController@CheckPV')->name('cabinet.checkpv');
             Route::get('cabinet/{id}/check_chdp', 'CabinetController@CheckCHDP')->name('cabinet.checkchdp');
+
 //            Route::get('cabinet/{id}/feedback', 'CabinetController@feedback')->name('cabinet.feedback');
             Route::get('cabinet/{id}/feedback_template', 'CabinetController@feedback_template')->name('cabinet.feedback');
             Route::get('cabinet/{id}/feedback_template/view', 'CabinetController@view_template');

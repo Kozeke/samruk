@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Site\Cabinet\Appeal;
 use App\Models\Appeal;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -40,13 +42,109 @@ class AppealController extends Controller
         unset($request['_token']);
         $appeal_view = DB::table('appeal_templates')->where('id', 1)->first(
         )->view_template_name;
-        dd($appeal_view);
+        Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'times_new_roman_cyr']);
+
         $pdf = PDF::loadView(
             'appeals_pdf_templates.partial_early_repayment_pdf',
             ['editing' => Appeal::STATUS['PRINT'], 'data' => $request->all()]
-        )->setOptions(['fontDir' => '/public/site/fonts', 'defaultFont' => 'times_new_roman']);
+        )->setOptions(['fontDir' => '/public/site/fonts', 'defaultFont' => 'times_new_roman_cyr']);
+        return $pdf->download("asd.pdf", 'F');
+//        $options = new Options();
+//        $options->set('defaultFont', 'times_new_roman_cyr');
+//        $pdf = new Dompdf($options);
+//        $pdf = new Dompdf(['fontDir' => '/public/site/fonts', 'defaultFont' => 'times_new_roman_cyr']);
+
+        $nPageHTML = <<<HTML
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+@page{margin: 9mm 9mm 9mm 9mm;}
+body{
+	font-family: times_new_roman_cyr;
+	font-size: 13px;
+	line-height: 100%;
+}
+table{
+	width: 100%;
+	border-spacing: 1px;
+	/* border: 1px solid black; */
+}
+td, th{
+	/* padding: 1px; */
+	/* border: 1px solid black; */
+	vertical-align: top;
+}
+p{
+	padding:0;
+	margin:0;
+}
+.visibleBoard{
+	border: 1px solid black;
+}
+.visibleBoard td,tr{
+	border: 1px solid black;
+	vertical-align: center;
+}
+</style>
+</head>
+<body>
+<table>
+    <tr>
+		<td width="59%">
+		<!-- таблица 1 левая часть -->
+		<table>
+			<tr>
+				<td style="border-bottom: 2px solid black; text-align: left;">
+					<div style="font-family: impact; font-size: 35px;"></div><br>
+					<div style="font-family: verdana; font-size: 14px;"></div>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: left;">
+					<div><span style="font-weight: bolder;">asd применения</span></div>
+					<br><div></div><br>
+					<div><span style="font-weight: bolder;">Конструкция светильников</span></div>
+					<br><div></div>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td>
+		<!-- таблица 2 -->
+		<table style="text-align: center;">
+			<tr>
+				<td>
+					<!-- <img width="240px" max-height="240px" src=""></br> -->
+					<img style="width: auto; max-height: 240px;" src=""></br>
+					<span style="font-weight: bolder;">Технические характеристики</span><br>
+					<div class="visibleBoard"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="">
+					<br><span style="">Габаритные размеры</span><br>
+					<img width="280px" max-height="115px" src="">
+					</div>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" colspan="2">
+			<div style="font-size:10px; color:gray;"><i>©2011- Мастер ЛЕД. Документ создан  в </i></div>
+		</td>
+	</tr>
+</body>
+</html>
+HTML;
+        $pdf->load_html($nPageHTML, 'UTF-8');
+        $pdf->render();
+//        return $pdf->stream("asd.pdf", ["Attachment" => 0]);
 //        $this->saveAppeal(1, "path", $request['appeal_chosen_view']);
-        return $pdf->download('invoice.pdf');
+        return $pdf->stream('invoice.pdf');
     }
 
     /**

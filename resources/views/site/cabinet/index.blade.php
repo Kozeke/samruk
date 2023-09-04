@@ -19,6 +19,10 @@
                         <div class="alert alert--info">{{ $data['message'] }}</div>
                     @else
                         @if ($user['consent_to_data_collection'])
+                            @if ($profile_check_need)
+
+                                @include('site.cabinet.snippets.check-profile')
+                            @endif
                             <div class="row">
                                 @foreach ($dogovor as $data)
                                     @include('site.cabinet.snippets.contract-card')
