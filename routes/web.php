@@ -21,6 +21,9 @@ Route::get('/_debugbar/assets/javascript', [
 ]);
 
 Route::get('appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@index']);
+Route::get('welcome',function (){
+    return view('welcome');
+});
 Route::post('/get/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppeal']);
 Route::post('/view/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@viewAppeal']);
 Route::get('/view/appeal-history',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppealHistory'])->name('appeal.history');
