@@ -1,6 +1,32 @@
-AddDefaultCharset utf-8
-AddCharset utf-8 *
-<IfModule mod_charset.c>
-    CharsetSourceEnc utf-8
-    CharsetDefault utf-8
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    # Rewrite HTTPS
+    # RewriteCond %{HTTPS} off
+    # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+    RewriteEngine On
+
+    # Убераем www в адресной строке
+      RewriteBase /
+      RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+      RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+    # Убераем www в адресной строке
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
 </IfModule>
