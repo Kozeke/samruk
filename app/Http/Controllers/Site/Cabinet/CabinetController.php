@@ -34,6 +34,10 @@ class CabinetController extends BaseController
      * @var string
      */
     const FILE_EXTENSION = '.pdf';
+    const KC_IN_BASE64 = 0x10;
+    const KC_SIGN_CMS = 0x2;
+    const KC_OUT_PEM = 0x200;
+    const KC_PROXY_AUTH = 0x00004000;
 
     protected $section = [
         'name' => '',
@@ -216,6 +220,7 @@ class CabinetController extends BaseController
             'indexPage' => false,
             'dontShowNotification' => true,
             'mainInfo' => $mainInfo,
+            'profile_check_need' => $this->user->profileCheckWasMadeBeforeTwoMonths()
         ]);
     }
 
@@ -1414,7 +1419,7 @@ class CabinetController extends BaseController
         ]);
     }
 
-    public function downloadPdf(Request $request): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    public function downloadPdf(Request $request): BinaryFileResponse
     {
         $fileName = $this->createPdf($request);
 
@@ -1726,7 +1731,6 @@ HTML;
 
         $htmlEnd = "</span></div>";
         return $htmlTitle . $values['appeal_text'] . $htmlEnd;
-
     }
 
     private function getFooterHtml(): string
@@ -1849,12 +1853,11 @@ HTML;
         return Excel::download(new UsersExport(), 'invoices.xlsx');
     }
 
-    public function signDocument()
+    public function signDocument(Request $request)
     {
-        $KC_PROXY_AUTH = 0x00004000;
-        $outSign = "";
+        $outSign = $request['cms_pdf'];
         KalkanCrypt_Init();
-        $flag_proxy = $KC_PROXY_AUTH;
+        $flag_proxy = self::KC_PROXY_AUTH;
         $inProxyAddr = "192.168.39.241";
         $inProxyPort = "9090";
         $inUser = "";
@@ -1865,15 +1868,17 @@ HTML;
 //$tsaurl = "http://tsp.pki.gov.kz:80";
         KalkanCrypt_TSASetUrl($tsaurl);
         //Получить сертификат из CMS
-//        $inSignID = 1;
-//        $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
-//
-//        if ($err > 0) {
-//            echo "Error: " . $err . "\n";
-//            print_r(KalkanCrypt_GetLastErrorString());
-//        } else {
-//            echo $outCert . "\n";
-//        }
+        $inSignID = 1;
+        $flags_sign = self::KC_IN_BASE64 + self::KC_SIGN_CMS + self::KC_OUT_PEM;
+        $outCert = "";
+        $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
+
+        if ($err > 0) {
+            echo "Error: " . $err . "\n";
+            print_r(KalkanCrypt_GetLastErrorString());
+        } else {
+            echo $outCert . "\n";
+        }
     }
 
 }
