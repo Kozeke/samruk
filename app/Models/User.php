@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\UserTrait;
@@ -78,5 +79,19 @@ class User extends Authenticatable
         $patterns[0] = '/\s+/';
         $patterns[1] = '/[^a-zA-Z0-9 ]/m';
         return preg_replace($patterns, '', $new_mob);
+    }
+
+    public static function profileCheckWasMadeBeforeTwoMonths(): bool
+    {
+        if (auth()->user()->last_profile_check_at < auth()->user()->created_at) {
+            $user = User::find(auth()->user()->id);
+            $user->last_profile_check_at = $user->created_at;
+            $user->save();
+        }
+        if (auth()->user()->last_profile_check_at > Carbon::now()->subMonths(2)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
