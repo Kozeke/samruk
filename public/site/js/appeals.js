@@ -111,6 +111,7 @@ var calc = new Vue({
                 data: {
                     _token: $('meta[name="_token"]').attr('content'),
                     cms_pdf: self.cms_pdf,
+                    base_pdf: self.base_pdf,
                 }
             }).then((response) => {
                 console.log("success", response)

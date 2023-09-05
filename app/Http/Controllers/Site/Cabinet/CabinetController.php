@@ -38,6 +38,8 @@ class CabinetController extends BaseController
     const KC_SIGN_CMS = 0x2;
     const KC_OUT_PEM = 0x200;
     const KC_PROXY_AUTH = 0x00004000;
+    const KC_OUT_BASE64 = 0x800;
+    const KC_NOCHECKCERTTIME = 0x10000;
 
     protected $section = [
         'name' => '',
@@ -1855,7 +1857,6 @@ HTML;
 
     public function signDocument(Request $request)
     {
-        $outSign = $request['cms_pdf'];
         KalkanCrypt_Init();
         $flag_proxy = self::KC_PROXY_AUTH;
         $inProxyAddr = "192.168.39.241";
@@ -1867,7 +1868,36 @@ HTML;
         $tsaurl = "http://test.pki.gov.kz/tsp/";
 //$tsaurl = "http://tsp.pki.gov.kz:80";
         KalkanCrypt_TSASetUrl($tsaurl);
-        //Получить сертификат из CMS
+        if ($err > 0) {
+            echo "Error: " . $err . "\n";
+            print_r(KalkanCrypt_GetLastErrorString());
+        }else{
+            //проверить подпись
+            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+        }
+
+    }
+
+    private function verifyData($outSign, $inData)
+    {
+        $alias = "";
+        $flags_sign = self::KC_SIGN_CMS + self::KC_IN_BASE64 + self::KC_OUT_BASE64 + self::KC_NOCHECKCERTTIME;
+        $outData = "";
+        $outVerifyInfo = "";
+        $outCert = "";
+        $err = KalkanCrypt_VerifyData($alias, $flags_sign, $inData, 0, $outSign, $outData, $outVerifyInfo, $outCert);
+
+        if ($err > 0) {
+            echo "Error: " . $err . "\n";
+            print_r(KalkanCrypt_GetLastErrorString());
+        } else {
+            echo $outCert . $outVerifyInfo . "\n\n" . $outData . "\n\n";
+            echo "getCertificateFromCMS\n\n";
+            $this->getCertificateFromCms($outSign);
+        }
+    }
+
+    private function getCertificateFromCms($outSign){
         $inSignID = 1;
         $flags_sign = self::KC_IN_BASE64 + self::KC_SIGN_CMS + self::KC_OUT_PEM;
         $outCert = "";
