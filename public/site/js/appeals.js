@@ -21,6 +21,7 @@ var calc = new Vue({
             this.cms_pdf = cms_pdf;
         },
         getBasePdfValue(){
+            console.log(this.base_pdf)
             return this.base_pdf;
         },
         lockInputs() {
@@ -28,6 +29,7 @@ var calc = new Vue({
             console.log(this.price)
         },
         async printPdf(forSign = false) {
+            console.log(forSign);
             var self = this;
             await axios({
                 url: '/print-pdf',
@@ -56,6 +58,7 @@ var calc = new Vue({
                 }
                 console.log(response.data)
                 if (!forSign) {
+                    console.log("Asd");
                     var pdf_blob = new Blob([response.data]);
                     const url = window.URL.createObjectURL(pdf_blob);
                     const link = document.createElement('a');
@@ -78,7 +81,7 @@ var calc = new Vue({
                 self.base_pdf = base64.replace('data:', '')
                     .replace(/^.+,/, '');
                 // this.pdfBase64 = base64;
-                // console.log(this.pdfBase64);
+                // console.log(self.base_pdf);
             };
             // Convert data to base64
             fileReader.readAsDataURL(fileToLoad);
