@@ -35,7 +35,7 @@
             </div>
         </div>
         <div style="position: relative; left: 15%">
-            <button type="button" href="#" class="btn btn--secondary" v-on:click="printPdf">Печать
+            <button type="button" href="#" class="btn btn--secondary" v-on:click="printPdf()">Печать
             </button>
         </div>
         <div style="position: relative; left: 75%">
