@@ -96,7 +96,7 @@ function createCAdESFromBase64Call() {
 
     calc.lockInputs();
     var selectedStorage = "PKCS12";
-    var flag = false;
+    var flag = true;
     var base64ToSign = calc.getBasePdfValue();
     // console.log(base64ToSign)
     if (base64ToSign !== null && base64ToSign !== "") {
