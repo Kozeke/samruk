@@ -8,7 +8,8 @@
 
     <p style="text-align: right;">{{$today_date??""}}</p>
     <div v-if="signed">
-        <p style="text-align: right;">Подписано ЭЦП @{{signerFIO}}</p>
+        <p style="text-align: right;">Подписано ЭЦП</p>
+        <p style="text-align: right;"> @{{signerFIO}}</p>
     </div>
     <div v-else>
         <p style="text-align: right;">Подпись:</p>
