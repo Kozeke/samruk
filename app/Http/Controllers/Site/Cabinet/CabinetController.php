@@ -1901,8 +1901,8 @@ HTML;
     ): \Illuminate\Http\JsonResponse {
         return response()->json(
             [
-                'appeal_signature_id' => $this->saveSignatureCMSOfAppeal($request['cms_pdf'], $request['base_pdf']),
-                'value_qr' => DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5)
+//                'appeal_signature_id' => $this->saveSignatureCMSOfAppeal($request['cms_pdf'], $request['base_pdf']),
+//                'value_qr' => DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5)
             ]
         );
 

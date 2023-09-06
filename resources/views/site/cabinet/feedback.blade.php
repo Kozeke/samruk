@@ -52,7 +52,7 @@
                                     <div class="form-group__label">Тема обращения</div>
                                     <div class="form-group__input">
                                         <div class="select">
-                                            <select v-model="selected_code_id" name="chosen_code_id">
+                                            <select v-on:change="printPdf(true)" v-model="selected_code_id" name="chosen_code_id">
                                                 @foreach($vid['data']['vid_docs']['vid'] as $type)
                                                     <option value="{{ $type['kod'] }}">{{ $type['name'] }}</option>
                                                 @endforeach

@@ -109,12 +109,13 @@ function createCAdESFromBase64Call() {
     }
 }
 
-function createCAdESFromBase64Back(result) {
+async function createCAdESFromBase64Back(result) {
     $.unblockUI();
     if (result['code'] === "500") {
         alert(result['message']);
     } else if (result['code'] === "200") {
         var res = result['responseObject'];
         calc.setCMSPDF(res);
+        await calc.signDocument();
     }
 }

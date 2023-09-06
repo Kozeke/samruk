@@ -1,4 +1,3 @@
-<head>
     <style>
         .content {
             color: black;
@@ -192,7 +191,7 @@
             </p>
             <span v-if="lock_inputs">@{{reason}}</span>
             <span v-else>
-            <input type="text" v-model="reason"/>
+                <textarea style="width: 100%" type="text" v-model="reason"></textarea>
         </span>
             <p></p>
             <span>Прилагается:</span>
@@ -200,13 +199,13 @@
             <span>1)</span>
             <span v-if="lock_inputs">@{{attachment_one}}</span>
             <span v-else>
-        <input type="text" v-model="attachment_one"/>
+        <textarea style="width: 100%" type="text" v-model="attachment_one"></textarea>
         </span>
             <p></p>
             <span>2)</span>
             <span v-if="lock_inputs">@{{attachment_two}}</span>
             <span v-else>
-        <input type="text" v-model="attachment_two"/>
+        <textarea style="width: 100%" type="text" v-model="attachment_two"></textarea>
         </span>
         </div>
         <div v-if="selected_code_id==8" class="content">
@@ -248,8 +247,9 @@
                 В связи с
                 <span v-if="lock_inputs">@{{reason}}</span>
                 <span v-else>
-            <input placeholder="причина" type="text" v-model="reason"/>
-        </span>
+                    <br><br>
+                    <textarea style="width: 100%;" placeholder="причина" type="text" v-model="reason">  </textarea>
+                </span>
                 <span>прошу Вас расторгнуть Договор аренды с выкупом жилого помещения от {{$data['date_d']??""}} года
             №{{$id??""}} авто (далее &ndash; Договор) согласно утвержденной процедуре.</span>
             </p>
@@ -273,8 +273,8 @@
         @include('appeals_pdf_templates.appeal_footer')
         <input class="btn btn--secondary" value="Подписать" onclick="createCAdESFromBase64Call();" type="button"
                style="width:50%;"/>
-{{--        <input class="btn btn--secondary" value="Подписать" v-on:click="signDocument" type="button"--}}
-{{--               style="width:50%;"/>--}}
+        {{--        <input class="btn btn--secondary" value="Подписать" v-on:click="signDocument" type="button"--}}
+        {{--               style="width:50%;"/>--}}
 
     </div>
 </div>

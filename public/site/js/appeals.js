@@ -32,8 +32,8 @@ var calc = new Vue({
             this.lock_inputs = !this.lock_inputs
             console.log(this.price)
         },
-        async printPdf(forSign = false) {
-            console.log(forSign);
+        async printPdf(getBase64 = false) {
+            console.log(getBase64);
             var self = this;
             await axios({
                 url: '/print-pdf',
@@ -64,7 +64,7 @@ var calc = new Vue({
                         fileName = fileNameMatch[1];
                 }
                 console.log(response.data)
-                if (!forSign) {
+                if (!getBase64) {
                     console.log("Asd");
                     var pdf_blob = new Blob([response.data]);
                     const url = window.URL.createObjectURL(pdf_blob);
@@ -74,9 +74,20 @@ var calc = new Vue({
                     document.body.appendChild(link);
                     link.click();
                     console.log(url);
+                }else{
+                    self.convertPdfToBase64(response.data);
+                    self.reInitVars()
                 }
-                self.convertPdfToBase64(response.data);
             })
+        },
+        reInitVars() {
+            this.lock_inputs = false;
+            this.price = "";
+            this.date_to_finish = "";
+            this.reason = "";
+            this.signed = "";
+            this.base_pdf = "";
+            this.cms_pdf = "";
         },
         convertPdfToBase64(fileToLoad) {
             var self = this;
@@ -136,20 +147,11 @@ var calc = new Vue({
 
     },
     watch: {
-        async selected_code_id() {
-            this.lock_inputs = false;
-            this.price = "";
-            this.date_to_finish = "";
-            this.reason = "";
-            this.signed = "";
-            this.base_pdf = "";
-            this.cms_pdf = "";
-            console.log("changed", this.selected_code_id);
-            await this.printPdf(true);
-        },
-        async cms_pdf() {
-            await this.signDocument();
-        }
+        // async selected_code_id() {
+        //
+        //     console.log("changed", this.selected_code_id);
+        // },
+
     },
 
 });
