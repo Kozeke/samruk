@@ -1942,8 +1942,7 @@ HTML;
             echo "Error: " . $err . "\n";
             print_r(KalkanCrypt_GetLastErrorString());
         } else {
-            echo $outCert . $outVerifyInfo . "\n\n" . $outData . "\n\n";
-            echo "getCertificateFromCMS\n\n";
+//            echo $outCert . $outVerifyInfo . "\n\n" . $outData . "\n\n";
             $this->getCertificateFromCms($outSign);
         }
     }
