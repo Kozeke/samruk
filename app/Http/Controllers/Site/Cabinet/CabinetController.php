@@ -42,6 +42,9 @@ class CabinetController extends BaseController
     const KC_PROXY_AUTH = 0x00004000;
     const KC_OUT_BASE64 = 0x800;
     const KC_NOCHECKCERTTIME = 0x10000;
+    const KC_CERTPROP_SUBJECT_COMMONNAME = 0x80a;
+    const KC_CERTPROP_SUBJECT_GIVENNAME = 0x80b;
+    const KC_CERTPROP_SUBJECT_SURNAME = 0x80c;
 
     protected $section = [
         'name' => '',
@@ -1752,7 +1755,7 @@ HTML;
 HTML;
         $html .= "<p style='text-align: right;'>{$today_date}</p>";
         if ($request['signed']) {
-//            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
             $html .= "<div style='right:0px;position:absolute;'>";
             $html .= DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5);
             $html .= "</div></div>";
@@ -1947,7 +1950,6 @@ HTML;
             echo $outCert . $outVerifyInfo . "\n\n" . $outData . "\n\n";
             echo "getCertificateFromCMS\n\n";
             $this->getCertificateFromCms($outSign);
-            $this->saveSignatureCMSOfAppeal($outSign, $inData);
         }
     }
 
@@ -1959,12 +1961,42 @@ HTML;
         $flags_sign = self::KC_IN_BASE64 + self::KC_SIGN_CMS + self::KC_OUT_PEM;
         $outCert = "";
         $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
-
         if ($err > 0) {
             echo "Error: " . $err . "\n";
             print_r(KalkanCrypt_GetLastErrorString());
         } else {
-            echo $outCert . "\n";
+            $this->getInfoFromCertificate($outCert);
+        }
+    }
+
+    private function getInfoFromCertificate(string $outCert)
+    {
+        $outData = "";
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_COMMONNAME, $outCert, $outData);
+        if ($err > 0) {
+            if ($err != 149946424) {
+                echo "Error: " . $err . "\n";
+            }
+        } else {
+            echo $outData . "\n";
+        }
+
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_GIVENNAME, $outCert, $outData);
+        if ($err > 0) {
+            if ($err != 149946424) {
+                echo "Error: " . $err . "\n";
+            }
+        } else {
+            echo $outData . "\n";
+        }
+
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_SURNAME, $outCert, $outData);
+        if ($err > 0) {
+            if ($err != 149946424) {
+                echo "Error: " . $err . "\n";
+            }
+        } else {
+            echo $outData . "\n";
         }
     }
 
