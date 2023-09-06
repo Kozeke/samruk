@@ -150,7 +150,7 @@ return array(
          * @var string
          */
         "default_font" => "serif",
-        "DOMPDF_DEFAULT_FONT" => "dejavu serif",
+//        "DOMPDF_DEFAULT_FONT" => "dejavu serif",
         /**
          * Image DPI setting
          *

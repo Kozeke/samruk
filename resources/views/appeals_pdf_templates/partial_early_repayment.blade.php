@@ -1,5 +1,5 @@
 <div
-    style=" font-family:'times_new_roman, DejaVu Sans, sans-serif;';font-size: 14px;">
+    style="font-size: 14px;">
     @include('appeals_pdf_templates.appeal_header')
     <div style="font-size: 14px;">
         <p><br></p>

@@ -5,7 +5,7 @@ KalkanCrypt_Init();
 $flag_proxy = $KC_PROXY_AUTH;
 $inProxyAddr = "192.168.39.241";
 $inProxyPort = "9090";
-$inUser = ""; 
+$inUser = "";
 $inPass = "";
 $err = KalkanCrypt_SetProxy( $flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
 //$tsaurl = "http://test.pki.gov.kz:80//tsp/";
@@ -15,7 +15,7 @@ KalkanCrypt_TSASetUrl($tsaurl);
 
 echo "------------------------------------------------------------------\n";
 echo "\nВыберите тип хранилища:\n\t1) Персональный компьютер \t2) Удостоверение личности \n\t3) KAZTOKEN \t4) ETOKEN72 \t5) JACARTA \n\t6) a-KEY \t7) eToken5110 \t8) SSL-сертификат\n";
-fscanf(STDIN, "%d\n", $typeStorage); 
+fscanf(STDIN, "%d\n", $typeStorage);
 switch ($typeStorage) {
 	case '1':
 		$container = "/home/d/RSA256_e3fe35adda3b45cbea3a3f1ed48f263dc55c556e.p12";
@@ -34,7 +34,7 @@ switch ($typeStorage) {
 	case '6':
 	case '7':
 		// echo "\tВведите пароль:\t";
-		// fscanf(STDIN, "%s\n", $password); 
+		// fscanf(STDIN, "%s\n", $password);
 		if("2" == $typeStorage){
 			$storage = $KCST_KZIDCARD;
 		}
@@ -78,8 +78,8 @@ switch ($typeStorage) {
 			$k = 1; $j = 0;
 		    if ($count > 0)
 		    {
-		    	for($i = 0; $i <= strlen($certificates) ; $i++)	  
-		    	{          
+		    	for($i = 0; $i <= strlen($certificates) ; $i++)
+		    	{
 		            if (($i == strlen($certificates)) || ($certificates[$i] == ";") )
 		            {
 		            	for($t = $j; $t < $i; $t++)
@@ -117,20 +117,21 @@ switch ($typeStorage) {
 
 
 $number = 1;
+$outCert = "";
 while($number != 0)
 {
 	echo "___________________________________________________________________________\n";
-	echo "\n Показать сертификат - 1 \tИнформация о сертификате - 2 \n Подписать данные - 3 \t\tПроверить данные - 4 \n Хэшировать данные - 5 \t\tПодписать хэш-данные - 6 \n Подписать XML - 7 \t\tПроверить XML - 8 \n Получить сертификат из CMS - 9\tПолучить сертификат из XML - 10 \n Получить время подписи - 11 \tПроверка сертификата - 12  \n Подписать архив - 13 \t\tПроверить подписанный архив - 14  \n Получить сертификат из ZIP - 15 Использовать Proxy - 16 \n Получить алгоритм XML-подписи - 17 Выход - 0 \n\n Введите номер: "; 
-	fscanf(STDIN, "%d\n", $number); 
+	echo "\n Показать сертификат - 1 \tИнформация о сертификате - 2 \n Подписать данные - 3 \t\tПроверить данные - 4 \n Хэшировать данные - 5 \t\tПодписать хэш-данные - 6 \n Подписать XML - 7 \t\tПроверить XML - 8 \n Получить сертификат из CMS - 9\tПолучить сертификат из XML - 10 \n Получить время подписи - 11 \tПроверка сертификата - 12  \n Подписать архив - 13 \t\tПроверить подписанный архив - 14  \n Получить сертификат из ZIP - 15 Использовать Proxy - 16 \n Получить алгоритм XML-подписи - 17 Выход - 0 \n\n Введите номер: ";
+	fscanf(STDIN, "%d\n", $number);
 		echo "\n___________________________________________________________________________\n\n";
 
-	
+
 	switch ($number) {
 			case 1: //Показать сертификат
 		{
 			$encoding = 0;
 			//$alias = "";
-			$outCert = "";
+//			$outCert = "";
 			$err = KalkanCrypt_X509ExportCertificateFromStore($alias,0, $outCert);
 			if ($err > 0){
 				echo "Error: ".$err."\n";
@@ -157,15 +158,15 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_LOCALITYNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_ORG_NAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_ORGUNIT_NAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_COMMONNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -173,7 +174,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_COUNTRYNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo"\nSubject\n".$OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_SOPN,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -181,7 +182,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_LOCALITYNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_COMMONNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -189,7 +190,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_GIVENNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_SURNAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -197,7 +198,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_SERIALNUMBER,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_EMAIL,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -205,7 +206,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_ORG_NAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_ORGUNIT_NAME,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -213,7 +214,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_BC,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_DC,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -221,7 +222,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_NOTBEFORE,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_NOTAFTER,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -229,7 +230,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_KEY_USAGE,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_EXT_KEY_USAGE,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -237,7 +238,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_AUTH_KEY_ID,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJ_KEY_ID,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -245,7 +246,7 @@ while($number != 0)
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_CERT_SN,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
-			
+
 			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SIGNATURE_ALG,$outCert, $OutData);
 			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
 			else{echo $OutData."\n";}
@@ -254,9 +255,9 @@ while($number != 0)
 	 	case 3: //Подписать данные
 	 	{
 	 		echo "\tВыберите тип подписи: \n1) CMS-подпись. Без метки времени\n2) CMS-подпись. С меткой времени\n3) Сырая подпись (DraftSign)\n4) Данные хранятся отдельно\n5) Мультиподпись\n";
-	 		fscanf(STDIN, "%d\n", $flags_number); 
+	 		fscanf(STDIN, "%d\n", $flags_number);
 	 		$inData = "Hello World";
-	 		
+
 	 		$outSign = "";
 	 		if($flags_number == 1)
 	 		{
@@ -279,7 +280,7 @@ while($number != 0)
 	 			$flags_sign = 582;
 	 			$myfile = fopen("test/CMS_for_double_sign.txt", "r") or die("Unable to open file!");
 				$outSign= fread($myfile,filesize("test/CMS_for_double_sign.txt"));
-				
+
 	 		}
 
 	 		echo "alias: ".$alias."\n";
@@ -300,12 +301,14 @@ while($number != 0)
 	 		{
 	 			$flags_sign = 2081;
 	 		}
+            $inData = "/home/d/file/application.pdf";
 
+            $outSign =
 			$outData  = "";
 			$outVerifyInfo  = "";
 			$outCert  = "";
 			$err = KalkanCrypt_VerifyData($alias, $flags_sign, $inData, 0, $outSign, $outData,	$outVerifyInfo,	$outCert);
-			
+
 			if ($err > 0){
 				echo "Error: ".$err."\n";
 				print_r(KalkanCrypt_GetLastErrorString());
@@ -323,7 +326,7 @@ while($number != 0)
 			$flags_hash = 2054;
 			$hashData  = "";
 			$err = KalkanCrypt_HashData($alias_hash, $flags_hash, $inData, $hashData);
-			
+
 			if ($err > 0){
 				echo "Error: ".$err."\n";
 			}
@@ -449,13 +452,13 @@ while($number != 0)
 			}
 
 			break;
-	
+
 		}
 		case 12: //Проверка сертификата
 		{
 			echo ("Выберите тип проверки: \n\t1)http://ocsp.pki.gov.kz/ \n\t2)CRL\n");
 			$container_for_CRL = "/home/d/nca_gost_test.crl";
-			fscanf(STDIN, "%d\n", $type_validate); 				
+			fscanf(STDIN, "%d\n", $type_validate);
 			if($type_validate == 1){
 				$flags_validate = $KC_USE_OCSP;
 		        $validPath = "http://test.pki.gov.kz/ocsp/";
@@ -463,9 +466,11 @@ while($number != 0)
 			elseif($type_validate == 2){
 	        	$flags_validate = $KC_USE_CRL;
 	        	$validPath = $container_for_CRL;
-			}
+                $validPath = "http://test.pki.gov.kz/crl/nca_gost_test.crl";
+            }
 			$outInfo = "";
 			$getResp = "";
+
 			$err = KalkanCrypt_X509ValidateCertificate($outCert, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
 
 			if ($err > 0){
@@ -480,7 +485,7 @@ while($number != 0)
 		}
 
 
-		
+
 
 		case 13: //Подписать архив
 	 	{
@@ -488,7 +493,7 @@ while($number != 0)
 	 		$outDir = "/home/d/zip";
 	 		$name = "";
 			printf("\t\tВыберите тип подписи: \n\n\t1) Подписать ZIP-aрхив (множественная подпись)\n\t2) Подписать файлы в папке\n\t3) Подписать выделенные файлы\n");
-			fscanf(STDIN, "%d\n", $N); 
+			fscanf(STDIN, "%d\n", $N);
 			$flags = 0;
 			if($N==1){
 				$filePath = "/home/d/zip/zip_signed_files2.zip|";
@@ -502,8 +507,8 @@ while($number != 0)
 	        	$filePath = "/home/d/file/wsse.txt|/home/d/file/application.pdf|/home/d/file/signPDF_in_base64|/home/d/file/CMS_for_double_sign.txt|";
 	        	$name = "sign15";
 			}
-			$err = KalkanCrypt_ZipConSign($alias, $filePath,$name,$outDir, $flags); 
-		
+			$err = KalkanCrypt_ZipConSign($alias, $filePath,$name,$outDir, $flags);
+
 
 			if ($err > 0){
 				echo "Error: ".$err."\n";
@@ -551,13 +556,13 @@ while($number != 0)
 			$flag_proxy = $KC_PROXY_AUTH;
 			$inProxyAddr = "192.168.39.241";
 			$inProxyPort = "9090";
-			$inUser = ""; 
+			$inUser = "";
 			$inPass = "";
 			$err = KalkanCrypt_SetProxy( $flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
 			if ($err > 0){
 				echo "Error: ".$err."\n";
 			}
-		
+
 			break;
 		}
 		case 17: //Получить алгоритм XML-подписи
@@ -572,12 +577,12 @@ while($number != 0)
 				else{echo $sigAlg."\n";}
 			}
 			else{echo "\n\tНет подписанной XML\n\n";}
-			
-			
-		
+
+
+
 			break;
 		}
-		
+
 
 }
 }
