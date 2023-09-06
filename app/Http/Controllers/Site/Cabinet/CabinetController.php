@@ -1923,7 +1923,7 @@ HTML;
             //проверить подпись
             $this->verifyData($request['cms_pdf'], $request['base_pdf']);
         }
-        return $this->FIOCertificateOwner;
+        return response()->json(["fio", $this->FIOCertificateOwner]);
     }
 
     private
