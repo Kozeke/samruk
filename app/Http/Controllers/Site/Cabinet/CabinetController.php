@@ -17,6 +17,7 @@ use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Mail;
 use Illuminate\Support\Facades\Storage;
+use Milon\Barcode\DNS2D;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Validator;
 use Illuminate\Support\Facades\App;
@@ -1453,7 +1454,7 @@ class CabinetController extends BaseController
         $pdf = new Dompdf($options);
         $html = $this->getHeaderHtml($data);
         $html .= $this->getContentHtmlForCodeId($data, $request, $request['selected_code_id']);
-        $html .= $this->getFooterHtml();
+        $html .= $this->getFooterHtml($request);
 
         $pdf->load_html($html, 'UTF-8');
         $pdf->render();
@@ -1735,58 +1736,90 @@ HTML;
         return $htmlTitle . $values['appeal_text'] . $htmlEnd;
     }
 
-    private function getFooterHtml(): string
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    private function getFooterHtml(Request $request): string
     {
         $today_date = Carbon::now()->format('d/m/Y');
-        return <<<HTML
-
+        $html = <<<HTML
         <div style="font-size: 14px;">
 <!--        <p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>-->
         <p><br></p>
-        <p><br></p>
-        <p style="text-align: right;">{$today_date}</p>
-        <p style="text-align: right;">Подпись:</p>
-        <p style="text-align: right;">Код подпись от ЭЦП</p>
-        </div>
-
-
 HTML;
+        $html .= "<p style='text-align: right;'>{$today_date}</p>";
+        if ($request['signed']) {
+//            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+            $html .= "<div style='right:0px;position:absolute;'>";
+            $html .= DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5);
+            $html .= "</div></div>";
+        } else {
+            $html .= "<p style='text-align: right;'>Подпись:</p>
+                <p style='text-align: right;'>Код подпись от ЭЦП</p></div>";
+        }
+        return $html;
     }
 
-    public function sendAppealTemplate(Request $request)
-    {
+    public
+    function sendAppealTemplate(
+        Request $request
+    ) {
         $template_title = DB::table('appeal_templates')->where('code', $request['selected_code_id'])->first()->title;
         $fileName = $this->createPdf($request);
         $fullPathToTempPDF = config('filesystems.disks.temp_pdf.url') . '/' . $fileName;
-        $this->addToAppealHistory($request['user_id'], $fullPathToTempPDF, $template_title);
+        $this->addToAppealHistory(
+            $request['user_id'],
+            $fullPathToTempPDF,
+            $template_title,
+            $request['cms_pdf'],
+            $request['base_pdf']
+        );
     }
 
-    private function addToAppealHistory($id, $fullPathToTempPDF, $template_title)
-    {
+    private
+    function addToAppealHistory(
+        $id,
+        $fullPathToTempPDF,
+        $template_title,
+        $cmsPdf,
+        $basePdf
+    ) {
         AppealHistory::create([
             'user_id' => $id,
             'link' => $fullPathToTempPDF,
             'status' => AppealHistory::STATUS_SENT,
             'title' => $template_title,
+            'cms_pdf' => $cmsPdf,
+            'base_pdf' => $basePdf,
         ]);
     }
 
-    public function replyToAppeal($appeal_history_id, $reply)
-    {
+    public
+    function replyToAppeal(
+        $appeal_history_id,
+        $reply
+    ) {
         $appeal_history = AppealHistory::find($appeal_history_id);
         $appeal_history->reply = $reply;
         $appeal_history->save();
     }
 
-    public function changeStatusOfAppeal($appeal_history_id, $status)
-    {
+    public
+    function changeStatusOfAppeal(
+        $appeal_history_id,
+        $status
+    ) {
         $appeal_history = AppealHistory::find($appeal_history_id);
         $appeal_history->status = $status;
         $appeal_history->save();
     }
 
-    private function feedbackSendEmail($file)
-    {
+    private
+    function feedbackSendEmail(
+        $file
+    ) {
         Mail::send('appeals_pdf_templates.partial_early_repayment_pdf', [], function ($message) use ($file) {
             $message->from('no-reply@astana.kz', 'Запись на прием - astana.gov.kz');
             $message->subject('Запись на прием - Акимат Астаны');
@@ -1798,14 +1831,18 @@ HTML;
     /**
      * @return string
      */
-    private function getNameCreatedTempFile(): string
+    private
+    function getNameCreatedTempFile(): string
     {
         return uniqid(rand(), true);
     }
 
 
-    public function feedbackSend(Request $request, $num_d)
-    {
+    public
+    function feedbackSend(
+        Request $request,
+        $num_d
+    ) {
         $validator = Validator::make($request->input(), [
             'type_doc' => 'required',
             'text_doc' => 'required'
@@ -1833,8 +1870,10 @@ HTML;
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
-    public function saveRelevantProfileData(Request $request): \Illuminate\Http\RedirectResponse
-    {
+    public
+    function saveRelevantProfileData(
+        Request $request
+    ): \Illuminate\Http\RedirectResponse {
         $request->validate([
             'email' => 'required|email|unique:users,email,' . $this->user->id,
             'mobile' => 'required|unique:users,mobile,' . $this->user->id,
@@ -1850,36 +1889,49 @@ HTML;
         return redirect()->back();
     }
 
-    public function exportExcelOfUsers(): BinaryFileResponse
+    public
+    function exportExcelOfUsers(): BinaryFileResponse
     {
         return Excel::download(new UsersExport(), 'invoices.xlsx');
     }
 
-    public function signDocument(Request $request)
-    {
-        KalkanCrypt_Init();
-        $flag_proxy = self::KC_PROXY_AUTH;
-        $inProxyAddr = "192.168.39.241";
-        $inProxyPort = "9090";
-        $inUser = "";
-        $inPass = "";
-        $err = KalkanCrypt_SetProxy($flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
-//$tsaurl = "http://test.pki.gov.kz:80//tsp/";
-        $tsaurl = "http://test.pki.gov.kz/tsp/";
-//$tsaurl = "http://tsp.pki.gov.kz:80";
-        KalkanCrypt_TSASetUrl($tsaurl);
-        if ($err > 0) {
-            echo "Error: " . $err . "\n";
-            print_r(KalkanCrypt_GetLastErrorString());
-        }else{
-            //проверить подпись
-            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
-        }
+    public
+    function signDocument(
+        Request $request
+    ): \Illuminate\Http\JsonResponse {
+        return response()->json(
+            [
+                'appeal_signature_id' => $this->saveSignatureCMSOfAppeal($request['cms_pdf'], $request['base_pdf']),
+                'value_qr' => DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5)
+            ]
+        );
+
+//        KalkanCrypt_Init();
+//        $flag_proxy = self::KC_PROXY_AUTH;
+//        $inProxyAddr = "192.168.39.241";
+//        $inProxyPort = "9090";
+//        $inUser = "";
+//        $inPass = "";
+//        $err = KalkanCrypt_SetProxy($flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
+////$tsaurl = "http://test.pki.gov.kz:80//tsp/";
+//        $tsaurl = "http://test.pki.gov.kz/tsp/";
+////$tsaurl = "http://tsp.pki.gov.kz:80";
+//        KalkanCrypt_TSASetUrl($tsaurl);
+//        if ($err > 0) {
+//            echo "Error: " . $err . "\n";
+//            print_r(KalkanCrypt_GetLastErrorString());
+//        }else{
+//            //проверить подпись
+//            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+//        }
 
     }
 
-    private function verifyData($outSign, $inData)
-    {
+    private
+    function verifyData(
+        $outSign,
+        $inData
+    ) {
         $alias = "";
         $flags_sign = self::KC_SIGN_CMS + self::KC_IN_BASE64 + self::KC_OUT_BASE64 + self::KC_NOCHECKCERTTIME;
         $outData = "";
@@ -1894,10 +1946,14 @@ HTML;
             echo $outCert . $outVerifyInfo . "\n\n" . $outData . "\n\n";
             echo "getCertificateFromCMS\n\n";
             $this->getCertificateFromCms($outSign);
+            $this->saveSignatureCMSOfAppeal($outSign, $inData);
         }
     }
 
-    private function getCertificateFromCms($outSign){
+    private
+    function getCertificateFromCms(
+        $outSign
+    ) {
         $inSignID = 1;
         $flags_sign = self::KC_IN_BASE64 + self::KC_SIGN_CMS + self::KC_OUT_PEM;
         $outCert = "";

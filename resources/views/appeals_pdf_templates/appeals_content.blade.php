@@ -38,7 +38,7 @@
             <button type="button" href="#" class="btn btn--secondary" v-on:click="printPdf()">Печать
             </button>
         </div>
-        <div style="position: relative; left: 75%">
+        <div style="position: absolute; left: 50%">
             <button type="button" href="#" class="btn btn--secondary" v-on:click="sendAppealTemplate">Отправить
             </button>
         </div>
@@ -273,6 +273,8 @@
         @include('appeals_pdf_templates.appeal_footer')
         <input class="btn btn--secondary" value="Подписать" onclick="createCAdESFromBase64Call();" type="button"
                style="width:50%;"/>
+{{--        <input class="btn btn--secondary" value="Подписать" v-on:click="signDocument" type="button"--}}
+{{--               style="width:50%;"/>--}}
 
     </div>
 </div>

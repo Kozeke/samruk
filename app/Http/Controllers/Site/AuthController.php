@@ -122,12 +122,16 @@ class AuthController extends BaseController
                 'password' => $request->input('password')
             ], true);
             if (Auth::check()) {
-                return redirect()->route('cabinet.index');
+                return redirect()->route(
+                    'cabinet.index',
+                    ['profile_check_need' => auth()->user()->profileCheckWasMadeBeforeTwoMonths()]
+                );
             }
         }
 
         return redirect()->back()->withErrors($validator)->withInput();
     }
+
 
     /**
      * @return Application|Factory|\Illuminate\View\View

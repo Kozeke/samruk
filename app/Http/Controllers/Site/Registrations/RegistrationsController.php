@@ -122,6 +122,7 @@ class RegistrationsController extends BaseController
                 $user->consent_to_data_collection = $request->input('consent_to_data_collection');
                 $user->date_of_consent = Carbon::now();
                 $user->device = $request->header('User-Agent');
+                $user->last_profile_check_at = Carbon::now();
 
                 // $user->verify = bcrypt(date('Ymdhis') . rand(1000000, 9999999));
 
