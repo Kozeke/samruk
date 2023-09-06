@@ -66,7 +66,7 @@
                 @{{date_to_finish}}
             </span>
                 <span v-if="!lock_inputs">
-                <input v-model="date_to_finish" type="date"/>
+                <input v-model="date_to_finish" type="date" min="2010-01-01" max="2030-12-31"/>
             </span>
         </div>
         <div v-if="selected_code_id==2" class="content">
@@ -84,7 +84,7 @@
             @{{date_to_finish}} года.
         </span>
                 <span v-if="!lock_inputs">
-            <input type="date" v-model="date_to_finish"/>
+            <input type="date" v-model="date_to_finish" min="2010-01-01" max="2030-12-31"/>
         </span>
             </p>
             <p><br></p>
@@ -106,14 +106,14 @@
                 @{{date_to_finish}}
             </span>
                     <span v-if="!lock_inputs">
-                <input type="date" v-model="date_to_finish">
+                <input type="date" v-model="date_to_finish" min="2010-01-01" max="2030-12-31">
             </span>
                     В случае неосуществления мной оплаты остатка стоимости помещения до периода
                     <span v-if="lock_inputs">
                     @{{date_to}}
                 </span>
                     <span v-if="!lock_inputs">
-                    <input type="date" v-model="date_to">
+                    <input type="date" v-model="date_to" min="2010-01-01" max="2030-12-31">
                 </span>
                     года, прошу аннулировать данное заявление (оставить без рассмотрения).</p>
             </div>
@@ -132,7 +132,7 @@
                 (далее &ndash; Договор), по состоянию на
                 <span v-if="lock_inputs">@{{date_from}}</span>
                 <span v-else><input type="date" name="date_from"
-                                    v-model="date_from"/>
+                                    v-model="date_from" min="2010-01-01" max="2030-12-31"/>
             </span> года за счет денежных средств ЕПВ (доступная сумма
                 <span v-if="lock_inputs">@{{price}}</span>
                 <span v-else>
@@ -155,7 +155,7 @@
             @{{date_to_finish}}
         </span>
                 <span v-else>
-            <input type="date" v-model="date_to_finish"/>
+            <input type="date" v-model="date_to_finish" min="2010-01-01" max="2030-12-31"/>
         </span> года, за счет денежных средств ЕПВ (доступная сумма
                 <span v-if="lock_inputs">
             @{{price}}
