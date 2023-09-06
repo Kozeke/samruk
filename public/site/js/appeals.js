@@ -50,9 +50,9 @@ var calc = new Vue({
                     attachment_two: self.attachment_two,
                     appeal_title: self.appeal_title,
                     appeal_text: self.appeal_text,
-                    signed: self.signed,
-                    base_pdf: self.base_pdf,
-                    cms_pdf: self.cms_pdf,
+                    // signed: self.signed,
+                    // base_pdf: self.base_pdf,
+                    // cms_pdf: self.cms_pdf,
                 }
             }).then((response) => {
 
