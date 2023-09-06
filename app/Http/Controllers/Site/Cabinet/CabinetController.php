@@ -1753,7 +1753,7 @@ HTML;
         if ($request['signed']) {
 //            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
             $html .= "<div style='right:0px;position:absolute;'>";
-            $html .= DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5);
+//            $html .= DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5);
             $html .= "</div></div>";
         } else {
             $html .= "<p style='text-align: right;'>Подпись:</p>
