@@ -1454,7 +1454,7 @@ class CabinetController extends BaseController
         $pdf = new Dompdf($options);
         $html = $this->getHeaderHtml($data);
         $html .= $this->getContentHtmlForCodeId($data, $request, $request['selected_code_id']);
-        $html .= $this->getFooterHtml($request);
+//        $html .= $this->getFooterHtml($request);
 
         $pdf->load_html($html, 'UTF-8');
         $pdf->render();
@@ -1965,6 +1965,12 @@ HTML;
         } else {
             echo $outCert . "\n";
         }
+    }
+
+    private
+    function checkCertificate()
+    {
+//        KalkanCrypt_X509LoadCertificateFromFile(self::KC_CERT_CA).
     }
 
 }
