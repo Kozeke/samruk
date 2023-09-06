@@ -1966,16 +1966,7 @@ HTML;
     private function getInfoFromCertificate(string $outCert)
     {
         $outData = "";
-//        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_COMMONNAME, $outCert, $outData);
-//        if ($err > 0) {
-//            if ($err != 149946424) {
-//                echo "Error: " . $err . "\n";
-//            }
-//        } else {
-//            $this->FIOCertificateOwner .= $outData;
-//        }
-
-        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_GIVENNAME, $outCert, $outData);
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_COMMONNAME, $outCert, $outData);
         if ($err > 0) {
             if ($err != 149946424) {
                 echo "Error: " . $err . "\n";
@@ -1983,6 +1974,15 @@ HTML;
         } else {
             $this->FIOCertificateOwner .= $outData;
         }
+
+//        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_GIVENNAME, $outCert, $outData);
+//        if ($err > 0) {
+//            if ($err != 149946424) {
+//                echo "Error: " . $err . "\n";
+//            }
+//        } else {
+//            $this->FIOCertificateOwner .= $outData;
+//        }
 
 //        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_SURNAME, $outCert, $outData);
 //        if ($err > 0) {
