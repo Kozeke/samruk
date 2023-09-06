@@ -75,6 +75,8 @@ class CabinetController extends BaseController
 
     protected $data;
 
+    protected $FIOCertificateOwner;
+
     /**
      * @var string
      */
@@ -1902,33 +1904,26 @@ HTML;
     public
     function signDocument(
         Request $request
-    ): \Illuminate\Http\JsonResponse {
-        return response()->json(
-            [
-//                'appeal_signature_id' => $this->saveSignatureCMSOfAppeal($request['cms_pdf'], $request['base_pdf']),
-//                'value_qr' => DNS2D::getBarcodeHTML("asd", 'QRCODE', 5, 5)
-            ]
-        );
-
-//        KalkanCrypt_Init();
-//        $flag_proxy = self::KC_PROXY_AUTH;
-//        $inProxyAddr = "192.168.39.241";
-//        $inProxyPort = "9090";
-//        $inUser = "";
-//        $inPass = "";
-//        $err = KalkanCrypt_SetProxy($flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
-////$tsaurl = "http://test.pki.gov.kz:80//tsp/";
-//        $tsaurl = "http://test.pki.gov.kz/tsp/";
-////$tsaurl = "http://tsp.pki.gov.kz:80";
-//        KalkanCrypt_TSASetUrl($tsaurl);
-//        if ($err > 0) {
-//            echo "Error: " . $err . "\n";
-//            print_r(KalkanCrypt_GetLastErrorString());
-//        }else{
-//            //проверить подпись
-//            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
-//        }
-
+    ) {
+        KalkanCrypt_Init();
+        $flag_proxy = self::KC_PROXY_AUTH;
+        $inProxyAddr = "192.168.39.241";
+        $inProxyPort = "9090";
+        $inUser = "";
+        $inPass = "";
+        $err = KalkanCrypt_SetProxy($flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
+//$tsaurl = "http://test.pki.gov.kz:80//tsp/";
+        $tsaurl = "http://test.pki.gov.kz/tsp/";
+//$tsaurl = "http://tsp.pki.gov.kz:80";
+        KalkanCrypt_TSASetUrl($tsaurl);
+        if ($err > 0) {
+            echo "Error: " . $err . "\n";
+            print_r(KalkanCrypt_GetLastErrorString());
+        } else {
+            //проверить подпись
+            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+        }
+        return $this->FIOCertificateOwner;
     }
 
     private
@@ -1978,7 +1973,7 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            echo $outData . "\n";
+            $this->FIOCertificateOwner .= $outData;
         }
 
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_GIVENNAME, $outCert, $outData);
@@ -1987,7 +1982,7 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            echo $outData . "\n";
+            $this->FIOCertificateOwner .= $outData;
         }
 
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_SURNAME, $outCert, $outData);
@@ -1996,7 +1991,7 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            echo $outData . "\n";
+            $this->FIOCertificateOwner .= $outData;
         }
     }
 
