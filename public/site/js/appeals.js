@@ -148,6 +148,7 @@ var calc = new Vue({
                 console.log("success", response)
                 self.signed = true;
                 self.signerFIO = response.data['fio']
+                console.log(self.signerFIO)
                 // self.value_qr = response.data.value_qr
                 // console.log(self.value_qr)
             })
