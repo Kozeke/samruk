@@ -19,6 +19,7 @@ var calc = new Vue({
         signed: false,
         value_qr: "",
         signerFIO: "",
+        errors: "",
     },
     methods: {
         setCMSPDF(cms_pdf) {
@@ -74,7 +75,7 @@ var calc = new Vue({
                     document.body.appendChild(link);
                     link.click();
                     console.log(url);
-                }else{
+                } else {
                     self.convertPdfToBase64(response.data);
                     self.reInitVars()
                 }
@@ -125,6 +126,12 @@ var calc = new Vue({
             }).then((response) => {
                 console.log("success", response)
                 self.successMessage = true;
+                self.errors = [];
+            }).catch((response) => {
+                self.successMessage = false;
+                console.log("error", response)
+                self.errors = response.response.data.errors
+                console.log(self.errors);
             })
         },
         async signDocument() {

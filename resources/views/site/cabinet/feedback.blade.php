@@ -47,6 +47,11 @@
                                     Ваше обращение зарегистрировано под номером <b>{{ session('success') }}</b>
                                 </div>
                             </div>
+                            <div v-if="errors" class="col-12">
+                                <div v-for="error in errors" class="alert alert--danger">
+                                    @{{ error[0] }}
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <div class="form-group {{ $errors->has('theme') ? 'has-error' : '' }}">
                                     <div class="form-group__label">Тема обращения</div>

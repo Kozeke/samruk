@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site\Cabinet;
 
 use App\Exports\UsersExport;
 use App\Http\ApiRequest;
+use App\Http\Requests\SendAppealTemplateRequest;
 use App\Models\Appeal;
 use App\Models\AppealHistory;
 use App\Models\User;
@@ -1764,13 +1765,13 @@ HTML;
 
     public
     function sendAppealTemplate(
-        Request $request
+        SendAppealTemplateRequest $request
     ) {
         $template_title = DB::table('appeal_templates')->where('code', $request['selected_code_id'])->first()->title;
         $fileName = $this->createPdf($request);
         $fullPathToTempPDF = config('filesystems.disks.temp_pdf.url') . '/' . $fileName;
         $this->addToAppealHistory(
-            $request['user_id'],
+            Auth::user()->id,
             $fullPathToTempPDF,
             $template_title,
             $request['cms_pdf'],
