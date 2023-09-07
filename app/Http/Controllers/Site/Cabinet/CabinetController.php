@@ -1961,7 +1961,7 @@ HTML;
         $outVerifyInfo = "";
         $outCert = "";
         $err = KalkanCrypt_VerifyData($alias, $flags_sign, $inData, 0, $outSign, $outData, $outVerifyInfo, $outCert);
-        dd($err);
+        dd($outVerifyInfo);
         if ($err > 0) {
             return response()->json(['error'=> KalkanCrypt_GetLastErrorString()], 403);
         } else {
