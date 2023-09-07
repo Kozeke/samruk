@@ -1852,6 +1852,7 @@ HTML;
         Request $request,
         $num_d
     ) {
+
         $validator = Validator::make($request->input(), [
             'type_doc' => 'required',
             'text_doc' => 'required'
@@ -1975,8 +1976,7 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            dd($outData);
-            $this->FIOCertificateOwner .= str_replace("CN=", "", $outData);
+            $this->FIOCertificateOwner = str_replace("CN=", "", $outData);
         }
 
     }
