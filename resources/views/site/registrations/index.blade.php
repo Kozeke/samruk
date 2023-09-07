@@ -90,6 +90,9 @@
                 <div class="form-group">
                     <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline" name="consent_to_data_collection" value="1" >
                     <label>Согласие на сбор и обработку данных</label>
+                    <a class="btn btn--size-sm"  id="btnConsentToDataCollection">Подписать</a>
+                    @include('site.cabinet.snippets.consent-to-data-collection')
+
                 </div>
                 <div class="form-auth__actions">
                     <a

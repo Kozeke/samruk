@@ -1,21 +1,32 @@
 // Get the modal
 var modal = document.getElementById("myModal");
+var modalConsentToDataCollection = document.getElementById("modalConsentToDataCollection");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btnConsentToDataCollection = document.getElementById("btnConsentToDataCollection");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+var spanConsentToDataCollection = document.getElementById("spanConsentToDataCollection");
 
 // When the user clicks on the button, open the modal
-// btn.onclick = function() {
+btnConsentToDataCollection.onclick = function() {
+    if (modalConsentToDataCollection) {
+        modalConsentToDataCollection.style.display = "block";
+        modalConsentToDataCollection.scrollIntoView();
+    }
+}
+
 if (modal) {
     modal.style.display = "block";
-// }
 }
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+}
+
+spanConsentToDataCollection.onclick = function() {
+    modalConsentToDataCollection.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it

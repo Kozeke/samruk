@@ -93,11 +93,11 @@ function getKeyInfoBack(result) {
 
 }
 function createCAdESFromBase64Call() {
-
     calc.lockInputs();
     var selectedStorage = "PKCS12";
     var flag = true;
     var base64ToSign = calc.getBasePdfValue();
+
     // console.log(base64ToSign)
     console.log("createCAdESFromBase64Call")
     if (base64ToSign !== null && base64ToSign !== "") {
@@ -118,4 +118,55 @@ async function createCAdESFromBase64Back(result) {
         calc.setCMSPDF(res);
         await calc.signDocument();
     }
+}
+
+function createCAdESFromBase64CallForConsent() {
+    var selectedStorage = "PKCS12";
+    var flag = true;
+    var str = "Я ФИО соглашаюсь со сбором информации";
+
+    var base64ToSign = btoa(unescape(encodeURIComponent(str)));
+    console.log(base64ToSign)
+    console.log("createCAdESFromBase64Call")
+    if (base64ToSign !== null && base64ToSign !== "") {
+        $.blockUI();
+        createCAdESFromBase64(selectedStorage, "SIGNATURE", base64ToSign, flag, "createCAdESFromBase64BackForConsent");
+    } else {
+        alert("Нет данных для подписи!");
+        $.unblockUI();
+    }
+}
+
+
+async function createCAdESFromBase64BackForConsent(result) {
+    $.unblockUI();
+    if (result['code'] === "500") {
+        alert(result['message']);
+    } else if (result['code'] === "200") {
+        var res = result['responseObject'];
+        // calc.setCMSPDF(res);
+        // await calc.signDocument();
+        await signConsentToDataCollection(res)
+    }
+}
+
+async function signConsentToDataCollection(res) {
+    var str = "Я ФИО соглашаюсь со сбором информации";
+    var base64ToSign = btoa(unescape(encodeURIComponent(str)));
+    await axios({
+        url: '/sign-document',
+        method: 'POST',
+        data: {
+            _token: $('meta[name="_token"]').attr('content'),
+            cms_consent: res,
+            base_pdf: base64ToSign,
+        }
+    }).then((response) => {
+        console.log("success", response);
+        // self.signed = true;
+        // self.signerFIO = response.data['fio']
+        // console.log(self.signerFIO)
+        // self.value_qr = response.data.value_qr
+        // console.log(self.value_qr)
+    })
 }
