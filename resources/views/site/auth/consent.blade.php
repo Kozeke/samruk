@@ -15,7 +15,6 @@
 
 <form class="form-auth form-panel" action="{{ route('consent.data') }}" method="post">
     {!! csrf_field() !!}
-    <input type="text" hidden id="cmsConsent" value="">
     <div style="text-align: center">
         <h2>Чтобы использовать личный кабинет вам нужно согласиться на сбор и обработку данных</h2>
         <br>
@@ -24,6 +23,7 @@
     @include('site.auth.form-signature')
 
     <div class="form-group">
+        <input type="text" hidden id="cmsConsent" value="">
 
         <div>
             <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
