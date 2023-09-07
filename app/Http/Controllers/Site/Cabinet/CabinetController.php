@@ -1923,6 +1923,8 @@ HTML;
     function signDocument(
         Request $request
     ) {
+        return response()->json(['error'=> "error"], 403);
+
         KalkanCrypt_Init();
         $flag_proxy = self::KC_PROXY_AUTH;
         $inProxyAddr = "192.168.39.241";
