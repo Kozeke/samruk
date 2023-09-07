@@ -39,10 +39,10 @@
                             <a class="{{ Route::is('auth.index') ? 'is-active' : ''}}"
                                href="{{ route('auth.index') }}">{{ __('translations.loginWithPassword') }}</a>
                         </li>
-                        <li>
-                            <a class="{{ Route::is('sms.*') ? 'is-active' : ''}}"
-                               href="{{ route('sms.auth') }}">{{ __('translations.loginWithSMS') }}</a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a class="{{ Route::is('sms.*') ? 'is-active' : ''}}"--}}
+{{--                               href="{{ route('sms.auth') }}">{{ __('translations.loginWithSMS') }}</a>--}}
+{{--                        </li>--}}
                         <li>
                             <a class="{{ Route::is('registrations.*') ? 'is-active' : ''}}"
                                href="{{ route('registrations.index') }}">{{ __('translations.registration') }}</a>
