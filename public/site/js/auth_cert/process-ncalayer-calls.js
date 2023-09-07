@@ -163,32 +163,23 @@ async function signConsentToDataCollection(res) {
         }
     }).then((response) => {
         console.log("success", response);
-        var dateNotAfterString = response.data['certificate_valid_from'];
+        var dateNotAfterString = response.data.certificate_valid_from;
         var dateNotAfter = new Date(Number(dateNotAfterString));
         var notAfter = dateNotAfter.toLocaleString();
         // $("#notafter").val(date.toLocaleString());
 
-        var dateNotBeforeString = res['certNotBefore'];
+        var dateNotBeforeString = response.data.certificate_valid_to;
         var dateNotBefore = new Date(Number(dateNotBeforeString));
         var notBefore = dateNotBefore.toLocaleString();
         // $("#notbefore").val(date.toLocaleString());
         $('#cert_date').val(notBefore + ' - ' + notAfter);
 
-        var subjectDnIIN = subjectDn.indexOf('IIN');
-
-        if (subjectDnIIN !== -1) {
-            subjectDnIIN = subjectDn.substr(subjectDnIIN + 3, 12);
-        } else {
-            subjectDnIIN = 'Не удалось получить ИИН';
-        }
-
-        $("#subjectIIN").val(subjectDnIIN);
-        var subjectCn = res['subjectCn'];
-        $("#subjectName").val(subjectCn);
-        self.signed = true;
-        self.signerFIO = response.data['fio']
-        console.log(self.signerFIO)
-        self.value_qr = response.data.value_qr
-        console.log(self.value_qr)
+        $("#subjectIIN").val(response.data.iin);
+        $("#subjectName").val(response.data.fio);
+        // self.signed = true;
+        // self.signerFIO = response.data['fio']
+        // console.log(self.signerFIO)
+        // self.value_qr = response.data.value_qr
+        // console.log(self.value_qr)
     })
 }

@@ -2001,7 +2001,7 @@ HTML;
                 return response()->json(['error'=> KalkanCrypt_GetLastErrorString()], 403);
             }
         } else {
-            $this->IINCertificateOwner = str_replace("IINserialNumber=", "", $outData);
+            $this->IINCertificateOwner = str_replace("serialNumber=IIN", "", $outData);
         }
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTBEFORE, $outCert, $outData);
         if ($err > 0) {
