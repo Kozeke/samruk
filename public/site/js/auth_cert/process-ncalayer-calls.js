@@ -172,7 +172,7 @@ async function signConsentToDataCollection(res) {
         var dateNotBefore = new Date(Number(dateNotBeforeString));
         var notBefore = dateNotBefore.toLocaleString();
         // $("#notbefore").val(date.toLocaleString());
-        $('#cert_date').val(notBefore + ' - ' + notAfter);
+        $('#cert_date').val(dateNotBeforeString + ' - ' + dateNotAfterString);
 
         $("#subjectIIN").val(response.data.iin);
         $("#subjectName").val(response.data.fio);
