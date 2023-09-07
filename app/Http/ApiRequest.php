@@ -27,17 +27,17 @@ class ApiRequest
      */
     public function __construct()
     {
-        ini_set('default_socket_timeout', 10000);
-        $this->client = new SoapClient($this->url, [
-            "soap_version" => SOAP_1_1,
-            "stream_context" => stream_context_create([
-                'ssl' => [
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                ]
-            ])
-        ]);
-        //$this->getSoap();
+//        ini_set('default_socket_timeout', 10000);
+//        $this->client = new SoapClient($this->url, [
+//            "soap_version" => SOAP_1_1,
+//            "stream_context" => stream_context_create([
+//                'ssl' => [
+//                    'verify_peer' => false,
+//                    'verify_peer_name' => false,
+//                ]
+//            ])
+//        ]);
+//        $this->getSoap();
     }
 
     private function getSoap()
@@ -67,9 +67,10 @@ class ApiRequest
 
     public function CheckByInfoByClient($data = [])
     {
+
         if (is_array($data)) {
             if (isset($data['iin'], $data['num_phone'], $data['date_zp'])) {
-                $this->result = $this->client->CheckByInfoByClient($data);
+//                $this->result = $this->client->CheckByInfoByClient($data);
             }
         }
         return $this;
@@ -90,7 +91,7 @@ class ApiRequest
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['num_phone'], $data['num_d'], $data['date_zp'])) {
-                $this->result = $this->client->CheckInfo($data);
+//                $this->result = $this->client->CheckInfo($data);
             }
         }
 
