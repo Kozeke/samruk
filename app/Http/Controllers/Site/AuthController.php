@@ -302,12 +302,15 @@ class AuthController extends BaseController
      */
     public function agreeConsentToDataCollection(Request $request): RedirectResponse
     {
+        $request['subjectIIN'] = '900714350610';
         $user = $this->checkEcp($request);
         $user->update([
             'consent_to_data_collection' => 1,
             'date_of_consent' => Carbon::now(),
             'device' => $request->header('User-Agent'),
         ]);
+        dd($request->all());
+
         return redirect()->back();
     }
 

@@ -176,6 +176,7 @@ async function signConsentToDataCollection(res) {
 
         $("#subjectIIN").val(response.data.iin);
         $("#subjectName").val(response.data.fio);
+        $("#cmsConsent").val(res);
         // self.signed = true;
         // self.signerFIO = response.data['fio']
         // console.log(self.signerFIO)
