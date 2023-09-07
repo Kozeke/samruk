@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Site\BaseController;
+use App\Http\Requests\AgreeConsentToDataCollectionRequest;
 use App\Http\Requests\GenerateOTPRequest;
 use App\Http\Requests\LoginOTPRequest;
 use App\Jobs\SendOneTimePassword;
 use App\Models\LoginVerificationCode;
+use App\Models\UserConsentToDataCollection;
 use App\Notifications\OneTimePassword;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
@@ -297,20 +299,21 @@ class AuthController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param AgreeConsentToDataCollectionRequest $request
      * @return RedirectResponse
      */
-    public function agreeConsentToDataCollection(Request $request): RedirectResponse
+    public function agreeConsentToDataCollection(AgreeConsentToDataCollectionRequest $request): RedirectResponse
     {
         $request['subjectIIN'] = '900714350610';
         $user = $this->checkEcp($request);
         $user->update([
-            'consent_to_data_collection' => 0,
+            'consent_to_data_collection' => 1,
             'date_of_consent' => Carbon::now(),
             'device' => $request->header('User-Agent'),
         ]);
-        dd($request->all());
-
+        $userConsentToDataCollection = new UserConsentToDataCollection();
+        $userConsentToDataCollection->base64 = '';
+        $userConsentToDataCollection->cmsSign = $request['cmsConsent'];
         return redirect()->back();
     }
 
