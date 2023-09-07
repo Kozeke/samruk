@@ -1772,7 +1772,7 @@ HTML;
 HTML;
         $html .= "<p style='text-align: right;'>{$today_date}</p>";
         if ($request['signed']) {
-            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+            $this->verifyData($request['signature_cms'], $request['document_base64']);
             $html .= "<div style='right:0px;position:absolute;'>";
             $html .= DNS2D::getBarcodeHTML("barcode", 'QRCODE', 5, 5);
             $html .= " <p style='font-size: 10px'>Осы құжат \"Электрондық құжат және электрондық цифрлық қолтаңба туралы\" Қазақстан Республикасының 2003 жылғы 7
@@ -1797,8 +1797,8 @@ HTML;
             Auth::user()->id,
             $fullPathToTempPDF,
             $template_title,
-            $request['cms_pdf'],
-            $request['base_pdf']
+            $request['signature_cms'],
+            $request['document_base64']
         );
     }
 
@@ -1815,8 +1815,8 @@ HTML;
             'link' => $fullPathToTempPDF,
             'status' => AppealHistory::STATUS_SENT,
             'title' => $template_title,
-            'cms_pdf' => $cmsPdf,
-            'base_pdf' => $basePdf,
+            'signature_cms' => $cmsPdf,
+            'document_base64' => $basePdf,
         ]);
     }
 
@@ -1938,7 +1938,7 @@ HTML;
             return response()->json(['error'=> KalkanCrypt_GetLastErrorString()], 403);
         } else {
             //проверить подпись
-            $this->verifyData($request['cms_pdf'], $request['base_pdf']);
+            $this->verifyData($request['signature_cms'], $request['document_base64']);
         }
         return response()->json(
             [
@@ -1961,7 +1961,6 @@ HTML;
         $outVerifyInfo = "";
         $outCert = "";
         $err = KalkanCrypt_VerifyData($alias, $flags_sign, $inData, 0, $outSign, $outData, $outVerifyInfo, $outCert);
-        dd($outSign.'\n', $inData) ;
         if ($err > 0) {
             return response()->json(['error'=> KalkanCrypt_GetLastErrorString()], 403);
         } else {
