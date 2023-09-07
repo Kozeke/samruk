@@ -89,10 +89,20 @@
             <div class="col-12 col-xl-12">
                 <div class="form-group">
                     <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline" name="consent_to_data_collection" value="1" >
-                    <label>Согласие на сбор и обработку данных</label>
+                    <label>Согласие на сбор и обработку персональных данных </label>
+                </div>
+                <div class="form-group">
+                    <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline" name="consent_to_data_collection" value="1" >
+                    <label>Политика конфиденциальности </label>
+                </div>
+                <div class="form-group">
+                    <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline" name="consent_to_data_collection" value="1" >
+                    <label>Пользавательское соглашение </label>
                     <a class="btn btn--size-sm"  id="btnConsentToDataCollection">Подписать</a>
                     @include('site.cabinet.snippets.consent-to-data-collection')
-
+                </div>
+                <div class="form-group">
+                    <p style="font-size: 10px; text-align: center">Нажимая кнопку "Зарегистрироваться", Вы автоматически соглашаетесь с политикой конфиденциальности и даете свое согласие на обработку персональных данных».</p>
                 </div>
                 <div class="form-auth__actions">
                     <a
