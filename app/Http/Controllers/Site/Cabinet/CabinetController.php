@@ -45,6 +45,9 @@ class CabinetController extends BaseController
     const KC_CERTPROP_SUBJECT_COMMONNAME = 0x80a;
     const KC_CERTPROP_SUBJECT_GIVENNAME = 0x80b;
     const KC_CERTPROP_SUBJECT_SURNAME = 0x80c;
+    const KC_CERTPROP_SUBJECT_SERIALNUMBER = 0x80d;
+    const KC_CERTPROP_NOTAFTER = 0x00000814;
+    const KC_CERTPROP_NOTBEFORE = 0x00000813;
 
     protected $section = [
         'name' => '',
@@ -81,6 +84,18 @@ class CabinetController extends BaseController
      * @var string
      */
     private $feedbackText;
+    /**
+     * @var array|string|string[]
+     */
+    private $IINCertificateOwner;
+    /**
+     * @var array|string|string[]
+     */
+    private $ValidFromCertificateOwner;
+    /**
+     * @var array|string|string[]
+     */
+    private $ValidToCertificateOwner;
 
     public function __construct(Request $request, ApiRequest $api)
     {
@@ -1852,7 +1867,6 @@ HTML;
         Request $request,
         $num_d
     ) {
-
         $validator = Validator::make($request->input(), [
             'type_doc' => 'required',
             'text_doc' => 'required'
@@ -1927,7 +1941,14 @@ HTML;
             //проверить подпись
             $this->verifyData($request['cms_pdf'], $request['base_pdf']);
         }
-        return response()->json(["fio" => $this->FIOCertificateOwner]);
+        return response()->json(
+            [
+                "fio" => $this->FIOCertificateOwner,
+                "iin" => $this->IINCertificateOwner,
+                'certificate_valid_from' => $this->ValidFromCertificateOwner,
+                'certificate_valid_to' => $this->ValidToCertificateOwner
+            ]
+        );
     }
 
     private
@@ -1978,7 +1999,30 @@ HTML;
         } else {
             $this->FIOCertificateOwner = str_replace("CN=", "", $outData);
         }
-
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_SERIALNUMBER, $outCert, $outData);
+        if ($err > 0) {
+            if ($err != 149946424) {
+                echo "Error: " . $err . "\n";
+            }
+        } else {
+            $this->IINCertificateOwner = str_replace("IIN", "", $outData);
+        }
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTBEFORE, $outCert, $outData);
+        if ($err > 0) {
+            if ($err != 149946424) {
+                echo "Error: " . $err . "\n";
+            }
+        } else {
+            $this->ValidFromCertificateOwner = str_replace("ALMT", "", $outData);
+        }
+        $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTAFTER, $outCert, $outData);
+        if ($err > 0) {
+            if ($err != 149946424) {
+                echo "Error: " . $err . "\n";
+            }
+        } else {
+            $this->ValidToCertificateOwner = str_replace("ALMT", "", $outData);
+        }
     }
 
     private

@@ -79,8 +79,7 @@ class RegistrationsController extends BaseController
      */
     public function register(Request $request): RedirectResponse
     {
-        dd($request->all());
-        $api = new ApiRequest();
+            $api = new ApiRequest();
         $info = $api->CheckByPhone([
 //            "iin" => $request->input('subjectIIN'),
             "iin" => '900714350610',
