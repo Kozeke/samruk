@@ -1,5 +1,5 @@
 <div class="form-auth__signature">
-    <div class="form-auth__signature-left">
+    <div class="form-auth__signature-left" id="signDoc">
         <input type="hidden" name="PKCS12" value="PKCS12" id="storageSelect">
         <a class="form-auth__signature-choose" href="javascript:;" onclick="createCAdESFromBase64CallForConsent();">
             {!! icon('icon--key') !!}

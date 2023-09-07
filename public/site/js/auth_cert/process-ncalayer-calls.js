@@ -151,7 +151,7 @@ async function createCAdESFromBase64BackForConsent(result) {
 }
 
 async function signConsentToDataCollection(res) {
-    calc.signDocument()
+    await signDoc.signDocument()
 
     // var str = "Я ФИО соглашаюсь со сбором информации";
     // var base64ToSign = btoa(unescape(encodeURIComponent(str)));
