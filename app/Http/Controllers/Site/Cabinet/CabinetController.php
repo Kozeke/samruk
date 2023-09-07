@@ -2014,7 +2014,7 @@ HTML;
             }
         } else {
             $search = [" ALMT", "notBefore="];
-            $this->ValidFromCertificateOwner = str_replace($replace, "", $outData);
+            $this->ValidFromCertificateOwner = str_replace($search, "", $outData);
         }
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTAFTER, $outCert, $outData);
         if ($err > 0) {
@@ -2023,7 +2023,7 @@ HTML;
             }
         } else {
             $search = [" ALMT", "notAfter="];
-            $this->ValidToCertificateOwner = str_replace($replace, "", $outData);
+            $this->ValidToCertificateOwner = str_replace($search, "", $outData);
         }
     }
 
