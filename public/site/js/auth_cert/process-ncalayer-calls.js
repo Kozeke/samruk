@@ -152,6 +152,7 @@ async function createCAdESFromBase64BackForConsent(result) {
 
 async function signConsentToDataCollection(res) {
     var str = "Я ФИО соглашаюсь со сбором информации";
+    // calc.signDocument()
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
     await axios({
         url: '/sign-document',
@@ -163,28 +164,28 @@ async function signConsentToDataCollection(res) {
         }
     }).then((response) => {
         console.log("success", response);
-        var dateNotAfterString = response.data['certificate_valid_from'];
-        var dateNotAfter = new Date(Number(dateNotAfterString));
-        var notAfter = dateNotAfter.toLocaleString();
-        // $("#notafter").val(date.toLocaleString());
-
-        var dateNotBeforeString = res['certNotBefore'];
-        var dateNotBefore = new Date(Number(dateNotBeforeString));
-        var notBefore = dateNotBefore.toLocaleString();
-        // $("#notbefore").val(date.toLocaleString());
-        $('#cert_date').val(notBefore + ' - ' + notAfter);
-
-        var subjectDnIIN = subjectDn.indexOf('IIN');
-
-        if (subjectDnIIN !== -1) {
-            subjectDnIIN = subjectDn.substr(subjectDnIIN + 3, 12);
-        } else {
-            subjectDnIIN = 'Не удалось получить ИИН';
-        }
-
-        $("#subjectIIN").val(subjectDnIIN);
-        var subjectCn = res['subjectCn'];
-        $("#subjectName").val(subjectCn);
+        // var dateNotAfterString = response.data['certificate_valid_from'];
+        // var dateNotAfter = new Date(Number(dateNotAfterString));
+        // var notAfter = dateNotAfter.toLocaleString();
+        // // $("#notafter").val(date.toLocaleString());
+        //
+        // var dateNotBeforeString = res['certNotBefore'];
+        // var dateNotBefore = new Date(Number(dateNotBeforeString));
+        // var notBefore = dateNotBefore.toLocaleString();
+        // // $("#notbefore").val(date.toLocaleString());
+        // $('#cert_date').val(notBefore + ' - ' + notAfter);
+        //
+        // var subjectDnIIN = subjectDn.indexOf('IIN');
+        //
+        // if (subjectDnIIN !== -1) {
+        //     subjectDnIIN = subjectDn.substr(subjectDnIIN + 3, 12);
+        // } else {
+        //     subjectDnIIN = 'Не удалось получить ИИН';
+        // }
+        //
+        // $("#subjectIIN").val(subjectDnIIN);
+        // var subjectCn = res['subjectCn'];
+        // $("#subjectName").val(subjectCn);
         // self.signed = true;
         // self.signerFIO = response.data['fio']
         // console.log(self.signerFIO)
