@@ -4,6 +4,10 @@
     <script type="text/javascript" src="/site/js/auth_cert/jquery.blockUI.js"></script>
     <script type="text/javascript" src="/site/js/auth_cert/ncalayer.js"></script>
     <script type="text/javascript" src="/site/js/auth_cert/process-ncalayer-calls.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="/site/js/signDoc.js" defer></script>
 @endpush
 
 @section('form')
@@ -17,115 +21,119 @@
             </ul>
         </div>
     @endif
+    <div id="signDoc">
+        <form class="form-auth form-panel" action="{{ route('registrations.register') }}" method="post">
+            {!! csrf_field() !!}
 
-    <form class="form-auth form-panel" action="{{ route('registrations.register') }}" method="post">
-        {!! csrf_field() !!}
+            @include('site.auth.form-signature')
 
-        @include('site.auth.form-signature')
+            <hr class="form-auth__separator">
 
-        <hr class="form-auth__separator">
+            <div class="row row--sm">
+                <div class="col-12 col-xl-4">
+                    <div class="form-group">
+                        <label class="form-group__label">Номер телефона</label>
 
-        <div class="row row--sm">
-            <div class="col-12 col-xl-4">
-                <div class="form-group">
-                    <label class="form-group__label">Номер телефона</label>
+                        <div class="form-group__input">
+                            <input class="input" type="text" name="mobile" value="" data-input-phone>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="form-group__input">
-                        <input class="input" type="text" name="mobile" value="" data-input-phone>
+                <div class="col-12 col-xl-4">
+                    <div class="form-group">
+                        <label class="form-group__label">E-mail</label>
+
+                        <div class="form-group__input">
+                            <input class="input" type="email" name="email">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                    <div class="form-group">
+                        <label class="form-group__label">Пароль</label>
+
+                        <div class="form-group__input">
+                            <input class="input" type="password" name="password" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                    <div class="form-group">
+                        <label class="form-group__label">Адрес проживания</label>
+
+                        <div class="form-group__input">
+                            <input class="input" type="text" name="address">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                    <div class="form-group">
+                        <label class="form-group__label">Рабочий телефон</label>
+
+                        <div class="form-group__input">
+                            <input class="input" type="text" name="work_phone" data-input-phone>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                    <div class="form-group">
+                        <label class="form-group__label">Домашний телефон</label>
+
+                        <div class="form-group__input">
+                            <input class="input" type="text" name="home_phone" data-input-phone>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-12">
+                    <div class="form-group">
+                        <div>
+                            <input required class="input" type="checkbox"
+                                   style="width: 3%; height: 15px; display: inline"
+                                   name="consent_to_data_collection" value="1">
+                            <label>Согласие на сбор и обработку персональных данных </label>
+                        </div>
+                        <div>
+                            <input required class="input" type="checkbox"
+                                   style="width: 3%; height: 15px; display: inline"
+                                   name="consent_to_data_collection" value="1">
+                            <label>Политика конфиденциальности </label>
+                        </div>
+                        <div><input required class="input" type="checkbox"
+                                    style="width: 3%; height: 15px; display: inline"
+                                    name="consent_to_data_collection" value="1">
+                            <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Пользовательское соглашение</span>
+                            {{--                        <span style="cursor:pointer;color:blue" id="btnConsentToDataCollection">Подробнее</span>--}}
+                            @include('site.cabinet.snippets.consent-to-data-collection')
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p style="font-size: 10px; text-align: center">Нажимая кнопку "Зарегистрироваться", Вы
+                            автоматически
+                            соглашаетесь с политикой конфиденциальности и даете свое согласие на обработку персональных
+                            данных.</p>
+                    </div>
+                    <div class="form-auth__actions">
+                        <a
+                            class="btn btn--outline-secondary"
+                            href="{{ route('registrations.restore') }}"
+                        >Забыли пароль?</a>
+
+                        <button class="btn btn--secondary" type="submit">Зарегистрироваться</button>
                     </div>
                 </div>
             </div>
+        </form>
 
-            <div class="col-12 col-xl-4">
-                <div class="form-group">
-                    <label class="form-group__label">E-mail</label>
-
-                    <div class="form-group__input">
-                        <input class="input" type="email" name="email">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-xl-4">
-                <div class="form-group">
-                    <label class="form-group__label">Пароль</label>
-
-                    <div class="form-group__input">
-                        <input class="input" type="password" name="password" value="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-xl-4">
-                <div class="form-group">
-                    <label class="form-group__label">Адрес проживания</label>
-
-                    <div class="form-group__input">
-                        <input class="input" type="text" name="address">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-xl-4">
-                <div class="form-group">
-                    <label class="form-group__label">Рабочий телефон</label>
-
-                    <div class="form-group__input">
-                        <input class="input" type="text" name="work_phone" data-input-phone>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-xl-4">
-                <div class="form-group">
-                    <label class="form-group__label">Домашний телефон</label>
-
-                    <div class="form-group__input">
-                        <input class="input" type="text" name="home_phone" data-input-phone>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-xl-12">
-                <div class="form-group">
-                    <div>
-                        <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
-                               name="consent_to_data_collection" value="1">
-                        <label>Согласие на сбор и обработку персональных данных </label>
-                    </div>
-                    <div>
-                        <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
-                               name="consent_to_data_collection" value="1">
-                        <label>Политика конфиденциальности </label>
-                    </div>
-                    <div><input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
-                                name="consent_to_data_collection" value="1">
-                        <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Пользовательское соглашение</span>
-{{--                        <span style="cursor:pointer;color:blue" id="btnConsentToDataCollection">Подробнее</span>--}}
-                        @include('site.cabinet.snippets.consent-to-data-collection')
-                    </div>
-                </div>
-                <div class="form-group">
-                    <p style="font-size: 10px; text-align: center">Нажимая кнопку "Зарегистрироваться", Вы автоматически
-                        соглашаетесь с политикой конфиденциальности и даете свое согласие на обработку персональных
-                        данных.</p>
-                </div>
-                <div class="form-auth__actions">
-                    <a
-                        class="btn btn--outline-secondary"
-                        href="{{ route('registrations.restore') }}"
-                    >Забыли пароль?</a>
-
-                    <button class="btn btn--secondary" type="submit">Зарегистрироваться</button>
-                </div>
-            </div>
+        <div class="formatted">
+            <ul>
+                <li>Для арендаторов действующих договоров</li>
+            </ul>
         </div>
-    </form>
-
-    <div class="formatted">
-        <ul>
-            <li>Для арендаторов действующих договоров</li>
-        </ul>
     </div>
-
 @endsection

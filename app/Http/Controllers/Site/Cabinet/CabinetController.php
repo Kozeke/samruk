@@ -2005,7 +2005,7 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            $this->IINCertificateOwner = str_replace("serialNumber=", "", $outData);
+            $this->IINCertificateOwner = str_replace("IINserialNumber=", "", $outData);
         }
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTBEFORE, $outCert, $outData);
         if ($err > 0) {

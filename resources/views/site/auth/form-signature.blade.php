@@ -1,7 +1,7 @@
 <div class="form-auth__signature">
-    <div class="form-auth__signature-left" id="signDoc">
+    <div class="form-auth__signature-left" >
         <input type="hidden" name="PKCS12" value="PKCS12" id="storageSelect">
-        <a class="form-auth__signature-choose" href="javascript:;" onclick="createCAdESFromBase64CallForConsent();">
+        <a class="form-auth__signature-choose" href="javascript:;" v-on:click="signDocument()">
             {!! icon('icon--key') !!}
             <span>Выбрать ЭЦП</span>
         </a>
