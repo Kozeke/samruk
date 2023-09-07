@@ -24,14 +24,14 @@ class AgreeConsentToDataCollectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'cms_pdf' => 'required',
+            'cmsConsent' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'cms_pdf.required' => 'Вы не подписали обращение',
+            'cmsConsent.required' => 'Вы не подписали обращение',
         ];
     }
 }
