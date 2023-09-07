@@ -2005,7 +2005,7 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            $this->IINCertificateOwner = str_replace("IIN", "", $outData);
+            $this->IINCertificateOwner = str_replace("serialNumber=", "", $outData);
         }
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTBEFORE, $outCert, $outData);
         if ($err > 0) {
@@ -2013,7 +2013,8 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            $this->ValidFromCertificateOwner = str_replace("ALMT", "", $outData);
+            $search = [" ALMT", "notBefore="];
+            $this->ValidFromCertificateOwner = str_replace($replace, "", $outData);
         }
         $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTAFTER, $outCert, $outData);
         if ($err > 0) {
@@ -2021,7 +2022,8 @@ HTML;
                 echo "Error: " . $err . "\n";
             }
         } else {
-            $this->ValidToCertificateOwner = str_replace("ALMT", "", $outData);
+            $search = [" ALMT", "notAfter="];
+            $this->ValidToCertificateOwner = str_replace($replace, "", $outData);
         }
     }
 
