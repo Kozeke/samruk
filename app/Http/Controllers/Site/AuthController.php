@@ -305,7 +305,7 @@ class AuthController extends BaseController
         $request['subjectIIN'] = '900714350610';
         $user = $this->checkEcp($request);
         $user->update([
-            'consent_to_data_collection' => 1,
+            'consent_to_data_collection' => 0,
             'date_of_consent' => Carbon::now(),
             'device' => $request->header('User-Agent'),
         ]);
