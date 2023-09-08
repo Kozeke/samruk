@@ -1801,8 +1801,7 @@ HTML;
         if ($request['signed']) {
 //            $this->verifyData($request['signature_cms'], $request['document_base64']);
             $html .= "<div style='right:0px;'>";
-//            $html .= DNS2D::getBarcodeHTML($this->getCertificateOwnerInfo(), 'QRCODE', 5, 5)."</div>";
-            $html .= DNS2D::getBarcodeHTML("Asd", 'QRCODE', 5, 5)."</div>";
+            $html .= DNS2D::getBarcodeHTML($this->getCertificateOwnerInfo(), 'QRCODE', 5, 5)."</div>";
             $html .= " <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
             $html .= "</div></div>";
