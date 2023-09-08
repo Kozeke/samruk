@@ -25,7 +25,7 @@ class AgreeConsentToDataCollectionRequest extends FormRequest
     {
         return [
             'cmsConsent' => 'required',
-            'subjectIIN' => 'required|exists:users,iin',
+//            'subjectIIN' => 'required|exists:users,iin',
             'subjectName' => 'required',
             'cert_date' => 'required',
         ];
@@ -37,7 +37,7 @@ class AgreeConsentToDataCollectionRequest extends FormRequest
             'cmsConsent.required' => 'Вы не подписали обращение',
             'subjectIIN.required' => 'Поле ИИН обязательно',
             'subjectName.required' => 'Поле ФИО обязательно',
-//            'subjectIIN.exists' => 'Такого ИИН нету в нашей базе',
+            'subjectIIN.exists' => 'Такого ИИН нету в нашей базе',
             'cert_date.required' => 'Поле Срок дейсвия обязательно',
         ];
     }
