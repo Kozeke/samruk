@@ -32,7 +32,7 @@ class GenerateOTPRequest extends FormRequest
     {
         return [
             'mobile.required' => 'Введите Mobile phone для авторизации',
-            'mobile.exists' => 'Такого номера нет',
+            'mobile.exists' => 'Такого номера нету в нашей базе',
         ];
     }
 }

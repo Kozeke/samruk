@@ -6,7 +6,15 @@
 @endpush
 
 {{--@section('form')--}}
-
+@if ($errors->any())
+    <div class="alert alert--danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @if (session('error'))
     <div class="alert alert--danger">
         {{ session('error') }}
@@ -23,7 +31,7 @@
     @include('site.auth.form-signature')
 
     <div class="form-group">
-        <input type="text" name="cmsConsent" hidden id="cmsConsent" value="">
+        <input type="text" name="cmsConsent" hidden  value="">
 
         <div>
             <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
