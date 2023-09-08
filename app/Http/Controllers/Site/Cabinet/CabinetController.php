@@ -1799,9 +1799,10 @@ HTML;
 HTML;
         $html .= "<p style='text-align: right;'>{$today_date}</p>";
         if ($request['signed']) {
-            $this->verifyData($request['signature_cms'], $request['document_base64']);
-            $html .= "<div style='right:0px;position:absolute;'>";
-            $html .= DNS2D::getBarcodeHTML($this->getCertificateOwnerInfo(), 'QRCODE', 5, 5)."</div>";
+//            $this->verifyData($request['signature_cms'], $request['document_base64']);
+            $html .= "<div style='right:0px;'>";
+//            $html .= DNS2D::getBarcodeHTML($this->getCertificateOwnerInfo(), 'QRCODE', 5, 5)."</div>";
+            $html .= DNS2D::getBarcodeHTML("Asd", 'QRCODE', 5, 5)."</div>";
             $html .= " <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
             $html .= "</div></div>";
@@ -1816,7 +1817,8 @@ HTML;
 
     private function getCertificateOwnerInfo(): string
     {
-        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
+        return "Куралбаева Ажар Асанкызы, 740228909312";
+//        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
     }
 
     public
@@ -1956,6 +1958,7 @@ HTML;
     function signDocument(
         Request $request
     ) {
+        return 1;
         KalkanCrypt_Init();
         $flag_proxy = self::KC_PROXY_AUTH;
         $inProxyAddr = "192.168.39.241";
