@@ -314,6 +314,7 @@ class AuthController extends BaseController
         $userConsentToDataCollection = new UserConsentToDataCollection();
         $userConsentToDataCollection->base64 = '';
         $userConsentToDataCollection->cmsSign = $request['cmsConsent'];
+        $userConsentToDataCollection->user_id = Auth::user()->id;
         $userConsentToDataCollection->save();
         return redirect()->back();
     }
