@@ -52,8 +52,8 @@ var calc = new Vue({
                     appeal_title: self.appeal_title,
                     appeal_text: self.appeal_text,
                     signed: self.signed,
-                    base_pdf: self.base_pdf,
-                    cms_pdf: self.cms_pdf,
+                    document_base64: self.base_pdf,
+                    signature_cms: self.cms_pdf,
                 }
             }).then((response) => {
 
@@ -120,8 +120,8 @@ var calc = new Vue({
                     attachment_one: self.attachment_one,
                     attachment_two: self.attachment_two,
                     signed: self.signed,
-                    base_pdf: self.base_pdf,
-                    cms_pdf: self.cms_pdf,
+                    document_base64: self.base_pdf,
+                    signature_cms: self.cms_pdf,
                 }
             }).then((response) => {
                 console.log("success", response)
