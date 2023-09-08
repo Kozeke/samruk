@@ -28,7 +28,7 @@
         <br>
         <br>
     </div>
-    @include('site.auth.form-signature')
+    @include('site.registrations.form-signature')
 
     <div class="form-group">
         <input type="text" name="cmsConsent" hidden id="cmsConsent" value="">
