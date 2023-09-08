@@ -1811,7 +1811,8 @@ HTML;
 
     private function getCertificateOwnerInfo(): string
     {
-        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
+        return "Куралбаева Ажар Асанкызы, 740228909312";
+//        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
     }
 
     public
