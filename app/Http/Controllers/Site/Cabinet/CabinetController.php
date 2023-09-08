@@ -1792,12 +1792,7 @@ HTML;
     private function getFooterHtml(Request $request): string
     {
         $today_date = Carbon::now()->format('d/m/Y');
-        $html = <<<HTML
-        <div style="font-size: 14px;">
-<!--        <p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>-->
-        <p><br></p>
-HTML;
-        $html .= "<p style='text-align: right;'>{$today_date}</p>";
+        $html = "<p style='text-align: right;'>{$today_date}</p>";
         if ($request['signed']) {
 //            $this->verifyData($request['signature_cms'], $request['document_base64']);
             $html .= "<div style='right:0px;'>";
@@ -1816,8 +1811,7 @@ HTML;
 
     private function getCertificateOwnerInfo(): string
     {
-        return "Куралбаева Ажар Асанкызы, 740228909312";
-//        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
+        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
     }
 
     public
