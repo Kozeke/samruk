@@ -6,8 +6,10 @@
             <h1 class="intro-page__title" data-aos="fade-right" data-aos-delay="200">
                 @if(isset($settingsPage)&&$settingsPage)
                     Сменить пароль
+                @elseif(isset($faqPage)&&$faqPage)
+                    Часто задаваемые вопросы
                 @else
-                {{ __('translations.personal_cabinet') }}
+                    {{ __('translations.personal_cabinet') }}
                 @endif
 
             </h1>

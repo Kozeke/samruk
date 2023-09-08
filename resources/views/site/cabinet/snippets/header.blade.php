@@ -29,7 +29,7 @@
         </li>
 
         <li class="profile__item">
-            <strong><a href="#" class="profile__label">Часто-задаваемые вопросы</a></strong>
+            <strong><a href="{{ route('cabinet.faq') }}" class="profile__label {{ Route::is('cabinet.faq') ? 'is-active' : ''}}">Часто-задаваемые вопросы</a></strong>
 
         </li>
         <li class="profile__item profile__item--exit">

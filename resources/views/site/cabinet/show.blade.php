@@ -11,10 +11,10 @@
 
                     <div class="notifications__item-info">
                         <div class="notifications__item-title">
-                            О долге по АП
+                            О долге по ГП
                         </div>
                         <div class="notifications__item-desc">
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП  в размере  - {{$mainInfo['data']['gar_plat_dolg']}} тг, просим Вас погасить в ближайшее время
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по ГП  в размере  - {{$mainInfo['data']['gar_plat_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
@@ -25,26 +25,11 @@
 
                     <div class="notifications__item-info">
                         <div class="notifications__item-title">
-                            О списании с гарантийного платежа
+                            О долге по АП
                         </div>
 
                         <div class="notifications__item-desc">
                             Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП  в размере  - {{$mainInfo['data']['plat_dolg']}} тг, просим Вас погасить в ближайшее время
-                        </div>
-                    </div>
-                </li>
-            @endif
-            @if ($mainInfo['data']['im_nalog_dolg']==0)
-                <li class="notifications__item">
-                    <div class="notifications__item-icon">{!! icon('icon--income') !!}</div>
-
-                    <div class="notifications__item-info">
-                        <div class="notifications__item-title">
-                            О списании с гарантийного платежа
-                        </div>
-
-                        <div class="notifications__item-desc">
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП  в размере  - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
@@ -55,49 +40,64 @@
 
                     <div class="notifications__item-info">
                         <div class="notifications__item-title">
-                            О списании с гарантийного платежа
+                            О долге по пени ГП
                         </div>
 
                         <div class="notifications__item-desc">
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП  в размере  - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по пени гарантийного платежа  - {{$mainInfo['data']['penya_gp_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
             @endif
-            @if ($mainInfo['data']['penya_ap_dolg']==0)
+            @if ($mainInfo['data']['penya_gp_dolg']==0)
                 <li class="notifications__item">
                     <div class="notifications__item-icon">{!! icon('icon--income') !!}</div>
 
                     <div class="notifications__item-info">
                         <div class="notifications__item-title">
-                            О списании с гарантийного платежа
+                            О долге по штрафам
+                        </div>
+
+                        <div class="notifications__item-desc">
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по штрафам в размере  - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
+                        </div>
+                    </div>
+                </li>
+            @endif
+            @if ($mainInfo['data']['im_nalog_dolg']==0)
+                <li class="notifications__item">
+                    <div class="notifications__item-icon">{!! icon('icon--income') !!}</div>
+
+                    <div class="notifications__item-info">
+                        <div class="notifications__item-title">
+                            О долге по возмещению имущественного налога
                         </div>
 
                         <div class="notifications__item-desc">
                             {{$mainInfo['data']['data_d']}}
                             {{\Carbon\Carbon::now()}}
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП  в размере  - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по возмещению имущественного налога  в размере  - {{$mainInfo['data']['im_nalog_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
             @endif
-        @if (!empty($spisanie_s_gp))
-            @foreach ($spisanie_s_gp as $spisanie)
-                <li class="notifications__item">
-                    <div class="notifications__item-icon">{!! icon('icon--income') !!}</div>
+{{--        @if (!empty($spisanie_s_gp))--}}
+{{--            @foreach ($spisanie_s_gp as $spisanie)--}}
+{{--                <li class="notifications__item">--}}
+{{--                    <div class="notifications__item-icon">{!! icon('icon--income') !!}</div>--}}
 
-                    <div class="notifications__item-info">
-                        <div class="notifications__item-title">
-                            О списании с гарантийного платежа
-                        </div>
+{{--                    <div class="notifications__item-info">--}}
+{{--                        <div class="notifications__item-title">--}}
+{{--                            О списании с гарантийного платежа--}}
+{{--                        </div>--}}
 
-                        <div class="notifications__item-desc">
-                            {{ $spisanie['date_sp'] }} списано {{ $spisanie['Summa'] }} тг.
-                        </div>
-                    </div>
-                </li>
-            @endforeach
-        @endif
+{{--                        <div class="notifications__item-desc">--}}
+{{--                            {{ $spisanie['date_sp'] }} списано {{ $spisanie['Summa'] }} тг.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
+{{--            @endforeach--}}
+{{--        @endif--}}
 
 {{--        @if (!empty($notifications['data']['All_News']))--}}
 {{--            @php--}}
@@ -147,9 +147,14 @@
                             </div>
 
                             <div class="notifications__item-desc">
-{{--                                <b>Номер страховки:</b> {{ $notifications['data']['num_str'] }} <br>--}}
-{{--                                <b>Дата начала страховки:</b> {{ $notifications['data']['date_n'] }} <br>--}}
-{{--                                <b>Дата окончания страховки:</b> {{ $notifications['data']['date_k'] }}--}}
+                                <b>Номер страховки:</b>
+{{--                                {{ $notifications['data']['num_str'] }} --}}
+                                <br>
+                                <b>Дата начала страховки:</b>
+{{--                                {{ $notifications['data']['date_n'] }} --}}
+                                <br>
+                                <b>Дата окончания страховки:</b>
+{{--                                {{ $notifications['data']['date_k'] }}--}}
                             </div>
                         </div>
                     </li>

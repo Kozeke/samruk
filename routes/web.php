@@ -104,6 +104,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::group(['namespace' => 'Cabinet'], function () {
             Route::get('cabinet/', 'CabinetController@index')->name('cabinet.index');
             Route::get('cabinet/settings', 'CabinetController@settings')->name('cabinet.settings');
+            Route::get('cabinet/faq', 'CabinetController@faq')->name('cabinet.faq');
             Route::post('cabinet/settings', 'CabinetController@save_pass')->name('cabinet.save_pass');
             Route::get('cabinet/{id}', 'CabinetController@show')->name('cabinet.show');
             Route::post('cabinet', 'CabinetController@saveRelevantProfileData')->name('cabinet.check-profile-relevance');

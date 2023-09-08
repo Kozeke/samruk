@@ -15,6 +15,7 @@ use Dompdf\Options;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Site\BaseController;
 use Auth;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 use Mail;
 use Illuminate\Support\Facades\Storage;
@@ -1207,6 +1208,33 @@ class CabinetController extends BaseController
 //            'id' => $num_d,
             'success' => false,
             'settingsPage' => true,
+        ]);
+    }
+
+    public function faq()
+    {
+        $data = $this->data;
+        if (isset($data)) {
+            $dogovor = $data['Num_d'];
+
+            if (!isset($dogovor[0]['number'])) {
+                $dogovor = [];
+                $dogovor[] = $data['Num_d'];
+            }
+        }
+
+//        $collect = collect($dogovor);
+//        $data = $collect->where('number', $num_d)->toArray();
+//        $data = array_values($data);
+
+        return view('site.cabinet.faq', [
+            'indexPage' => false,
+            'user' => $this->user,
+//            'data' => $data[0],
+//            'id' => $num_d,
+            'success' => false,
+            'faqPage' => true,
+            'records' => new Collection,
         ]);
     }
 

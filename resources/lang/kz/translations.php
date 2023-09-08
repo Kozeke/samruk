@@ -17,6 +17,7 @@ return [
     'poll_btn'          => 'Дауыс беру',
     'personal_cabinet'  => 'Жеке кабинет',
     'settings'          => 'Настройки',
+    'faq'               => 'Часто задаваемые вопросы',
     'visit_section'     => 'Бөлімге кіру',
     'visit_blog'        => 'Блогқа кіру',
     'last_news'         => 'Соңғы жаңалықтар',
