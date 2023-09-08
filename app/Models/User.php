@@ -1,6 +1,8 @@
 <?php namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\UserTrait;
@@ -14,6 +16,9 @@ class User extends Authenticatable
 {
     use Notifiable, UserTrait, ModelTrait;
 
+    /**
+     * @var string
+     */
     protected $modelName = __CLASS__;
 
     /**
@@ -25,6 +30,9 @@ class User extends Authenticatable
     //     'name', 'email', 'password', 'role_id', 'good', 'admin'
     // ];
 
+    /**
+     * @var array
+     */
     protected $guarded = [];
 
     /**
@@ -36,43 +44,68 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role ()
+    /**
+     * @return HasOne
+     */
+    public function role (): HasOne
     {
         return $this->hasOne('App\Models\Roles', 'id', 'role_id');
     }
 
-    public function area ()
+    /**
+     * @return HasOne
+     */
+    public function area (): HasOne
     {
         return $this->hasOne('App\Models\Areas', 'id', 'area_id');
     }
 
-    public function profile ()
+    /**
+     * @return HasOne
+     */
+    public function profile (): HasOne
     {
         return $this->hasOne('App\Models\Profile', 'user_id', 'id');
     }
 
     /* Список обращений конкретного пользователя */
-    public function treatments ()
+    /**
+     * @return HasMany
+     */
+    public function treatments (): HasMany
     {
       return $this->hasMany('App\Models\Virtual', 'user_id', 'id');
     }
 
     /* Список обращений модератора */
-    public function moderator_treatments ()
+    /**
+     * @return HasMany
+     */
+    public function moderator_treatments (): HasMany
     {
       return $this->hasMany('App\Models\Virtual', 'moderator_id', 'id');
     }
 
-    public function getFioAttribute()
+    /**
+     * @return string
+     */
+    public function getFioAttribute(): string
     {
         return $this->surname . ' ' . $this->name . ' ' .$this->patronymic;
     }
 
+    /**
+     * @param $pass
+     * @return void
+     */
     public function setPasswordAttribute($pass)
     {
         $this->attributes['password'] = \Hash::make($pass);
     }
 
+    /**
+     * @return array|string|string[]|null
+     */
     public function routeNotificationForSmscru()
     {
         $new_mob = str_replace('+7','8', $this->mobile);
@@ -81,17 +114,28 @@ class User extends Authenticatable
         return preg_replace($patterns, '', $new_mob);
     }
 
+    /**
+     * @return bool
+     */
     public static function profileCheckWasMadeBeforeTwoMonths(): bool
     {
-        if (auth()->user()->last_profile_check_at < auth()->user()->created_at) {
-            $user = User::find(auth()->user()->id);
-            $user->last_profile_check_at = $user->created_at;
-            $user->save();
-        }
+//        if (auth()->user()->last_profile_check_at < auth()->user()->created_at) {
+//            $user = User::find(auth()->user()->id);
+//            $user->last_profile_check_at = $user->created_at;
+//            $user->save();
+//        }
         if (auth()->user()->last_profile_check_at > Carbon::now()->subMonths(2)) {
             return false;
         } else {
             return true;
         }
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function userConsentToDataCollection (): HasMany
+    {
+        return $this->hasMany('App\Models\UserConsentToDataCollection', 'user_id', 'id');
     }
 }

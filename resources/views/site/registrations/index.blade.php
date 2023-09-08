@@ -21,7 +21,7 @@
     <form class="form-auth form-panel" action="{{ route('registrations.register') }}" method="post">
         {!! csrf_field() !!}
 
-        @include('site.auth.form-signature')
+        @include('site.registrations.form-signature')
 
         <hr class="form-auth__separator">
 
