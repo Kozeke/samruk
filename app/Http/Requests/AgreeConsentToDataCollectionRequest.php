@@ -37,7 +37,7 @@ class AgreeConsentToDataCollectionRequest extends FormRequest
             'cmsConsent.required' => 'Вы не подписали обращение',
             'subjectIIN.required' => 'Поле ИИН обязательно',
             'subjectName.required' => 'Поле ФИО обязательно',
-            'cmsConsent.exists' => 'Такого ИИН нету в нашей базе',
+//            'subjectIIN.exists' => 'Такого ИИН нету в нашей базе',
             'cert_date.required' => 'Поле Срок дейсвия обязательно',
         ];
     }
