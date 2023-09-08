@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="notifications__item-desc">
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП  в размере  - {{$mainInfo['data']['plat_dolg']}} тг, просим Вас погасить в ближайшее время
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по АП в размере  - {{$mainInfo['data']['plat_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
@@ -44,7 +44,22 @@
                         </div>
 
                         <div class="notifications__item-desc">
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по пени гарантийного платежа  - {{$mainInfo['data']['penya_gp_dolg']}} тг, просим Вас погасить в ближайшее время
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по пени ГП - {{$mainInfo['data']['penya_gp_dolg']}} тг, просим Вас погасить в ближайшее время
+                        </div>
+                    </div>
+                </li>
+            @endif
+            @if ($mainInfo['data']['penya_ap_dolg']==0)
+                <li class="notifications__item">
+                    <div class="notifications__item-icon">{!! icon('icon--income') !!}</div>
+
+                    <div class="notifications__item-info">
+                        <div class="notifications__item-title">
+                            О долге по пени АП
+                        </div>
+
+                        <div class="notifications__item-desc">
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по пени АП - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
@@ -59,7 +74,7 @@
                         </div>
 
                         <div class="notifications__item-desc">
-                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по штрафам в размере  - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
+                            Уважаемый {{$mainInfo['data']['FIO']}}, у вас имеется задолжность по штрафам в размере - {{$mainInfo['data']['penya_ap_dolg']}} тг, просим Вас погасить в ближайшее время
                         </div>
                     </div>
                 </li>
