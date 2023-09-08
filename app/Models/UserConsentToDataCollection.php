@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * @property mixed|string $base64
- * @property \Illuminate\Routing\Route|mixed|object|string $cmsSign
+ * @property string $cmsSign
+ * @property int $user_id
  */
 class UserConsentToDataCollection extends Model
 {

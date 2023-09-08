@@ -1469,7 +1469,6 @@ class CabinetController extends BaseController
         $data['date_d'] = Carbon::createFromDate($data['date_d'])->format('d/m/Y');
         unset($request['_token']);
 
-//        $values = $request->all();
         $options = new Options();
         $options->set('defaultFont', 'times_new_roman_cyr');
         $pdf = new Dompdf($options);
@@ -1774,7 +1773,7 @@ HTML;
         if ($request['signed']) {
             $this->verifyData($request['signature_cms'], $request['document_base64']);
             $html .= "<div style='right:0px;position:absolute;'>";
-            $html .= DNS2D::getBarcodeHTML("barcode", 'QRCODE', 5, 5);
+            $html .= DNS2D::getBarcodeHTML($this->getCertificateOwnerInfo(), 'QRCODE', 5, 5);
             $html .= " <p style='font-size: 10px'>Осы құжат \"Электрондық құжат және электрондық цифрлық қолтаңба туралы\" Қазақстан Республикасының 2003 жылғы 7
             қаңтардағы N 370-II Заңы 7 бабының 1 тармағына сәйкес қағаз тасығыштағы құжатпен бірдей.
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
@@ -1784,6 +1783,11 @@ HTML;
                 <p style='text-align: right;'>Код подпись от ЭЦП</p></div>";
         }
         return $html;
+    }
+
+    private function getCertificateOwnerInfo(): string
+    {
+        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}, {$this->ValidFromCertificateOwner}, {$this->ValidToCertificateOwner}";
     }
 
     public
