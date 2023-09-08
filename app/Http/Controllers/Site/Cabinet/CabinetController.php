@@ -1794,10 +1794,10 @@ HTML;
         $today_date = Carbon::now()->format('d/m/Y');
         $html = "<p style='text-align: right;'>{$today_date}</p>";
         if ($request['signed']) {
-//            $this->verifyData($request['signature_cms'], $request['document_base64']);
-            $html .= "<div style='right:0px;'>";
+            $this->verifyData($request['signature_cms'], $request['document_base64']);
+            $html .= "<div style='right:0px;position: absolute;'>";
             $html .= DNS2D::getBarcodeHTML($this->getCertificateOwnerInfo(), 'QRCODE', 5, 5)."</div>";
-            $html .= " <p style='font-size: 10px'>
+            $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
             $html .= "</div></div>";
 //            Осы құжат \"Электрондық құжат және электрондық цифрлық қолтаңба туралы\" Қазақстан Республикасының 2003 жылғы 7
@@ -1811,8 +1811,8 @@ HTML;
 
     private function getCertificateOwnerInfo(): string
     {
-        return "Куралбаева Ажар Асанкызы, 740228909312";
-//        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
+//        return "Куралбаева Ажар Асанкызы, 740228909312";
+        return "{$this->FIOCertificateOwner}, {$this->IINCertificateOwner}";
     }
 
     public
