@@ -10,14 +10,16 @@ var span = document.getElementsByClassName("close")[0];
 var spanConsentToDataCollection = document.getElementById("spanConsentToDataCollection");
 
 // When the user clicks on the button, open the modal
-btnConsentToDataCollection.onclick = function() {
-    if (modalConsentToDataCollection) {
-        modalConsentToDataCollection.style.display = "block";
-        modalConsentToDataCollection.scrollIntoView();
+if (modalConsentToDataCollection) {
+    btnConsentToDataCollection.onclick = function () {
+        if (modalConsentToDataCollection) {
+            modalConsentToDataCollection.style.display = "block";
+            modalConsentToDataCollection.scrollIntoView();
+        }
     }
 }
-
 if (modal) {
+    console.log("asd");
     modal.style.display = "block";
 }
 // When the user clicks on <span> (x), close the modal
