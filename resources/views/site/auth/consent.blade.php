@@ -31,7 +31,7 @@
     @include('site.auth.form-signature')
 
     <div class="form-group">
-        <input type="text" name="cmsConsent" hidden  value="">
+        <input type="text" name="cmsConsent" hidden id="cmsConsent" value="">
 
         <div>
             <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
