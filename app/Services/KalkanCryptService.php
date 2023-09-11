@@ -135,7 +135,6 @@
             if ($err > 0) {
                 return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
             } else {
-                print_r($outCert);
                 $this->getInfoFromCertificate($outCert);
             }
         }
