@@ -38,10 +38,10 @@
         /**
          * @param Request $request
          * @param array $data
-         * @param string|null $signerInfo
+         * @param string $signerInfo
          * @return BinaryFileResponse
          */
-        public function downloadPdf(Request $request, array $data, string $signerInfo = ''): BinaryFileResponse
+        public function downloadPdf(Request $request, array $data, string $signerInfo): BinaryFileResponse
         {
             $fileName = $this->createPdf($request, $data);
             $this->signerInfo = $signerInfo;

@@ -1460,7 +1460,6 @@
             if ($request['signed']) {
                 $signerInfo = $this->kalkanCryptService->verifySignature($request['signature_cms'], $request['document_base64']);
             }
-            dd($signerInfo);
             return $this->appealService->downloadPdf($request, $this->data, $signerInfo);
         }
 
