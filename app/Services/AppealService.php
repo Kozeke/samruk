@@ -43,9 +43,7 @@
          */
         public function downloadPdf(Request $request, array $data, string $signerInfo): BinaryFileResponse
         {
-            print_r($signerInfo);
             $this->signerInfo = $signerInfo;
-            print_r($this->signerInfo);
             $fileName = $this->createPdf($request, $data);
             $appealTemplateTitle = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
             )->title;
