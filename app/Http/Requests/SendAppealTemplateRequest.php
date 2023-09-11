@@ -24,14 +24,14 @@ class SendAppealTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            'cms_pdf' => 'required',
+            'signature_cms' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'cms_pdf.required' => 'Вы не подписали обращение',
+            'signature_cms.required' => 'Вы не подписали обращение',
         ];
     }
 }
