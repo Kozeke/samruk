@@ -11,6 +11,7 @@
     use App\Services\AppealService;
     use App\Services\KalkanCryptService;
     use Carbon\Carbon;
+    use Illuminate\Http\JsonResponse;
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use App\Http\Controllers\Site\BaseController;
@@ -1592,12 +1593,12 @@
 
         /**
          * @param Request $request
-         * @return void
+         * @return JsonResponse
          */
         public
         function signDocument(
             Request $request
-        ) {
-            $this->kalkanCryptService->signDocument($request);
+        ): JsonResponse {
+            return $this->kalkanCryptService->signDocument($request);
         }
     }

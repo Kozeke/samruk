@@ -107,7 +107,6 @@
                 return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
             } else {
                 $this->getCertificateFromCms($outSign);
-                dd($this->FIOCertificateOwner);
                 return $this->getCertificateOwnerInfo();
             }
         }
