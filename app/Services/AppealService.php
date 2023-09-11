@@ -455,13 +455,16 @@ HTML;
         /**
          * @param Request $request
          * @param array $data
+         * @param string $signerInfo
          * @return void
          */
         public
         function sendAppealAndAddToHistory(
             Request $request,
-            array $data
+            array $data,
+            string $signerInfo,
         ) {
+            $this->signerInfo = $signerInfo;
             $template_title = DB::table('appeal_templates')->where('code', $request['selected_code_id'])->first(
             )->title;
             $fileName = $this->createPdf($request, $data);

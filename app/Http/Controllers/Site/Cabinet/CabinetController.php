@@ -1471,7 +1471,11 @@
         function sendAppealTemplate(
             SendAppealTemplateRequest $request
         ) {
-            $this->appealService->sendAppealAndAddToHistory($request, $this->data);
+            $signerInfo = '';
+            if ($request['signed']) {
+                $signerInfo = $this->kalkanCryptService->verifySignature($request['signature_cms'], $request['document_base64']);
+            }
+            $this->appealService->sendAppealAndAddToHistory($request, $this->data, $signerInfo);
         }
 
 
