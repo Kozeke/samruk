@@ -125,7 +125,7 @@
 //            $user->last_profile_check_at = $user->created_at;
 //            $user->save();
 //        }
-            if (is_null(auth()->user()->last_profile_check_at) && auth()->user()->last_profile_check_at < Carbon::now(
+            if (is_null(auth()->user()->last_profile_check_at) || auth()->user()->last_profile_check_at < Carbon::now(
                 )->subMonths(2)) {
                 return true;
             } else {
