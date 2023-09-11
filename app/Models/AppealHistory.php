@@ -25,7 +25,7 @@ class AppealHistory extends Model
         'status',
         'reply',
         'user_id',
-        'cms_pdf',
-        'base_pdf'
+        'signature_cms',
+        'document_base64'
     ];
 }
