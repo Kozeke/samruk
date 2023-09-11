@@ -144,7 +144,7 @@
          * @param string $outCert
          * @return JsonResponse|void
          */
-        private function getInfoFromCertificate(string $outCert): JsonResponse
+        private function getInfoFromCertificate(string $outCert)
         {
             $outData = "";
             $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_COMMONNAME, $outCert, $outData);
