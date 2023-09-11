@@ -14,7 +14,7 @@ class AddColumnLastProfileCheckAtToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('last_profile_check_at');
+            $table->dateTime('last_profile_check_at')->nullable();
         });
     }
 

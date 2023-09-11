@@ -120,12 +120,8 @@
          */
         public static function profileCheckWasMadeBeforeTwoMonths(): bool
         {
-//        if (auth()->user()->last_profile_check_at < auth()->user()->created_at) {
-//            $user = User::find(auth()->user()->id);
-//            $user->last_profile_check_at = $user->created_at;
-//            $user->save();
-//        }
-            if (is_null(auth()->user()->check_up)) {
+            if (is_null(auth()->user()->last_profile_check_at) || auth()->user()->last_profile_check_at < Carbon::now(
+                )->subMonths(2)) {
                 return true;
             } else {
                 return false;
