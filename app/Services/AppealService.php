@@ -77,7 +77,7 @@
             $pdf = new Dompdf($options);
             $html = $this->getHeaderHtml($data);
             $html .= $this->getContentHtmlForCodeId($data, $request, $request['selected_code_id']);
-            $html .= $this->getFooterHtml($request);
+            $html .= $this->getFooterHtml($request, $data);
 
             $pdf->load_html($html, 'UTF-8');
             $pdf->render();
@@ -431,15 +431,17 @@ HTML;
 
         /**
          * @param Request $request
+         * @param array $data
          * @return string
          */
-        private function getFooterHtml(Request $request): string
+        private function getFooterHtml(Request $request, array $data): string
         {
             $today_date = Carbon::now()->format('d/m/Y');
             $html = "<p style='text-align: right;'>{$today_date}</p>";
             if ($request['signed']) {
                 $html .= "<div style='right:0px;position: absolute;'>";
-                $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
+                $html .= DNS2D::getBarcodeHTML($this->signerInfo?:"", 'QRCODE', 5, 5) . "</div>";
+                $html .= DNS2D::getBarcodeHTML($data['number'], 'QRCODE', 5, 5) . "</div>";
                 $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
                 $html .= "</div></div>";
@@ -481,10 +483,14 @@ HTML;
 
         private function createCmsFile($cms){
             $decodedCms = base64_decode($cms);
-            $arrayOfBytes = array();
-            foreach(str_split($decodedCms) as $c)
-                $arrayOfBytes[] = sprintf("%08b", ord($c));
-            print_r($arrayOfBytes);
+            $rawBytes = "";
+            foreach(str_split($decodedCms) as $byte)
+                $rawBytes .= ' ' . sprintf("%08b", ord($byte));
+            $path = Storage::disk('temp_pdf')->path("file.pdf.cms");
+            $file_w = fopen($path, 'wb+');
+            fwrite($file_w, bindec($rawBytes));
+            fclose($file_w);
+
         }
 
 
