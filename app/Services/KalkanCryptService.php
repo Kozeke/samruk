@@ -107,6 +107,7 @@
                 return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
             } else {
                 $this->getCertificateFromCms($outSign);
+                dd($this->FIOCertificateOwner);
                 return $this->getCertificateOwnerInfo();
             }
         }
@@ -153,7 +154,6 @@
                     return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
                 }
             } else {
-                print_r("outData", $outData);
                 $this->FIOCertificateOwner = str_replace("CN=", "", $outData);
             }
             $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_SERIALNUMBER, $outCert, $outData);
