@@ -24,11 +24,7 @@ Route::get('appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@index']);
 Route::get('welcome',function (){
     return view('welcome');
 });
-Route::post('/get/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppeal']);
-Route::post('/view/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@viewAppeal']);
-Route::get('/view/appeal-history',['uses' => 'Site\Cabinet\Appeal\AppealController@getAppealHistory'])->name('appeal.history');
-Route::post('/edit/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@editAppeal']);
-Route::post('/print/appeal',['uses' => 'Site\Cabinet\Appeal\AppealController@downloadPdf']);
+
 Route::post('/cabinet/users/excel', 'Site\Cabinet\CabinetController@exportExcelOfUsers')->name('cabinet.download-users-excel');
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localizationRedirect']], function () {
@@ -119,9 +115,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 //            Route::get('cabinet/{id}/feedback', 'CabinetController@feedback')->name('cabinet.feedback');
             Route::get('cabinet/{id}/feedback_template', 'CabinetController@feedback_template')->name('cabinet.feedback');
             Route::get('cabinet/{id}/feedback_template/view', 'CabinetController@view_template');
-            Route::post('cabinet/{id}/feedback_template/print', 'CabinetController@feedback_template_print_pdf');
             Route::post('cabinet/{id}/feedback_send', 'CabinetController@feedback_send')->name('cabinet.feedback.send');
-            Route::post('cabinet/{id}/feedback_send/appeal/pdf', 'Appeal\AppealController@downloadPdf')->name('cabinet.feedback.send');
         });
     });
 

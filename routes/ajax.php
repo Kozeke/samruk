@@ -9,7 +9,7 @@
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localizationRedirect']], function() {
     //печать пдф обращении
-    Route::post('print-pdf', 'Site\Cabinet\CabinetController@downloadPdf');
+    Route::post('print-pdf', 'Site\Cabinet\CabinetController@downloadPdfAppeal');
 
     Route::post('send-appeal-template', 'Site\Cabinet\CabinetController@sendAppealTemplate');
     Route::post('sign-document', 'Site\Cabinet\CabinetController@signDocument');
