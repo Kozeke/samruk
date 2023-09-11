@@ -45,7 +45,7 @@
         {
             $fileName = $this->createPdf($request, $data);
             $this->signerInfo = $signerInfo;
-            dd($this->signerInfo);
+            dd($signerInfo);
             $appealTemplateTitle = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
             )->title;
             $fullPathToTempPDF = Storage::disk('temp_pdf')->path($fileName);
