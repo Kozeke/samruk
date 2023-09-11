@@ -125,7 +125,7 @@ var calc = new Vue({
                 }
             }).then((response) => {
                 console.log("success", response)
-                window.location.reload()
+                // window.location.reload()
                 self.successMessage = true;
                 self.errors = [];
             }).catch((response) => {
