@@ -476,7 +476,17 @@ HTML;
                 $request['signature_cms'],
                 $request['document_base64']
             );
+            $this->createCmsFile($request['signature_cms']);
         }
+
+        private function createCmsFile($cms){
+            $decodedCms = base64_decode($cms);
+            $arrayOfBytes = array();
+            foreach(str_split($decodedCms) as $c)
+                $arrayOfBytes[] = sprintf("%08b", ord($c));
+            print_r($arrayOfBytes);
+        }
+
 
         /**
          * @param $id
