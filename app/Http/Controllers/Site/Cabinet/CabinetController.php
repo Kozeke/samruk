@@ -1446,7 +1446,7 @@
                 'values' => $request->all(),
                 'today_date' => Carbon::now()->format('d/m/Y'),
                 'dontShowNotification' => true,
-                'appealsHistory' => AppealHistory::all(),
+                'appealsHistory' => AppealHistory::where('user_id', $this->user->id)->get(),
             ]);
         }
 
