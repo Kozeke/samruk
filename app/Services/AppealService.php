@@ -31,7 +31,7 @@
         private $feedbackText;
 
         /**
-         * @var string|null
+         * @var string
          */
         private $signerInfo;
 
@@ -45,6 +45,7 @@
         {
             $fileName = $this->createPdf($request, $data);
             $this->signerInfo = $signerInfo;
+            dd($this->signerInfo);
             $appealTemplateTitle = DB::table('appeal_templates')->where('id', $request['selected_code_id'])->first(
             )->title;
             $fullPathToTempPDF = Storage::disk('temp_pdf')->path($fileName);
@@ -439,6 +440,7 @@ HTML;
             $html = "<p style='text-align: right;'>{$today_date}</p>";
             if ($request['signed']) {
                 $html .= "<div style='right:0px;position: absolute;'>";
+                dd($this->signerInfo);
                 $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
                 $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
