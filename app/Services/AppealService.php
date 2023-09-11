@@ -494,7 +494,6 @@ HTML;
             $cmsPdf,
             $basePdf
         ) {
-            dd($id);
             AppealHistory::create([
                 'user_id' => $id,
                 'link' => $fullPathToTempPDF,
