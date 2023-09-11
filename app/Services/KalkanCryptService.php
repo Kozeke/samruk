@@ -93,9 +93,18 @@
             $outData = "";
             $outVerifyInfo = "";
             $outCert = "";
-            $err = KalkanCrypt_VerifyData($alias, $flags_sign, $inData, 0, $outSign, $outData, $outVerifyInfo, $outCert);
+            $err = KalkanCrypt_VerifyData(
+                $alias,
+                $flags_sign,
+                $inData,
+                0,
+                $outSign,
+                $outData,
+                $outVerifyInfo,
+                $outCert
+            );
             if ($err > 0) {
-                return response()->json(['error'=> KalkanCrypt_GetLastErrorString()], 403);
+                return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
             } else {
                 $this->getCertificateFromCms($outSign);
                 return $this->getCertificateOwnerInfo();
@@ -124,7 +133,7 @@
             $outCert = "";
             $err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
             if ($err > 0) {
-                return response()->json(['error'=> KalkanCrypt_GetLastErrorString()], 403);
+                return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
             } else {
                 $this->getInfoFromCertificate($outCert);
             }
@@ -132,16 +141,15 @@
 
         /**
          * @param string $outCert
-         * @return void
+         * @return JsonResponse|void
          */
-        private function getInfoFromCertificate(string $outCert): void
+        private function getInfoFromCertificate(string $outCert): JsonResponse
         {
             $outData = "";
             $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_COMMONNAME, $outCert, $outData);
             if ($err > 0) {
                 if ($err != 149946424) {
-                    response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
-                    return;
+                    return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
                 }
             } else {
                 $this->FIOCertificateOwner = str_replace("CN=", "", $outData);
@@ -149,8 +157,7 @@
             $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_SUBJECT_SERIALNUMBER, $outCert, $outData);
             if ($err > 0) {
                 if ($err != 149946424) {
-                    response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
-                    return;
+                    return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
                 }
             } else {
                 $this->IINCertificateOwner = str_replace("serialNumber=IIN", "", $outData);
@@ -158,8 +165,7 @@
             $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTBEFORE, $outCert, $outData);
             if ($err > 0) {
                 if ($err != 149946424) {
-                    response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
-                    return;
+                    return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
                 }
             } else {
                 $search = [" ALMT", "notBefore="];
@@ -168,7 +174,7 @@
             $err = KalkanCrypt_X509CertificateGetInfo(self::KC_CERTPROP_NOTAFTER, $outCert, $outData);
             if ($err > 0) {
                 if ($err != 149946424) {
-                    response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
+                    return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
                 }
             } else {
                 $search = [" ALMT", "notAfter="];
