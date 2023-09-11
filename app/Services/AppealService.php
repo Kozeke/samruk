@@ -462,7 +462,7 @@ HTML;
         function sendAppealAndAddToHistory(
             Request $request,
             array $data,
-            string $signerInfo,
+            string $signerInfo
         ) {
             $this->signerInfo = $signerInfo;
             $template_title = DB::table('appeal_templates')->where('code', $request['selected_code_id'])->first(
