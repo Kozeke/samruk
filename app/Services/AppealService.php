@@ -509,8 +509,8 @@ HTML;
                 'link' => $fullPathToTempPDF,
                 'status' => AppealHistory::STATUS_SENT,
                 'title' => $template_title,
-                'signature_cms' => $cmsPdf,
-                'document_base64' => $basePdf,
+                'cms_pdf' => $cmsPdf,
+                'base_pdf' => $basePdf,
             ]);
         }
 
