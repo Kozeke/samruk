@@ -58,6 +58,14 @@
          *
          */
         const KC_OUT_PEM = 0x200;
+        /**
+         *
+         */
+        const KC_USE_OCSP = 0x404;
+        /**
+         *
+         */
+        const URL_TO_CHECK_CERT = "http://ocsp.pki.gov.kz/";
 
         /**
          * @var array|string|string[]
@@ -135,7 +143,7 @@
             if ($err > 0) {
                 return response()->json(['error' => KalkanCrypt_GetLastErrorString()], 403);
             } else {
-                $this->getInfoFromCertificate($outCert);
+                $this->checkCertificate($outCert);
             }
         }
 
@@ -219,8 +227,20 @@
          * @return void
          */
         private
-        function checkCertificate()
+        function checkCertificate(string $outCert)
         {
-//        KalkanCrypt_X509LoadCertificateFromFile(self::KC_CERT_CA).
+            $flags_validate = self::KC_USE_OCSP;
+            $validPath = self::URL_TO_CHECK_CERT;
+            $outInfo = "";
+            $getResp = "";
+            $err = KalkanCrypt_X509ValidateCertificate($outCert, $flags_validate, $validPath, 0, $outInfo, self::KC_NOCHECKCERTTIME, $getResp);
+            if ($err > 0){
+                print_r(KalkanCrypt_GetLastErrorString());
+            }
+            else{
+                echo "\n\n\n".$outInfo."\n";
+                echo "\n".$getResp."\n";
+                $this->getInfoFromCertificate($outCert);
+            }
         }
     }
