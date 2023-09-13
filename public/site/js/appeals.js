@@ -157,42 +157,42 @@ var calc = new Vue({
 
     },
     watch: {
-        async date_to_finish() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
-        async price() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
-        async date_to() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
-        async reason() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
-        async attachment_one() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
-        async attachment_two() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
+        // async date_to_finish() {
+        //     if (this.cms_pdf) {
+        //         alert("При изменении документа, нужно будет вновь подписать")
+        //     }
+        //     await this.printPdf(true)
+        // },
+        // async price() {
+        //     if (this.cms_pdf) {
+        //         alert("При изменении документа, нужно будет вновь подписать")
+        //     }
+        //     await this.printPdf(true)
+        // },
+        // async date_to() {
+        //     if (this.cms_pdf) {
+        //         alert("При изменении документа, нужно будет вновь подписать")
+        //     }
+        //     await this.printPdf(true)
+        // },
+        // async reason() {
+        //     if (this.cms_pdf) {
+        //         alert("При изменении документа, нужно будет вновь подписать")
+        //     }
+        //     await this.printPdf(true)
+        // },
+        // async attachment_one() {
+        //     if (this.cms_pdf) {
+        //         alert("При изменении документа, нужно будет вновь подписать")
+        //     }
+        //     await this.printPdf(true)
+        // },
+        // async attachment_two() {
+        //     if (this.cms_pdf) {
+        //         alert("При изменении документа, нужно будет вновь подписать")
+        //     }
+        //     await this.printPdf(true)
+        // },
     },
 
 });
