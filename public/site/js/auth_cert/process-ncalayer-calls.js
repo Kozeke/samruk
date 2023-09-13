@@ -99,15 +99,15 @@ async function createCAdESFromBase64Call() {
     await calc.printPdf(true);
     var base64ToSign = calc.getBasePdfValue();
 
-    console.log(base64ToSign)
+    // console.log(base64ToSign)
     console.log("createCAdESFromBase64Call")
-    // if (base64ToSign !== null && base64ToSign !== "") {
-    //     $.blockUI();
-    //     createCAdESFromBase64(selectedStorage, "SIGNATURE", base64ToSign, flag, "createCAdESFromBase64Back");
-    // } else {
-    //     alert("Нет данных для подписи!");
-    //     $.unblockUI();
-    // }
+    if (base64ToSign !== null && base64ToSign !== "") {
+        $.blockUI();
+        createCAdESFromBase64(selectedStorage, "SIGNATURE", base64ToSign, flag, "createCAdESFromBase64Back");
+    } else {
+        alert("Нет данных для подписи!");
+        $.unblockUI();
+    }
 }
 
 async function createCAdESFromBase64Back(result) {

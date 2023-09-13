@@ -224,7 +224,7 @@
         }
 
         /**
-         * @return void
+         * @return JsonResponse|void
          */
         private
         function checkCertificate(string $outCert)
@@ -235,11 +235,9 @@
             $getResp = "";
             $err = KalkanCrypt_X509ValidateCertificate($outCert, $flags_validate, $validPath, 0, $outInfo, self::KC_NOCHECKCERTTIME, $getResp);
             if ($err > 0){
-                print_r(KalkanCrypt_GetLastErrorString());
+                return response()->json(['error'=>KalkanCrypt_GetLastErrorString()],403);
             }
             else{
-                echo "\n\n\n".$outInfo."\n";
-                echo "\n".$getResp."\n";
                 $this->getInfoFromCertificate($outCert);
             }
         }
