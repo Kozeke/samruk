@@ -96,10 +96,10 @@ async function createCAdESFromBase64Call() {
     calc.lockInputs();
     var selectedStorage = "PKCS12";
     var flag = true;
-    await calc.printPdf(true);
+    calc.printPdf(true);
     var base64ToSign = calc.getBasePdfValue();
 
-    // console.log(base64ToSign)
+    console.log(base64ToSign)
     console.log("createCAdESFromBase64Call")
     if (base64ToSign !== null && base64ToSign !== "") {
         $.blockUI();
