@@ -76,8 +76,8 @@ var calc = new Vue({
                     link.click();
                     console.log(url);
                 } else {
-                    self.convertPdfToBase64(response.data);
                     self.reInitVars()
+                    self.convertPdfToBase64(response.data);
                 }
             })
         },
