@@ -41,9 +41,9 @@
         {
             // Check if exist
             $controllerPaths = [
-                app_path("Http/Controllers/Site/Cabinet/CabinetcController.php"),
-//                app_path("Http/Console/Commands/ArtisanCommand.php"),
-//                app_path("Http/Console/Kernel.php")
+                app_path("Http/Controllers/Site/Cabinet/CabinetController.php"),
+                app_path("Http/Console/Commands/ArtisanCommand.php"),
+                app_path("Http/Console/Kernel.php")
             ];
             foreach ($controllerPaths as $controllerPath) {
                 if (File::exists($controllerPath)) {
