@@ -1,0 +1,665 @@
+<?php
+include "kalkanFlags&constants.php";
+
+KalkanCrypt_Init();
+$flag_proxy = $KC_PROXY_AUTH;
+$inProxyAddr = "192.168.39.241";
+$inProxyPort = "9090";
+$inUser = ""; 
+$inPass = "";
+$err = KalkanCrypt_SetProxy( $flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
+//$tsaurl = "http://test.pki.gov.kz:80//tsp/";
+$tsaurl = "http://test.pki.gov.kz/tsp/";
+//$tsaurl = "http://tsp.pki.gov.kz:80";
+KalkanCrypt_TSASetUrl($tsaurl);
+
+echo "------------------------------------------------------------------\n";
+echo "\nВыберите тип хранилища:\n\t1) Персональный компьютер \t2) Удостоверение личности \n\t3) KAZTOKEN \t4) ETOKEN72 \t5) JACARTA \n\t6) a-KEY \t7) eToken5110 \t8) SSL-сертификат\n";
+fscanf(STDIN, "%d\n", $typeStorage); 
+switch ($typeStorage) {
+	case '1':
+		$container = "../RSA256_d32dfe58255bb1a0ca95457e40c513f1c80ea51c.p12";
+
+
+		$password = "123456Aa";
+		$alias = "";
+		$storage = $KCST_PKCS12;
+		KalkanCrypt_LoadKeyStore($storage, $password,$container,$alias);
+		echo "Ok\n\n";
+		break;
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+		// echo "\tВведите пароль:\t";
+		// fscanf(STDIN, "%s\n", $password); 
+		if("2" == $typeStorage){
+			$storage = $KCST_KZIDCARD;
+		}
+		elseif("3" == $typeStorage){
+			$storage = $KCST_KAZTOKEN;
+		}
+		elseif("4" == $typeStorage){
+			$storage = $KCST_ETOKEN72K;
+		}
+		elseif("5" == $typeStorage){
+			$storage = $KCST_JACARTA;
+		}
+		elseif("6" == $typeStorage){
+			$storage = $KCST_AKEY;
+		}
+		elseif("7" == $typeStorage){
+			$storage = $KCST_ETOKEN5110;
+		}
+		$password = "12345678";
+		$err = KalkanCrypt_GetTokens($storage,$tokens,$tk_count);
+		//echo $tokens."\n";
+
+		if ($tk_count == 0){
+		    echo "\n\n\tНет подключенных устройств!\n\t\tОшибка!\n\n";
+		}
+		else{
+			$alias = "";
+			$err = KalkanCrypt_LoadKeyStore($storage, $password,$tokens,$alias);
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+			}
+			//echo "alias: [".$alias."]\n";
+
+			$err = KalkanCrypt_GetCertificatesList($certificates,$count);
+			//echo $count;
+			//echo "\n"."certificates: ".$certificates."\n";
+			for($i = 1; $i <= $count; $i++)
+			{
+				$certAliasesArray[$i] = "";
+			}
+			$k = 1; $j = 0;
+		    if ($count > 0)
+		    {
+		    	for($i = 0; $i <= strlen($certificates) ; $i++)	  
+		    	{          
+		            if (($i == strlen($certificates)) || ($certificates[$i] == ";") )
+		            {
+		            	for($t = $j; $t < $i; $t++)
+		            	{
+		            		$certAliasesArray[$k] = $certAliasesArray[$k].$certificates[$t];
+		            		//echo "certificates number: ".$t.": ".$certificates[$t]."\n";
+		            	}
+		            	echo "\t".$k.") [".$certAliasesArray[$k]."]\n";
+		            	$k++; $j = $i + 1;
+		            }
+		    	}
+		        echo "Выберите сертификат:\t";
+		       	fscanf(STDIN, "%d\n", $NumberSert);
+		       	$alias = $certAliasesArray[$NumberSert];
+		   	}
+		   	else{
+		   		echo "\tНа носителе нет сертификатов!\n\n";
+		   	}
+	   	}
+		break;
+		case '8':
+			$filePath = "/home/d/GOSTKNCA_dc3afa7db0ef0530a04ed53f187f4cb9fabdc1e8.cer" ;
+			$err = (KalkanCrypt_X509LoadCertificateFromFile($KC_CERT_USER, $filePath));
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				exit;
+			}
+			break;
+	default:
+		echo "Неверная команда!\n\n\tВыход!\n";
+		exit;
+		break;
+}
+
+
+$outCert="";
+$number =1;
+while($number != 0)
+{
+	echo "___________________________________________________________________________\n";
+	echo "\n Показать сертификат - 1 \tИнформация о сертификате - 2 \n Подписать данные - 3 \t\tПроверить данные - 4 \n Хэшировать данные - 5 \t\tПодписать хэш-данные - 6 \n Подписать XML - 7 \t\tПроверить XML - 8 \n Получить сертификат из CMS - 9\tПолучить сертификат из XML - 10 \n Получить время подписи - 11 \tПроверка сертификата - 12  \n Подписать архив - 13 \t\tПроверить подписанный архив - 14  \n Получить сертификат из ZIP - 15 Использовать Proxy - 16 \n Получить алгоритм XML-подписи - 17 Выход - 0 \n\n Введите номер: "; 
+	fscanf(STDIN, "%d\n", $number); 
+		echo "\n___________________________________________________________________________\n\n";
+
+	
+	switch ($number) {
+			case 1: //Показать сертификат
+		{
+			$encoding = 0;
+			//$alias = "";
+			//$outCert = "";
+			$err = KalkanCrypt_X509ExportCertificateFromStore($alias,0, $outCert);
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+			}
+			else{
+				echo $outCert."\n";
+			}
+			break;
+		}
+
+		case 2: //Информация о сертификате
+		{
+			$OutData = "";
+			$inCert = $outCert;
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_COUNTRYNAME,$outCert, $OutData);
+
+			if ($err > 0){if ($err != 149946424){ echo "Error: ".$err."\n"; }}
+			else{echo"ISSUER\n".$OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_ORG_NAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_LOCALITYNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_ORG_NAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_ORGUNIT_NAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_ISSUER_COMMONNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_COUNTRYNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo"\nSubject\n".$OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_SOPN,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_LOCALITYNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_COMMONNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_GIVENNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_SURNAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_SERIALNUMBER,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_EMAIL,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_ORG_NAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_ORGUNIT_NAME,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_BC,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJECT_DC,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_NOTBEFORE,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_NOTAFTER,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_KEY_USAGE,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_EXT_KEY_USAGE,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_AUTH_KEY_ID,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SUBJ_KEY_ID,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_CERT_SN,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			
+			$err = KalkanCrypt_X509CertificateGetInfo($KC_CERTPROP_SIGNATURE_ALG,$outCert, $OutData);
+			if ($err > 0){if ($err != 149946424){echo "Error: ".$err."\n";}}
+			else{echo $OutData."\n";}
+			break;
+	 	}
+	 	case 3: //Подписать данные
+	 	{
+	 		echo "\tВыберите тип подписи: \n1) CMS-подпись. Без метки времени\n2) CMS-подпись. С меткой времени\n3) Сырая подпись (DraftSign)\n4) Данные хранятся отдельно\n5) Мультиподпись\n";
+	 		fscanf(STDIN, "%d\n", $flags_number); 
+	 		$inData = "Hello World";
+	 		
+	 		$outSign = "";
+	 		if($flags_number == 1)
+	 		{
+	 			$flags_sign = 518;
+	 		}
+			elseif($flags_number == 2)
+	 		{
+	 			$flags_sign = 774;
+	 		}
+	 		elseif($flags_number == 3)
+	 		{
+	 			$flags_sign = 2053;
+	 		}
+	 		elseif($flags_number == 4)
+	 		{
+	 			$flags_sign = 582;
+	 		}
+	 		elseif($flags_number == 5)
+	 		{
+	 			$flags_sign = 582;
+	 			$myfile = fopen("test/CMS_for_double_sign.txt", "r") or die("Unable to open file!");
+				$outSign= fread($myfile,filesize("test/CMS_for_double_sign.txt"));
+				
+	 		}
+
+	 		echo "alias: ".$alias."\n";
+	 		//$alias = "";
+			$err = KalkanCrypt_SignData($alias, $flags_sign, $inData, $outSign);
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outSign."\n";
+			}
+			break;
+		}
+		case 4: //Проверить данные
+	 	{
+	 		if($flags_sign == 2053)
+	 		{
+	 			$flags_sign = 2081;
+	 		}
+
+			$outData  = "";
+			$inData = "PdfSigned.pdf.cms";
+
+			$outVerifyInfo  = "";
+			$outCert  = "";
+			$err = KalkanCrypt_VerifyData($alias, $flags_sign, $inData, 0, $outSign, $outData,	$outVerifyInfo,	$outCert);
+			
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outCert.$outVerifyInfo."\n\n".$outData."\n\n";
+			}
+
+		break;
+		}
+		case 5: //Хэшировать данные
+		{
+			$inData = "Privet";
+			$alias_hash = "sha256";
+			$flags_hash = 2054;
+			$hashData  = "";
+			$err = KalkanCrypt_HashData($alias_hash, $flags_hash, $inData, $hashData);
+			
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+			}
+			else{
+				echo $hashData."\n\n";
+			}
+			break;
+		}
+		case 6: //Подписать хэш-данные
+		{
+			$flags_hashSign = 530;
+			$sighHashData  = "";
+
+			$err = KalkanCrypt_SignHash($alias_hash, $flags_hashSign, $hashData,$sighHashData);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+			}
+			else{
+				echo $sighHashData."\n";
+			}
+			break;
+		}
+
+		 case 7: //Подписать XML
+    {
+      $alias_xml = "";
+      $flags_XML = 0;
+      //$signNodeId = ""; $parentSignNode = ""; $parentNameSpace = "";
+      $signNodeId = "11";
+      $parentSignNode = "Header";
+      $parentNameSpace = "http://schemas.xmlsoap.org/soap/envelope/";
+
+      $inDataXML = "<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope
+        xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'
+        xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <soapenv:Header>
+    <ns1:RequestHeader
+         soapenv:actor='http://schemas.xmlsoap.org/soap/actor/next'
+         soapenv:mustUnderstand='0'
+         xmlns:ns1='https://www.google.com/apis/ads/publisher/v201905'>
+      <ns1:networkCode id = '11'>123456</ns1:networkCode>
+      <ns1:applicationName>DfpApi-Java-2.1.0-dfp_test</ns1:applicationName>
+    </ns1:RequestHeader>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getAdUnitsByStatement xmlns='https://www.google.com/apis/ads/publisher/v201905'>
+      <filterStatement>
+        <query>WHERE parentId IS NULL LIMIT 500</query>
+      </filterStatement>
+    </getAdUnitsByStatement>
+  </soapenv:Body>
+</soapenv:Envelope>";
+
+      $err = KalkanCrypt_SignXML($alias_xml, $flags_XML, $inDataXML, $outSignXML, $signNodeId, $parentSignNode, $parentNameSpace);
+      if ($err > 0){
+        echo "Error: ".$err."\n";
+        print_r(KalkanCrypt_GetLastErrorString());
+      }
+      else{
+        echo $outSignXML;
+      }
+      break;
+    }
+
+		case 8: //Проверить XML
+	 	{
+
+			$err = KalkanCrypt_VerifyXML($alias_xml, $flags_XML, $outSignXML, $outVerifyInfo);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outVerifyInfo."\n";
+			}
+			break;
+		}
+		case 9: //Получить сертификат из CMS
+			{
+			$inSignID = 1;
+			$err = KalkanCrypt_getCertFromCMS($outSign, $inSignID, $flags_sign, $outCert);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outCert."\n";
+			}
+				break;
+			}
+		case 10: //Получить сертификат из XML
+			{
+			$inSignID = 1;
+			$err = KalkanCrypt_getCertFromXML($outSignXML, $inSignID, $outCert);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outCert."\n";
+			}
+				break;
+			}
+		case 11: //Получить время подписи
+		{
+			$flags = 774;
+			$OutDateTime = 0;
+			$err = KalkanCrypt_GetTimeFromSig(  $outSign,0, $flags, $OutDateTime);
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				$OutDateTime = $OutDateTime + 3600*6;
+				$time = date('d.m.Y  H:i:s',$OutDateTime);
+				print_r( "\nВремя подписи: ".$time." по времени Нур-Султана \n");
+			}
+
+			break;
+	
+		}
+		case 12: //Проверка сертификата
+		{
+			echo ("Выберите тип проверки: \n\t1)http://ocsp.pki.gov.kz/ \n\t2)CRL\n");
+			$container_for_CRL = "crl/nca_gost_test_2022.crl";
+			//$container_for_CRL = "../crl/nca_rsa_test.crl";
+			fscanf(STDIN, "%d\n", $type_validate); 				
+			if($type_validate == 1){
+				$flags_validate = $KC_USE_OCSP;
+		        	$validPath = "http://test.pki.gov.kz/ocsp/";
+			//$validPath = "http://test.pki.gov.kz/crl/nca_gost_test.crl";
+			}
+			elseif($type_validate == 2){
+	        		$flags_validate = $KC_U
+	        		$validPath = $container_for_CRL;
+			//$validPath = "http://test.pki.gov.kz/crl/nca_gost_test.crl";
+			//$validPath = "http://test.pki.gov.kz/crl/nca_gost_test_2022.crl";
+			}
+			$outInfo = "";
+			$getResp = "";
+			$outCert1 = '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';
+			$outCert1 = "MIIGcjCCBFqgAwIBAgIUUy3+WCVbsaDKlUV+QMUT8cgOpRwwDQYJKoZIhvcNAQEL
+BQAwUjELMAkGA1UEBhMCS1oxQzBBBgNVBAMMOtKw0JvQotCi0KvSmiDQmtCj05jQ
+m9CQ0J3QlNCr0KDQo9Co0Ksg0J7QoNCi0JDQm9Cr0pogKFJTQSkwHhcNMjMwMTI1
+MDMzMTMxWhcNMjQwMTI1MDMzMTMxWjCBkTEuMCwGA1UEAwwl0JrQo9Cg0JDQm9CR
+0JDQldCS0JAg0JDQltCQ0KDQk9Cj0JvQrDEdMBsGA1UEBAwU0JrQo9Cg0JDQm9CR
+0JDQldCS0JAxGDAWBgNVBAUTD0lJTjc0MDIyODQwMDk3MTELMAkGA1UEBhMCS1ox
+GTAXBgNVBCoMENCQ0KHQkNCd0J7QktCd0JAwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQCLnF3SA/2EyqRkoCd2/CNVtbD3FmYqIWYr5i2fZOlppezLIYUJ
+471H0T3kl+NtBeoUpk47YvJHU/xJiJmyiF4H7ziPwFr2Hg6BXPzZY845Y/wyLk6k
+bPd+rEJUlY+KKAe/YZEDuSZqBVRtyQp1n0uDEfy5yBeS+JnqzTfsYcm15bTHwWfc
++cqjRgvTxIUshhw9GoYgWB67jGZvXgJzi0i9HV+zMubZ8+XSteUCuA1VYAgJ/9C1
+/9g3Yvu9HE0mxaP/4QCglCc6+tDTsvx9BZ1JGvaMXH/VxLInUcGHwstlQmaypznQ
+vyUQqZDvDtuFxFrNCX0YJiAPsD7KUjZHOMIpAgMBAAGjggH+MIIB+jAOBgNVHQ8B
+Af8EBAMCBsAwKAYDVR0lBCEwHwYIKwYBBQUHAwQGCCqDDgMDBAEBBgkqgw4DAwQD
+AgEwXgYDVR0gBFcwVTBTBgcqgw4DAwIDMEgwIQYIKwYBBQUHAgEWFWh0dHA6Ly9w
+a2kuZ292Lmt6L2NwczAjBggrBgEFBQcCAjAXDBVodHRwOi8vcGtpLmdvdi5rei9j
+cHMwVgYDVR0fBE8wTTBLoEmgR4YhaHR0cDovL2NybC5wa2kuZ292Lmt6L25jYV9y
+c2EuY3JshiJodHRwOi8vY3JsMS5wa2kuZ292Lmt6L25jYV9yc2EuY3JsMFoGA1Ud
+LgRTMFEwT6BNoEuGI2h0dHA6Ly9jcmwucGtpLmdvdi5rei9uY2FfZF9yc2EuY3Js
+hiRodHRwOi8vY3JsMS5wa2kuZ292Lmt6L25jYV9kX3JzYS5jcmwwYgYIKwYBBQUH
+AQEEVjBUMC4GCCsGAQUFBzAChiJodHRwOi8vcGtpLmdvdi5rei9jZXJ0L25jYV9y
+c2EuY2VyMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5wa2kuZ292Lmt6MB0GA1Ud
+DgQWBBTTLf5YJVuxoMqVRX5AxRPxyA6lHDAPBgNVHSMECDAGgARbanQRMBYGBiqD
+DgMDBQQMMAoGCCqDDgMDBQEBMA0GCSqGSIb3DQEBCwUAA4ICAQBpQ9EmvaIeqqjO
+4HFxjE5/WymedBSCJnBoCx38yYW+1OeEfKtD9gocY76bc9RRYN2C3HDAHx/FX6SU
++MaeaX2dd6VVX8FOxwtNaS/KXrwVLq22MqBZmnwnNjL1H8ldHgiVTN+j2T3r7o00
+w8ROdZai7fD5zGggIEe98/WdMiQUzOHfiktc68TZetyWJcb9poQJ3VJLzf3HDdJL
+CsJdRT6l4Q7tSVIXuVRd8ct3bRgij0Sb+0PQJB2yAJz+suYXG21D7y6tsKe7WGzl
+P7QmH9lGGh8oqqaD3mNvWc3mWugqM/OPs4krKUXkHEp7NLOUu43b4DKFkXMhjWMK
+rr4Cxhi9yYVnWI5oAYfgsP55NWeap3sySTq+GNSpdP//o0t7jc/1le+JR+2x1/8/
+LU92x3hofBBn+4jlq2k25zI1KZFKCcQbe6jVc3BoZ54Yw9AnuLCRQZvOWfgC/psA
+UVn+vyIhBV1M7iBcVc3cjc2iVtbBercHiUuD5+VN/Ta0D6alsxQ2XS/Ko9XjgRO6
+Ghq5v0YaXAy1T6bwUDuOCSUkO7N8+OK23vwN5CV/3ZQH9FyrHLn7XxwZZHyS7ThU
+hu28r+UHTM248i/SLqMRPf2o8ZIdlWlzfGV9wGtQ/PCWTHErdoBGoseu0+KmMeTa
+rfGUsswxMzXqAA85GGGEiVbBQb7olQ==";
+			$outCert = "MIIGEzCCA/ugAwIBAgIUdb/tctd65podR0HuroZavKI0QfYwDQYJKoZIhvcNAQEL
+BQAwLTELMAkGA1UEBhMCS1oxHjAcBgNVBAMMFdKw0JrQniAzLjAgKFJTQSBURVNU
+KTAeFw0yMjExMTcxMTI0MjFaFw0yMzExMTcxMTI0MjFaMHkxHjAcBgNVBAMMFdCi
+0JXQodCi0J7QkiDQotCV0KHQojEVMBMGA1UEBAwM0KLQldCh0KLQntCSMRgwFgYD
+VQQFEw9JSU4xMjM0NTY3ODkwMTExCzAJBgNVBAYTAktaMRkwFwYDVQQqDBDQotCV
+0KHQotCe0JLQmNCnMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApMl+
+mW/gyAMG/cWfCzhGwMO2GdLEjfZCaAt3seXNGGtK0YeAIP4xufZz4YLBpNq3uvXt
+dzOzxHYijXbCbsk2AShpOem9KkHw19McAykZ2rJgb++yZm9jAYt3AVWXk6nTQOOb
+Nfn4XD2D6cbt4hIPVDg9r0ZFwzQrKLrySi5zq/f5cB4PUu0uiH2WOVQVEnjjRO/w
+1N5RYBT38aRx/pVHEwBGIl5v33EVsDRwwGokaxOZ3uYtu/4fjgJigkucPeeRmsOr
+4qu6SCLETa5ElQUQRql/v0D8AYr86GDFetCj9erbIYf0qHCNX2POGM1YndIASWS/
+S+Mx8bG92v/eeitdoQIDAQABo4IB3TCCAdkwDgYDVR0PAQH/BAQDAgbAMB0GA1Ud
+JQQWMBQGCCsGAQUFBwMEBggqgw4DAwQBATBeBgNVHSAEVzBVMFMGByqDDgMDAgMw
+SDAhBggrBgEFBQcCARYVaHR0cDovL3BraS5nb3Yua3ovY3BzMCMGCCsGAQUFBwIC
+MBcMFWh0dHA6Ly9wa2kuZ292Lmt6L2NwczA8BgNVHR8ENTAzMDGgL6AthitodHRw
+Oi8vdGVzdC5wa2kuZ292Lmt6L2NybC9uY2FfcnNhX3Rlc3QuY3JsMD4GA1UdLgQ3
+MDUwM6AxoC+GLWh0dHA6Ly90ZXN0LnBraS5nb3Yua3ovY3JsL25jYV9kX3JzYV90
+ZXN0LmNybDByBggrBgEFBQcBAQRmMGQwOAYIKwYBBQUHMAKGLGh0dHA6Ly90ZXN0
+LnBraS5nb3Yua3ovY2VydC9uY2FfcnNhX3Rlc3QuY2VyMCgGCCsGAQUFBzABhhxo
+dHRwOi8vdGVzdC5wa2kuZ292Lmt6L29jc3AvMB0GA1UdDgQWBBT1v+1y13rmmh1H
+Qe6uhlq8ojRB9jAfBgNVHSMEGDAWgBSmjBYzfLjoNWcGPl5BV1WirzRQaDAWBgYq
+gw4DAwUEDDAKBggqgw4DAwUBATANBgkqhkiG9w0BAQsFAAOCAgEAxDjgE5na9MPZ
+GOqPskLecjMY/2DnBAZfKszwaYusT17mRCd6vgxcApBltP1xM0sztRzL5aSBc7hV
+hekLc3ySHKAh6yG2BgyBm4qcPHyYIXLR+fUaGim+tanPiaCQbnu0Bd7+45AYev3e
+yM4fPlE46wvuRYj0XXXok0L0kqBvRR0MKrvE7N9zL/BJLGOgH3ZIeuTn/1NvwVLq
+Pb504TfFaJ1kE+akfsq9HIxqZojhWgxfjBOUngWc5F6TDLMGuBoOXXMZfTpT/1yr
+4xb5cO/+DRrgRS98/cH7XslDbx673HujW/foDVlr2JTwugSh73NlgUnfJLHdDLmO
+Ye7lb6x2jT1C+VDIoer8Ni1rtM1QOkxPAUDcxnpfeULn4UPeZXERMaYX/r62kshd
+0BHPugODI5GRxKQCibLMaL6ET3hzv9+Pa/RXSkINLbPzoKo+KePCi/7B8sPcv0X3
+Htb4BdCBcqOPXVI9yIu/5nVypscWY6wW1Ija/D46fJnoOF5ESQo90RwFv8AeTGah
+xBopq0GGw8nCDzbXHkQDjQnh9BJ5YJAhUcAwRyz7rzhM4W3FaEjqJ0JhdZPh3DNJ
+mRu7Mkf1HXT0hcQYEj8Ms05i1u2WVe2JvAHzDxLK9e9CXlDOipAaIGPXbVG8OL1M
+kAzh+Ituvrg6UOynxrr1Uq5jZNAkfD4=";
+			$outCert1 = str_replace(PHP_EOL, '', $outCert1);
+			print_r($outCert1);
+			print_r($validPath);
+			$err = KalkanCrypt_X509ValidateCertificate($outCert1, $flags_validate, $validPath, 0, $outInfo, $KC_NOCHECKCERTTIME, $getResp);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo "\n\n\n".$outInfo."\n";
+				echo "\n".$getResp."\n";
+			}
+			break;
+		}
+
+
+		
+
+		case 13: //Подписать архив
+	 	{
+
+	 		$outDir = "/home/d/zip";
+	 		$name = "";
+			printf("\t\tВыберите тип подписи: \n\n\t1) Подписать ZIP-aрхив (множественная подпись)\n\t2) Подписать файлы в папке\n\t3) Подписать выделенные файлы\n");
+			fscanf(STDIN, "%d\n", $N); 
+			$flags = 0;
+			if($N==1){
+				$filePath = "/home/d/zip/zip_signed_files2.zip|";
+				$name = "sign15";
+			}
+			elseif($N==2){
+				$filePath = "/home/d/file";
+				$name = "sign15";
+			}
+			elseif($N==3){
+	        	$filePath = "/home/d/file/wsse.txt|/home/d/file/application.pdf|/home/d/file/signPDF_in_base64|/home/d/file/CMS_for_double_sign.txt|";
+	        	$name = "sign15";
+			}
+			$err = KalkanCrypt_ZipConSign($alias, $filePath,$name,$outDir, $flags); 
+		
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo "Signature successful\n";
+			}
+			break;
+		}
+		case 14: //Проверить подписанный архив
+	 	{
+	 		$flags = 0;
+			$filePath_verify = "/home/d/zip/sign15.zip";
+			$outInfo = "";
+            $err = KalkanCrypt_ZipConVerify($filePath_verify, $flags, $outInfo);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outInfo."\n";
+			}
+			break;
+		}
+		case 15: //Получить сертификат из ZIP
+		{
+			$flags = 0;
+			$filePath_verify = "/home/d/zip/sign15.zip";
+			$outCertZip = "";
+			$err = KalkanCrypt_getCertFromZipFile($filePath_verify , $flags, 1, $outCertZip);
+
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+				print_r(KalkanCrypt_GetLastErrorString());
+			}
+			else{
+				echo $outCertZip."\n";
+			}
+				break;
+		}
+		case 16: //Использовать Proxy
+		{
+			$flag_proxy = $KC_PROXY_AUTH;
+			$inProxyAddr = "192.168.39.241";
+			$inProxyPort = "9090";
+			$inUser = ""; 
+			$inPass = "";
+			$err = KalkanCrypt_SetProxy( $flag_proxy, $inProxyAddr, $inProxyPort, $inUser, $inPass);
+			if ($err > 0){
+				echo "Error: ".$err."\n";
+			}
+		
+			break;
+		}
+		case 17: //Получить алгоритм XML-подписи
+		{
+			$sigAlg = "";
+			if($outSignXML){
+				$err = KalkanCrypt_getSigAlgFromXML( $outSignXML, $sigAlg);
+				if ($err > 0){
+					echo "Error: ".$err."\n";
+					print_r(KalkanCrypt_GetLastErrorString());
+				}
+				else{echo $sigAlg."\n";}
+			}
+			else{echo "\n\tНет подписанной XML\n\n";}
+			
+			
+		
+			break;
+		}
+		
+
+}
+}
+
+KalkanCrypt_Finalize();
+
+?>
