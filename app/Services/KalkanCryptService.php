@@ -4,6 +4,7 @@
 
     use Illuminate\Http\JsonResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Storage;
 
     /**
      *
@@ -240,5 +241,14 @@
             else{
                 $this->getInfoFromCertificate($outCert);
             }
+        }
+
+        public function createCmsFile($cms)
+        {
+            $decodedCms = base64_decode($cms);
+            $path = Storage::disk('temp_pdf')->path("file.txt.cms");
+            $file_w = fopen($path, 'wb+');
+            fwrite($file_w, $decodedCms);
+            fclose($file_w);
         }
     }

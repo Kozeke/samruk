@@ -13,6 +13,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
     Route::post('send-appeal-template', 'Site\Cabinet\CabinetController@sendAppealTemplate');
     Route::post('sign-document', 'Site\Cabinet\CabinetController@signDocument');
+    Route::post('save-consent', 'Site\Cabinet\CabinetController@saveConsentToDataCollectionAsCms');
+
 
     Route::group(['namespace' => 'Site\Ajax', 'prefix' => 'ajax'], function () {
 

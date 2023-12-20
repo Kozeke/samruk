@@ -1,4 +1,3 @@
-
 function getActiveTokensCall() {
     blockScreen();
     getActiveTokens("getActiveTokensBack");
@@ -92,6 +91,7 @@ function getKeyInfoBack(result) {
     }
 
 }
+
 async function createCAdESFromBase64Call() {
     calc.lockInputs();
     var selectedStorage = "PKCS12";
@@ -121,10 +121,15 @@ async function createCAdESFromBase64Back(result) {
     }
 }
 
-function createCAdESFromBase64CallForConsent() {
+async function createCAdESFromBase64CallForConsent() {
+    var str;
+
+    await fetch('sample.txt').then(x => x.text()).then((consentTxt) => {
+        console.log(consentTxt);
+        str = consentTxt;
+    })
     var selectedStorage = "PKCS12";
     var flag = true;
-    var str = "Я ФИО соглашаюсь со сбором информации";
 
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
     console.log(base64ToSign)
@@ -155,7 +160,7 @@ async function signConsentToDataCollection(res) {
     var str = "Я ФИО соглашаюсь со сбором информации";
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
     await axios({
-        url: '/sign-document',
+        url: '/save-consent',
         method: 'POST',
         data: {
             _token: $('meta[name="_token"]').attr('content'),
