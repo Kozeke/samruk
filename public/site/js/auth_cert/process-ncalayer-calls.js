@@ -164,7 +164,7 @@ async function signConsentToDataCollection(res) {
         }
     }).then((response) => {
         console.log("success", response);
-        if (event.target == document.getElementById("modalConsentToDataCollection")) {
+        if (document.getElementById("modalConsentToDataCollection")) {
             document.getElementById("modalConsentToDataCollection").style.display = "none";
         }
         var dateNotAfterString = response.data.certificate_valid_from;
