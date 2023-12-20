@@ -304,7 +304,8 @@ class AuthController extends BaseController
      */
     public function agreeConsentToDataCollection(AgreeConsentToDataCollectionRequest $request): RedirectResponse
     {
-        $request['subjectIIN'] = '900714350610';
+//        $request['subjectIIN'] = '900714350610';
+        $request['subjectIIN'] = '123456789012';
         $user = $this->checkEcp($request);
         $user->update([
             'consent_to_data_collection' => 1,
