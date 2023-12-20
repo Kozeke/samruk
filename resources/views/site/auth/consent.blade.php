@@ -34,9 +34,10 @@
         <input type="text" name="cmsConsent" hidden id="cmsConsent" value="">
 
         <div>
-            <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
+            <input required class="input" id="btnConsentToDataCollection" type="checkbox" style="width: 3%; height: 15px; display: inline"
                    name="consent_to_data_collection" value="1">
-            <label>Согласие на сбор и обработку персональных данных </label>
+            <span style="cursor:pointer;color:blue;" >Согласие на сбор и обработку персональных данных</span>
+            @include('site.cabinet.snippets.consent-to-data-collection')
         </div>
         <div>
             <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
@@ -45,9 +46,8 @@
         </div>
         <div><input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
                     name="consent_to_data_collection" value="1">
-            <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Пользовательское соглашение</span>
+            <span style="cursor:pointer;color:blue;" >Пользовательское соглашение</span>
             {{--                        <span style="cursor:pointer;color:blue" id="btnConsentToDataCollection">Подробнее</span>--}}
-            @include('site.cabinet.snippets.consent-to-data-collection')
         </div>
     </div>
 
