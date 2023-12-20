@@ -12,8 +12,8 @@ class LangsSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('langs')->truncate();
-      
+//      DB::table('langs')->truncate();
+
       DB::table('langs')->insert([
         'good' => 1,
         'key' => 'ru',

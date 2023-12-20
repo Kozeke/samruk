@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
-        DB::table('profiles')->truncate();
+//        DB::table('users')->truncate();
+//        DB::table('profiles')->truncate();
 
         DB::table('users')->insert([
             'good' => 1,

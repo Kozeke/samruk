@@ -11,7 +11,7 @@ class TemplatesTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('templates')->truncate();
+//      DB::table('templates')->truncate();
 
       DB::table('templates')->insert([
         'ban' => 1,

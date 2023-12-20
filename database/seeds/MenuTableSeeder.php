@@ -11,7 +11,7 @@ class MenuTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('menu')->truncate();
+//        DB::table('menu')->truncate();
 
         DB::table('menu')->insert([
             'title' => 'Главная',
