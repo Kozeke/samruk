@@ -84,7 +84,7 @@ class RegistrationsController extends BaseController
 //            "iin" => $request->input('subjectIIN'),
             "iin" => '900714350610',
 //            "num_phone" => $request->input('mobile')
-            "num_phone" => '+7 702 999 7002'
+            "num_phone" => '+77029997002'
         ])->_toArray();
 
         if ($info['code'] == 200) {
