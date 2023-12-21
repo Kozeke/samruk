@@ -12,7 +12,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->truncate();
+//        DB::table('roles')->truncate();
 
         factory(App\Models\Roles::class, 'roles', 1)->create();
 

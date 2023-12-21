@@ -91,7 +91,7 @@
                     <div>
                         <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
                                name="consent_to_data_collection" value="1">
-                        <label>Согласие на сбор и обработку персональных данных </label>
+                        <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Согласие на сбор и обработку персональных данных</span>
                     </div>
                     <div>
                         <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"

@@ -15,8 +15,8 @@ class ApiRequest
      * @var Url to fnsk soap server
      */
     protected $url = 'https://suap.fnsk.kz/SUAP/ws/BankExchange.1cws?wsdl';
-    //protected $url = 'http://example.com/webservices?wsdl';
-    /**
+//    protected $url = 'http://example.com/webservices?wsdl';
+    /**k
      * @var result
      */
     protected $result;
@@ -27,16 +27,22 @@ class ApiRequest
      */
     public function __construct()
     {
-//        ini_set('default_socket_timeout', 10000);
-//        $this->client = new SoapClient($this->url, [
-//            "soap_version" => SOAP_1_1,
-//            "stream_context" => stream_context_create([
-//                'ssl' => [
-//                    'verify_peer' => false,
-//                    'verify_peer_name' => false,
-//                ]
-//            ])
-//        ]);
+        ini_set('default_socket_timeout', 10000);
+        $this->client = new SoapClient($this->url, [
+            "soap_version" => SOAP_1_1,
+            'http_errors' => true,
+            'decode_content' => true,
+            'verify' => false,
+            'cookies' => false,
+            'idn_conversion' => false,
+            "stream_context" => stream_context_create([
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true,
+                ]
+            ])
+        ]);
 //        $this->getSoap();
     }
 
@@ -52,7 +58,12 @@ class ApiRequest
         //$wsdlUrl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
         $soapClientOptions = array(
             'stream_context' => $context,
-            'cache_wsdl' => WSDL_CACHE_NONE
+            'cache_wsdl' => WSDL_CACHE_NONE,
+            'http_errors' => true,
+            'decode_content' => true,
+            'verify' => false,
+            'cookies' => false,
+            'idn_conversion' => false,
         );
 
         $client = new SoapClient($this->url, $soapClientOptions);
@@ -80,7 +91,7 @@ class ApiRequest
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['num_phone'])) {
-                $this->result = $this->client->CheckByPhone($data);
+//                $this->result = $this->client->CheckByPhone($data);
             }
         }
 
@@ -120,7 +131,7 @@ class ApiRequest
         return $this;
     }
 
-    public function Checkgrafic($data = [])
+        public function Checkgrafic($data = [])
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['Num_d'], $data['date_zp'])) {
@@ -130,7 +141,7 @@ class ApiRequest
         return $this;
     }
 
-    public function CheckCHDP($data = [])
+        public function CheckCHDP($data = [])
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['Num_d'], $data['date_zp'], $data['SummaCHDP'])) {

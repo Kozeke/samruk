@@ -1,4 +1,3 @@
-
 function getActiveTokensCall() {
     blockScreen();
     getActiveTokens("getActiveTokensBack");
@@ -92,6 +91,7 @@ function getKeyInfoBack(result) {
     }
 
 }
+
 async function createCAdESFromBase64Call() {
     calc.lockInputs();
     var selectedStorage = "PKCS12";
@@ -121,10 +121,15 @@ async function createCAdESFromBase64Back(result) {
     }
 }
 
-function createCAdESFromBase64CallForConsent() {
+async function createCAdESFromBase64CallForConsent() {
+    var str;
+
+    await fetch('sample.txt').then(x => x.text()).then((consentTxt) => {
+        console.log(consentTxt);
+        str = consentTxt;
+    })
     var selectedStorage = "PKCS12";
     var flag = true;
-    var str = "Я ФИО соглашаюсь со сбором информации";
 
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
     console.log(base64ToSign)
@@ -155,7 +160,7 @@ async function signConsentToDataCollection(res) {
     var str = "Я ФИО соглашаюсь со сбором информации";
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
     await axios({
-        url: '/sign-document',
+        url: '/save-consent',
         method: 'POST',
         data: {
             _token: $('meta[name="_token"]').attr('content'),
@@ -164,24 +169,8 @@ async function signConsentToDataCollection(res) {
         }
     }).then((response) => {
         console.log("success", response);
-        var dateNotAfterString = response.data.certificate_valid_from;
-        var dateNotAfter = new Date(Number(dateNotAfterString));
-        var notAfter = dateNotAfter.toLocaleString();
-        // $("#notafter").val(date.toLocaleString());
-
-        var dateNotBeforeString = response.data.certificate_valid_to;
-        var dateNotBefore = new Date(Number(dateNotBeforeString));
-        var notBefore = dateNotBefore.toLocaleString();
-        // $("#notbefore").val(date.toLocaleString());
-        $('#cert_date').val(dateNotAfterString + ' - ' + dateNotBeforeString);
-
-        $("#subjectIIN").val(response.data.iin);
-        $("#subjectName").val(response.data.fio);
-        $("#cmsConsent").val(res);
-        // self.signed = true;
-        // self.signerFIO = response.data['fio']
-        // console.log(self.signerFIO)
-        // self.value_qr = response.data.value_qr
-        // console.log(self.value_qr)
+        if (document.getElementById("modalConsentToDataCollection")) {
+            document.getElementById("modalConsentToDataCollection").style.display = "none";
+        }
     })
 }
