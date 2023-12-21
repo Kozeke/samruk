@@ -14,9 +14,9 @@ class ApiRequest
     /**
      * @var Url to fnsk soap server
      */
-//    protected $url = 'https://suap.fnsk.kz/SUAP/ws/BankExchange.1cws?wsdl';
-    protected $url = 'http://example.com/webservices?wsdl';
-    /**
+    protected $url = 'https://suap.fnsk.kz/SUAP/ws/BankExchange.1cws?wsdl';
+//    protected $url = 'http://example.com/webservices?wsdl';
+    /**k
      * @var result
      */
     protected $result;
