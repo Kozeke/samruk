@@ -53,7 +53,12 @@ class ApiRequest
         //$wsdlUrl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
         $soapClientOptions = array(
             'stream_context' => $context,
-            'cache_wsdl' => WSDL_CACHE_NONE
+            'cache_wsdl' => WSDL_CACHE_NONE,
+            'http_errors' => true,
+            'decode_content' => true,
+            'verify' => false,
+            'cookies' => false,
+            'idn_conversion' => false,
         );
 
         $client = new SoapClient($this->url, $soapClientOptions);
