@@ -30,15 +30,20 @@ class ApiRequest
         ini_set('default_socket_timeout', 10000);
         $this->client = new SoapClient($this->url, [
             "soap_version" => SOAP_1_1,
+            'http_errors' => true,
+            'decode_content' => true,
+            'verify' => false,
+            'cookies' => false,
+            'idn_conversion' => false,
             "stream_context" => stream_context_create([
                 'ssl' => [
                     'verify_peer' => false,
                     'verify_peer_name' => false,
-                    'allow_self_signed' => true
+                    'allow_self_signed' => true,
                 ]
             ])
         ]);
-        $this->getSoap();
+//        $this->getSoap();
     }
 
     private function getSoap()
@@ -53,7 +58,12 @@ class ApiRequest
         //$wsdlUrl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
         $soapClientOptions = array(
             'stream_context' => $context,
-            'cache_wsdl' => WSDL_CACHE_NONE
+            'cache_wsdl' => WSDL_CACHE_NONE,
+            'http_errors' => true,
+            'decode_content' => true,
+            'verify' => false,
+            'cookies' => false,
+            'idn_conversion' => false,
         );
 
         $client = new SoapClient($this->url, $soapClientOptions);
