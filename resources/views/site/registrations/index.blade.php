@@ -92,17 +92,18 @@
                         <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
                                name="consent_to_data_collection" value="1">
                         <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Согласие на сбор и обработку персональных данных</span>
+                        @include('site.cabinet.snippets.consent-to-data-collection')
                     </div>
                     <div>
                         <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
-                               name="consent_to_data_collection" value="1">
-                        <label>Политика конфиденциальности </label>
+                               name="privacy_policy" value="1">
+                        <span style="cursor:pointer;color:blue;" id="btnPrivacyPolicy">Политика конфиденциальности </span>
+                        @include('site.cabinet.snippets.privacy_policy')
                     </div>
                     <div><input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
-                                name="consent_to_data_collection" value="1">
-                        <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Пользовательское соглашение</span>
-{{--                        <span style="cursor:pointer;color:blue" id="btnConsentToDataCollection">Подробнее</span>--}}
-                        @include('site.cabinet.snippets.consent-to-data-collection')
+                                name="terms_of_use" value="1">
+                        <span style="cursor:pointer;color:blue;" id="btnTermsOfUse">Пользовательское соглашение</span>
+                        @include('site.cabinet.snippets.terms_of_use')
                     </div>
                 </div>
                 <div class="form-group">
