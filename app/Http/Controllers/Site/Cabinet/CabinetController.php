@@ -1635,15 +1635,4 @@
             $this->kalkanCryptService->createCmsFile($request['signature_cms']);
         }
 
-        /**
-         * @param Request $request
-         * @return void
-         */
-        public
-        function saveConsentToDataCollectionAsCms(
-            Request $request
-        )
-        {
-            $this->kalkanCryptService->createCmsFile($request['signature_cms']);
-        }
     }

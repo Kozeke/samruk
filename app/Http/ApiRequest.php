@@ -30,11 +30,11 @@ class ApiRequest
         ini_set('default_socket_timeout', 10000);
         $this->client = new SoapClient($this->url, [
             "soap_version" => SOAP_1_1,
-            'http_errors' => true,
-            'decode_content' => true,
-            'verify' => false,
-            'cookies' => false,
-            'idn_conversion' => false,
+//            'http_errors' => true,
+//            'decode_content' => true,
+//            'verify' => false,
+//            'cookies' => false,
+//            'idn_conversion' => false,
             "stream_context" => stream_context_create([
                 'ssl' => [
                     'verify_peer' => false,
