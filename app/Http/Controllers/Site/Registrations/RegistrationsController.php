@@ -77,14 +77,14 @@ class RegistrationsController extends BaseController
      * @param RegisterRequest $request
      * @return RedirectResponse
      */
-    public function register(Request $request): RedirectResponse
+    public function register(RegisterRequest $request): RedirectResponse
     {
             $api = new ApiRequest();
         $info = $api->CheckByPhone([
-//            "iin" => $request->input('subjectIIN'),
-            "iin" => '900714350610',
-//            "num_phone" => $request->input('mobile')
-            "num_phone" => '+77029997002'
+            "iin" => $request->input('subjectIIN'),
+//            "iin" => '900714350610',
+            "num_phone" => $request->input('mobile')
+//            "num_phone" => '+77029997002'
         ])->_toArray();
 
         if ($info['code'] == 200) {
