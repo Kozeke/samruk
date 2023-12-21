@@ -30,11 +30,6 @@ class ApiRequest
         ini_set('default_socket_timeout', 10000);
         $this->client = new SoapClient($this->url, [
             "soap_version" => SOAP_1_1,
-//            'http_errors' => true,
-//            'decode_content' => true,
-//            'verify' => false,
-//            'cookies' => false,
-//            'idn_conversion' => false,
             "stream_context" => stream_context_create([
                 'ssl' => [
                     'verify_peer' => false,
@@ -81,7 +76,7 @@ class ApiRequest
 
         if (is_array($data)) {
             if (isset($data['iin'], $data['num_phone'], $data['date_zp'])) {
-//                $this->result = $this->client->CheckByInfoByClient($data);
+                $this->result = $this->client->CheckByInfoByClient($data);
             }
         }
         return $this;
@@ -91,7 +86,7 @@ class ApiRequest
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['num_phone'])) {
-//                $this->result = $this->client->CheckByPhone($data);
+                $this->result = $this->client->CheckByPhone($data);
             }
         }
 
