@@ -89,11 +89,12 @@
                 $section->configuration->sidebar = $this->sidebar;
 
                 $this->api = $api;
-//            $this->info = $this->api->CheckByInfoByClient([
-//                "iin" => $this->user->iin,
-//                "num_phone" => $this->user->mobile,
-//                "date_zp" => Carbon::now()->format('YmdHis')
-//            ])->_toArray();
+                $this->info = $this->api->CheckByInfoByClient([
+                    "iin" => '900714350610',
+//                    "num_phone" => $this->user->mobile,
+                    "num_phone" => '+7 702 999 7002',
+                    "date_zp" => Carbon::now()->format('YmdHis')
+                ])->_toArray();
                 $this->info = [
                     "code" => 200,
                     "data" => [
@@ -1458,7 +1459,7 @@
         {
             $signerInfo = '';
             if ($request['signed']) {
-                $signerInfo = $this->kalkanCryptService->verifySignature($request['signature_cms'], $request['document_base64']);
+//                $signerInfo = $this->kalkanCryptService->verifySignature($request['signature_cms'], $request['document_base64']);
             }
             return $this->appealService->downloadPdf($request, $this->data, $signerInfo);
         }
@@ -1469,15 +1470,32 @@
          */
         public
         function sendAppealTemplate(
-            SendAppealTemplateRequest $request
+            Request $request
         ) {
+            $this->createCmsFile($request['cms_signature']);
             $signerInfo = '';
             if ($request['signed']) {
-                $signerInfo = $this->kalkanCryptService->verifySignature($request['signature_cms'], $request['document_base64']);
+//                $signerInfo = $this->kalkanCryptService->verifySignature($request['signature_cms'], $request['document_base64']);
             }
             $this->appealService->sendAppealAndAddToHistory($request, $this->data, $signerInfo);
         }
 
+        /**
+         * @param  $cms
+         * @return void
+         */
+        private function createCmsFile($cms)
+        {
+            $decodedCms = base64_decode($cms);
+            $rawBytes = "";
+            foreach (str_split($decodedCms) as $byte) {
+                $rawBytes .= ' ' . sprintf("%08b", ord($byte));
+            }
+            $path = Storage::disk('temp_pdf')->path("file.pdf.cms");
+            $file_w = fopen($path, 'wb+');
+            fwrite($file_w, bindec($rawBytes));
+            fclose($file_w);
+        }
 
         /**
          * @param $appeal_history_id
@@ -1604,5 +1622,16 @@
             Request $request
         ): JsonResponse {
             return $this->kalkanCryptService->signDocument($request);
+        }
+
+        /**
+         * @param Request $request
+         * @return void
+         */
+        public
+        function saveConsentToDataCollectionAsCms(
+            Request $request
+        ) {
+            $this->kalkanCryptService->createCmsFile($request['signature_cms']);
         }
     }
