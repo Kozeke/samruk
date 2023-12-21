@@ -14,8 +14,8 @@ class ApiRequest
     /**
      * @var Url to fnsk soap server
      */
-    protected $url = 'https://suap.fnsk.kz/SUAP/ws/BankExchange.1cws?wsdl';
-    //protected $url = 'http://example.com/webservices?wsdl';
+//    protected $url = 'https://suap.fnsk.kz/SUAP/ws/BankExchange.1cws?wsdl';
+    protected $url = 'http://example.com/webservices?wsdl';
     /**
      * @var result
      */
@@ -80,7 +80,7 @@ class ApiRequest
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['num_phone'])) {
-                $this->result = $this->client->CheckByPhone($data);
+//                $this->result = $this->client->CheckByPhone($data);
             }
         }
 
@@ -120,7 +120,7 @@ class ApiRequest
         return $this;
     }
 
-    public function Checkgrafic($data = [])
+        public function Checkgrafic($data = [])
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['Num_d'], $data['date_zp'])) {
@@ -130,7 +130,7 @@ class ApiRequest
         return $this;
     }
 
-    public function CheckCHDP($data = [])
+        public function CheckCHDP($data = [])
     {
         if (is_array($data)) {
             if (isset($data['iin'], $data['Num_d'], $data['date_zp'], $data['SummaCHDP'])) {
