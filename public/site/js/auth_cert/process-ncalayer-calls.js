@@ -160,7 +160,8 @@ async function signConsentToDataCollection(res) {
     var str = "Я ФИО соглашаюсь со сбором информации";
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
     await axios({
-        url: '/save-consent',
+        // url: '/save-consent',
+        url: '/sign-document',
         method: 'POST',
         data: {
             _token: $('meta[name="_token"]').attr('content'),
