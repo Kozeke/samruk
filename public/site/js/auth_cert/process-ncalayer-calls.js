@@ -172,5 +172,20 @@ async function signConsentToDataCollection(res) {
         if (document.getElementById("modalConsentToDataCollection")) {
             document.getElementById("modalConsentToDataCollection").style.display = "none";
         }
+        var dateNotAfterString = response.data.certificate_valid_from;
+        var dateNotAfter = new Date(Number(dateNotAfterString));
+        var notAfter = dateNotAfter.toLocaleString();
+        // $("#notafter").val(date.toLocaleString());
+
+        var dateNotBeforeString = response.data.certificate_valid_to;
+        var dateNotBefore = new Date(Number(dateNotBeforeString));
+        var notBefore = dateNotBefore.toLocaleString();
+        // $("#notbefore").val(date.toLocaleString());
+        $('#cert_date').val(dateNotAfterString + ' - ' + dateNotBeforeString);
+
+        $("#subjectIIN").val(response.data.iin);
+        $("#subjectName").val(response.data.fio);
+        $("#cmsConsent").val(res);
+
     })
 }
