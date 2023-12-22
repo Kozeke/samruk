@@ -92,7 +92,7 @@
                 $this->info = $this->api->CheckByInfoByClient([
                     "iin" => '640126302996',
 //                    "num_phone" => $this->user->mobile,
-                    "num_phone" => '+7(701)6294026',
+                    "num_phone" => '+77016294026',
                     "date_zp" => Carbon::now()->format('YmdHis')
                 ])->_toArray();
                 $this->info = [
