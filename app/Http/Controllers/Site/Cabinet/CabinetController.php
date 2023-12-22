@@ -89,12 +89,12 @@
                 $section->configuration->sidebar = $this->sidebar;
 
                 $this->api = $api;
-//                $this->info = $this->api->CheckByInfoByClient([
-//                    "iin" => '900714350610',
-////                    "num_phone" => $this->user->mobile,
-//                    "num_phone" => '+7 702 999 7002',
-//                    "date_zp" => Carbon::now()->format('YmdHis')
-//                ])->_toArray();
+                $this->info = $this->api->CheckByInfoByClient([
+                    "iin" => '640126302996',
+//                    "num_phone" => $this->user->mobile,
+                    "num_phone" => '+7 (701) 629 40 26',
+                    "date_zp" => Carbon::now()->format('YmdHis')
+                ])->_toArray();
                 $this->info = [
                     "code" => 200,
                     "data" => [
