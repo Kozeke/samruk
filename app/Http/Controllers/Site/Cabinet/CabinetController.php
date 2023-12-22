@@ -95,7 +95,7 @@
 //                    "num_phone" => '+77016294026',
 //                    "date_zp" => Carbon::now()->format('YmdHis')
 //                ])->_toArray();
-                $api->CheckVid();
+//                $api->CheckVid();
 
                 $this->info = [
                     "code" => 200,
