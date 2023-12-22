@@ -38,38 +38,8 @@ class ApiRequest
                 ]
             ])
         ]);
-//        $this->getSoap();
     }
 
-    private function getSoap()
-    {
-        $opts = array(
-            'http' => array(
-                'user_agent' => 'PHPSoapClient'
-            )
-        );
-        $context = stream_context_create($opts);
-
-        //$wsdlUrl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
-        $soapClientOptions = array(
-            'stream_context' => $context,
-            'cache_wsdl' => WSDL_CACHE_NONE,
-            'http_errors' => true,
-            'decode_content' => true,
-            'verify' => false,
-            'cookies' => false,
-            'idn_conversion' => false,
-        );
-
-        $client = new SoapClient($this->url, $soapClientOptions);
-        /**$checkVatParameters = array(
-         * 'countryCode' => 'DK',
-         * 'vatNumber' => '47458714'
-         * );
-         *
-         * $result = $client->checkVat($checkVatParameters);
-         * print_r($result);*/
-    }
 
     public function CheckByInfoByClient($data = [])
     {
