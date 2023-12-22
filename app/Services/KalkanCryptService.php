@@ -214,6 +214,7 @@
                 //проверить подпись
                 $this->verifySignature($request['signature_cms'], $request['document_base64']);
             }
+            dd($this->FIOCertificateOwner);
             return response()->json(
                 [
                     "fio" => $this->FIOCertificateOwner,
