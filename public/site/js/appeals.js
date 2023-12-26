@@ -155,14 +155,6 @@ var calc = new Vue({
             })
         },
 
-    },
-    watch: {
-        async selected_code_id() {
-            if (this.cms_pdf) {
-                alert("При изменении документа, нужно будет вновь подписать")
-            }
-            await this.printPdf(true)
-        },
     }
 });
 
