@@ -439,11 +439,14 @@ HTML;
             $today_date = Carbon::now()->format('d/m/Y');
             $html = "<p style='text-align: right;'>{$today_date}</p>";
             if ($request['signed']) {
-                dd($this->signerInfo, $data['number']);
                 $html .= "<div style='right:0px;position: absolute;'>";
-                $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
-                $html .= "<div style='right:200px;position: absolute;'>";
-                $html .= DNS2D::getBarcodeHTML("Номер договора №".$data['number'], 'QRCODE', 5, 5) . "</div>";
+                if ($this->signerInfo) {
+                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
+                }
+                if ($data['number']) {
+                    $html .= "<div style='right:200px;position: absolute;'>";
+                    $html .= DNS2D::getBarcodeHTML("Номер договора №" . $data['number'], 'QRCODE', 5, 5) . "</div>";
+                }
                 $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
                 $html .= "</div></div>";
