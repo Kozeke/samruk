@@ -99,7 +99,7 @@ async function createCAdESFromBase64Call() {
     calc.printPdf(true);
     var base64ToSign = calc.getBasePdfValue();
 
-    console.log(base64ToSign)
+    // console.log(base64ToSign)
     console.log("createCAdESFromBase64Call")
     if (base64ToSign !== null && base64ToSign !== "") {
         $.blockUI();
@@ -125,14 +125,14 @@ async function createCAdESFromBase64CallForConsent() {
     var str;
 
     await fetch('sample.txt').then(x => x.text()).then((consentTxt) => {
-        console.log(consentTxt);
+        // console.log(consentTxt);
         str = consentTxt;
     })
     var selectedStorage = "PKCS12";
     var flag = true;
 
     var base64ToSign = btoa(unescape(encodeURIComponent(str)));
-    console.log(base64ToSign)
+    // console.log(base64ToSign)
     console.log("createCAdESFromBase64Call")
     if (base64ToSign !== null && base64ToSign !== "") {
         $.blockUI();
