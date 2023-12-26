@@ -1,11 +1,11 @@
 <div class="form-auth__signature" >
-    <div class="form-auth__signature-left" >
+{{--    <div class="form-auth__signature-left" >--}}
         <input type="hidden" name="PKCS12" value="PKCS12" id="storageSelect">
-        <a class="form-auth__signature-choose" href="javascript:;" onclick="createCAdESFromBase64CallForConsent();">
-            {!! icon('icon--key') !!}
-            <span>Выбрать ЭЦП</span>
-        </a>
-    </div>
+{{--        <a class="form-auth__signature-choose" href="javascript:;" onclick="createCAdESFromBase64CallForConsent();">--}}
+{{--            {!! icon('icon--key') !!}--}}
+{{--            <span>Выбрать ЭЦП</span>--}}
+{{--        </a>--}}
+{{--    </div>--}}
 
     <div class="form-auth__signature-right">
         <div class="form-auth__signature-inputs">
@@ -48,7 +48,6 @@
 
         <input type="hidden" name="algorithm" value="" id="algorithm"/>
         <div class="form-auth__signature-hint">
-            {{--* Для заполнения этих полей необходимо выбрать ключ ЭЦП--}}
             * Выберите RSA ЭЦП ключ чтобы подписать согласие на сбор и обработку персональных данных
         </div>
     </div>
