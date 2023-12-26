@@ -20,11 +20,6 @@
         'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
     ]);
 
-    Route::get('appeal', ['uses' => 'TestController@index']);
-    Route::get('welcome', function () {
-        return view('welcome');
-    });
-
     Route::post('/cabinet/users/excel', 'Site\Cabinet\CabinetController@exportExcelOfUsers')->name(
         'cabinet.download-users-excel'
     );
