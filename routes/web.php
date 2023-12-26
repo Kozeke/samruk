@@ -10,15 +10,15 @@
     | contains the "web" middleware group. Now create something great!
     |
     */
-    Route::get('/_debugbar/assets/stylesheets', [
-        'as' => 'debugbar-css',
-        'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
-    ]);
-
-    Route::get('/_debugbar/assets/javascript', [
-        'as' => 'debugbar-js',
-        'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
-    ]);
+//    Route::get('/_debugbar/assets/stylesheets', [
+//        'as' => 'debugbar-css',
+//        'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
+//    ]);
+//
+//    Route::get('/_debugbar/assets/javascript', [
+//        'as' => 'debugbar-js',
+//        'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
+//    ]);
 
     Route::post('/cabinet/users/excel', 'Site\Cabinet\CabinetController@exportExcelOfUsers')->name(
         'cabinet.download-users-excel'
