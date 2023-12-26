@@ -442,9 +442,9 @@ HTML;
                 $html .= "<div style='right:0px;position: absolute;'>";
                 if ($this->signerInfo) {
                     $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
+                    $html .= "<div style='right:200px;position: absolute;'>";
                 }
                 if ($data['number']) {
-                    $html .= "<div style='right:200px;position: absolute;'>";
                     $html .= DNS2D::getBarcodeHTML("Номер договора №" . $data['number'], 'QRCODE', 5, 5) . "</div>";
                 }
                 $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
