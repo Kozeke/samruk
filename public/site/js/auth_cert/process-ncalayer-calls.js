@@ -173,6 +173,7 @@ async function signConsentToDataCollection(res) {
         if (document.getElementById("modalConsentToDataCollection")) {
             document.getElementById("modalConsentToDataCollection").style.display = "none";
         }
+        document.getElementById("consent_to_data_collection").checked = true;
         var dateNotAfterString = response.data.certificate_valid_from;
         var dateNotAfter = new Date(Number(dateNotAfterString));
         var notAfter = dateNotAfter.toLocaleString();
