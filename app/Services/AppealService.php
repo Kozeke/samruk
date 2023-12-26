@@ -439,6 +439,7 @@ HTML;
             $today_date = Carbon::now()->format('d/m/Y');
             $html = "<p style='text-align: right;'>{$today_date}</p>";
             if ($request['signed']) {
+                dd($this->signerInfo, $data['number']);
                 $html .= "<div style='right:0px;position: absolute;'>";
                 $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
                 $html .= "<div style='right:200px;position: absolute;'>";
