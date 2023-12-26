@@ -441,15 +441,16 @@ HTML;
             if ($request['signed']) {
                 $html .= "<div style='right:0px;position: absolute;'>";
                 if ($this->signerInfo) {
-                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
+                    $arrSignerInfo = explode(",", $this->signerInfo);
+                    $html .= DNS2D::getBarcodeHTML($arrSignerInfo[0], 'QRCODE', 5, 5) . "</div>";
                     $html .= "<div style='right:200px;position: absolute;'>";
-                }
-                if ($data['number']) {
-                    $html .= DNS2D::getBarcodeHTML("Номер договора №" . $data['number'], 'QRCODE', 5, 5) . "</div>";
-                }
-                $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
+                    $html .= DNS2D::getBarcodeHTML($arrSignerInfo[1], 'QRCODE', 5, 5) . "</div>";
+                    $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II \"Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
-                $html .= "</div></div>";
+                    $html .= "</div></div>";
+                }
+
+
 //            Осы құжат \"Электрондық құжат және электрондық цифрлық қолтаңба туралы\" Қазақстан Республикасының 2003 жылғы 7
 //            қаңтардағы N 370-II Заңы 7 бабының 1 тармағына сәйкес қағаз тасығыштағы құжатпен бірдей.
             } else {
