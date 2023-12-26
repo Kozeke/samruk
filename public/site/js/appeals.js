@@ -26,15 +26,15 @@ var calc = new Vue({
             this.cms_pdf = cms_pdf;
         },
         getBasePdfValue() {
-            console.log(this.base_pdf)
+            // console.log(this.base_pdf)
             return this.base_pdf;
         },
         lockInputs() {
             this.lock_inputs = !this.lock_inputs
-            console.log(this.price)
+            // console.log(this.price)
         },
         printPdf(getBase64 = false) {
-            console.log(getBase64);
+            // console.log(getBase64);
             var self = this;
             axios({
                 url: '/print-pdf',
@@ -64,7 +64,7 @@ var calc = new Vue({
                     if (fileNameMatch.length === 2)
                         fileName = fileNameMatch[1];
                 }
-                console.log(response.data)
+                // console.log(response.data)
                 if (!getBase64) {
                     console.log("Asd");
                     var pdf_blob = new Blob([response.data]);
@@ -74,7 +74,7 @@ var calc = new Vue({
                     link.setAttribute('download', decodeURI(fileName) + '.pdf');
                     document.body.appendChild(link);
                     link.click();
-                    console.log(url);
+                    // console.log(url);
                 } else {
                     self.reInitVars()
                     self.convertPdfToBase64(response.data);
@@ -100,7 +100,7 @@ var calc = new Vue({
                 self.base_pdf = base64.replace('data:', '')
                     .replace(/^.+,/, '');
                 // this.pdfBase64 = base64;
-                console.log(self.base_pdf);
+                // console.log(self.base_pdf);
             };
             // Convert data to base64
             fileReader.readAsDataURL(fileToLoad);
