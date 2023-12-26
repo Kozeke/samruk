@@ -83,9 +83,9 @@ var calc = new Vue({
         },
         reInitVars() {
             this.lock_inputs = false;
-            // this.price = "";
-            // this.date_to_finish = "";
-            // this.reason = "";
+            this.price = "";
+            this.date_to_finish = "";
+            this.reason = "";
             this.signed = "";
             this.base_pdf = "";
             this.cms_pdf = "";
