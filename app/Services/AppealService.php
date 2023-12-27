@@ -441,16 +441,11 @@ HTML;
             if ($request['signed']) {
                 $html .= "<div style='right:0px;position: absolute;'>";
                 if ($this->signerInfo) {
-                    $arrSignerInfo = explode(",", $this->signerInfo);
-                    $html .= DNS2D::getBarcodeHTML($arrSignerInfo[0], 'QRCODE', 5, 5) . "</div>";
-                    $html .= "<div style='right:200px;position: absolute;'>";
-                    $html .= DNS2D::getBarcodeHTML("ИИН:".$arrSignerInfo[1], 'QRCODE', 5, 5) . "</div>";
+                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
                     $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II \"Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
                     $html .= "</div></div>";
                 }
-
-
 //            Осы құжат \"Электрондық құжат және электрондық цифрлық қолтаңба туралы\" Қазақстан Республикасының 2003 жылғы 7
 //            қаңтардағы N 370-II Заңы 7 бабының 1 тармағына сәйкес қағаз тасығыштағы құжатпен бірдей.
             } else {
@@ -487,16 +482,17 @@ HTML;
             $this->createCmsFile($request['signature_cms']);
         }
 
-        private function createCmsFile($cms){
+        private function createCmsFile($cms)
+        {
             $decodedCms = base64_decode($cms);
             $rawBytes = "";
-            foreach(str_split($decodedCms) as $byte)
+            foreach (str_split($decodedCms) as $byte) {
                 $rawBytes .= ' ' . sprintf("%08b", ord($byte));
+            }
             $path = Storage::disk('temp_pdf')->path("file.pdf.cms");
             $file_w = fopen($path, 'wb+');
             fwrite($file_w, bindec($rawBytes));
             fclose($file_w);
-
         }
 
 
