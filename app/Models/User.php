@@ -122,6 +122,7 @@
         {
             if (is_null(auth()->user()->last_profile_check_at) || auth()->user()->last_profile_check_at < Carbon::now(
                 )->subMonths(2)) {
+                dd("asd");
                 return true;
             } else {
                 return false;
