@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <div>
-                <input required class="input" type="checkbox" style="width: 3%; height: 15px; display: inline"
+                <input required disabled class="input" id="consent_to_data_collection" type="checkbox" style="width: 3%; height: 15px; display: inline"
                        name="consent_to_data_collection" value="1">
                 <span style="cursor:pointer;color:blue;" id="btnConsentToDataCollection">Согласие на сбор и обработку персональных данных</span>
                 @include('site.cabinet.snippets.consent-to-data-collection')
