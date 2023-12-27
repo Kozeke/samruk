@@ -443,7 +443,7 @@ HTML;
                 if ($this->signerInfo) {
                     $arr = explode(",", $this->signerInfo);
                     $html .= "<div style='right:0px;position: absolute;'>";
-                    $html .= DNS2D::getBarcodeHTML("Куралбаева Ажаргуль 740229399404", 'QRCODE', 5, 5) . "</div>";
+                    $html .= DNS2D::getBarcodeHTML("Куралбаева Ажаргуль 740229399404", 'QRCODE', 3, 3) . "</div>";
                     $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II \"Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
                     $html .= "</div></div>";
