@@ -444,7 +444,7 @@ HTML;
                 if ($this->signerInfo) {
 //                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
                     $html .= "<img src='data:image/png;base64," . DNS2D::getBarcodePNG(
-                            'asdasd',
+                            $this->signerInfo,
                             'QRCODE'
                         ) . "alt='barcode' /></div>";
                     $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
