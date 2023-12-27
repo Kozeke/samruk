@@ -78,7 +78,7 @@
             $pdf = new Dompdf($options);
             $html = $this->getHeaderHtml($data);
             $html .= $this->getContentHtmlForCodeId($data, $request, $request['selected_code_id']);
-            $html .= $this->getFooterHtml($request);
+            $html .= $this->getFooterHtml($request, $data);
 
             $pdf->load_html($html, 'UTF-8');
             $pdf->render();
@@ -435,7 +435,7 @@ HTML;
          * @param array $data
          * @return string
          */
-        private function getFooterHtml(Request $request): string
+        private function getFooterHtml(Request $request,array $data): string
         {
             $today_date = Carbon::now()->format('d/m/Y');
             $html = "<p style='text-align: right;'>{$today_date}</p>";
@@ -444,9 +444,15 @@ HTML;
                     $arr = explode(",", $this->signerInfo);
                     $html .= "<div style='right:0px;position: absolute;'>";
                     $html .= "<img src='data:image/png;base64," . DNS2D::getBarcodePNG(
+                            $data['number'],
+                            'QRCODE'
+                        ) . "alt='barcode' /></div>";
+                    $html .= "<div style='right:100px;position: absolute;'>";
+                    $html .= "<img src='data:image/png;base64," . DNS2D::getBarcodePNG(
                             $arr[1].'#'. $arr[0],
                             'QRCODE'
                         ) . "alt='barcode' /></div>";
+
                     $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II \"Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
                     $html .= "</div></div>";
