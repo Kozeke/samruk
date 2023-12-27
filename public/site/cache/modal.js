@@ -2,6 +2,8 @@
 var modalPrivacyPolicy = document.getElementById("modalPrivacyPolicy");
 var modalConsentToDataCollection = document.getElementById("modalConsentToDataCollection");
 var modalTermsOfUse = document.getElementById("modalTermsOfUse");
+var checkProfileNeed = document.getElementById("checkProfileNeed");
+
 
 // Get the button that opens the modal
 var btnConsentToDataCollection = document.getElementById("btnConsentToDataCollection");
@@ -15,6 +17,10 @@ var spanPrivacyPolicy = document.getElementById("spanPrivacyPolicy");
 var spanTermsOfUse = document.getElementById("spanTermsOfUse");
 
 // When the user clicks on the button, open the modal
+if (checkProfileNeed) {
+    modalConsentToDataCollection.style.display = "block";
+    modalConsentToDataCollection.scrollIntoView();
+}
 if (modalConsentToDataCollection) {
     btnConsentToDataCollection.onclick = function () {
         if (modalConsentToDataCollection) {
@@ -58,7 +64,7 @@ if (spanTermsOfUse) {
     }
 }
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == modalConsentToDataCollection) {
         modalConsentToDataCollection.style.display = "none";
     }
