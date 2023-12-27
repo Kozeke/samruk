@@ -443,7 +443,7 @@ HTML;
                 $html .= "<div style='right:0px;position: absolute;'>";
                 if ($this->signerInfo) {
 //                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
-                    $html .= "<img src='data:image/png;base64," . DNS1D::getBarcodePNG(
+                    $html .= "<img src='data:image/png;base64," . DNS2D::getBarcodePNG(
                             'asdasd',
                             'QRCODE'
                         ) . "alt='barcode' /></div>";
