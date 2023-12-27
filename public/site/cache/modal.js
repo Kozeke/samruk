@@ -52,6 +52,12 @@ if (spanPrivacyPolicy) {
     }
 }
 
+if (span) {
+    span.onclick = function () {
+        checkProfileNeed.style.display = "none";
+    }
+}
+
 if (spanConsentToDataCollection) {
     spanConsentToDataCollection.onclick = function () {
         modalConsentToDataCollection.style.display = "none";
@@ -73,5 +79,8 @@ window.onclick = function (event) {
     }
     if (event.target == modalTermsOfUse) {
         modalTermsOfUse.style.display = "none";
+    }
+    if (event.target == checkProfileNeed) {
+        checkProfileNeed.style.display = "none";
     }
 }
