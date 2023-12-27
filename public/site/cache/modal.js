@@ -18,8 +18,8 @@ var spanTermsOfUse = document.getElementById("spanTermsOfUse");
 
 // When the user clicks on the button, open the modal
 if (checkProfileNeed) {
-    modalConsentToDataCollection.style.display = "block";
-    modalConsentToDataCollection.scrollIntoView();
+    checkProfileNeed.style.display = "block";
+    checkProfileNeed.scrollIntoView();
 }
 if (modalConsentToDataCollection) {
     btnConsentToDataCollection.onclick = function () {
