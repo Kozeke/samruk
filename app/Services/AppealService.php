@@ -441,7 +441,11 @@ HTML;
             if ($request['signed']) {
                 $html .= "<div style='right:0px;position: absolute;'>";
                 if ($this->signerInfo) {
-                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
+//                    $html .= DNS2D::getBarcodeHTML($this->signerInfo, 'QRCODE', 5, 5) . "</div>";
+                    $html .= "<img src='data:image/png;base64," . DNS1D::getBarcodePNG(
+                            'asdasd',
+                            'S25'
+                        ) . "alt='barcode' />";
                     $html .= "<div style='bottom: 0px;position: absolute'> <p style='font-size: 10px'>
             Данный документ согласно пункту 1 статьи 7 ЗРК от 7 января 2003 года N370-II \"Об электронном документе и электронной цифровой подписи\" равнозначен документу на бумажном носителе.</p>";
                     $html .= "</div></div>";
