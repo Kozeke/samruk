@@ -82,9 +82,9 @@ class RegistrationsController extends BaseController
             $api = new ApiRequest();
         $info = $api->CheckByPhone([
 //            "iin" => $request->input('subjectIIN'),
-            "iin" => '640126302996',
+            "iin" => '871217302425',
 //            "num_phone" => $request->input('mobile')
-            "num_phone" => '+7(701)6294026'
+            "num_phone" => '+7 (707) 540 86 87'
         ])->_toArray();
 
         if ($info['code'] == 200) {
