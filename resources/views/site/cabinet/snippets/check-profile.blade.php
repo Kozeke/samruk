@@ -1,5 +1,5 @@
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="checkProfileNeed" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
