@@ -449,7 +449,7 @@ HTML;
                         ) . "alt='barcode' /></div>";
                     $html .= "<div style='right:100px;position: absolute;'>";
                     $html .= "<img src='data:image/png;base64," . DNS2D::getBarcodePNG(
-                            $arr[1].','. $arr[0],
+                            $arr[1].' '. $arr[0],
                             'QRCODE'
                         ) . "alt='barcode' /></div>";
 
