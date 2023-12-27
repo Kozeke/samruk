@@ -444,7 +444,7 @@ HTML;
                     $arr = explode(",", $this->signerInfo);
                     $html .= "<div style='right:0px;position: absolute;'>";
                     $html .= "<img src='data:image/png;base64," . DNS2D::getBarcodePNG(
-                            $data['number'],
+                            "номер договора:".$data['number'],
                             'QRCODE'
                         ) . "alt='barcode' /></div>";
                     $html .= "<div style='right:100px;position: absolute;'>";
