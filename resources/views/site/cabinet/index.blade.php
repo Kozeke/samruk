@@ -18,6 +18,7 @@
                     @if ($data['code'] != 200)
                         <div class="alert alert--info">{{ $data['message'] }}</div>
                     @else
+                        {{$user['consent_to_data_collection']}}
                         @if ($user['consent_to_data_collection'])
                             @if ($profile_check_need)
 
