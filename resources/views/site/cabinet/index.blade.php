@@ -20,6 +20,7 @@
                     @else
                         {{$user['consent_to_data_collection']}}
                         @if ($user['consent_to_data_collection'])
+                            {{$profile_check_need}}
                             @if ($profile_check_need)
 
                                 @include('site.cabinet.snippets.check-profile')
